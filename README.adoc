@@ -79,8 +79,8 @@ CAUTION: Les mises à jour peuvent créer des conflits sur vos divergences : vou
 
 == Tâches réalisée
 
-include::chapter-1.adoc[leveloffset=1]
-include::chapter-1.adoc[leveloffset=1]
+include::setup.adoc[leveloffset=1]
+include::gameTurn.adoc[leveloffset=1]
 
 == Tâches à réaliser
 
