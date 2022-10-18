@@ -1,22 +1,18 @@
+=== Mise en place - Normale
 
-=== Mise en place
-. Mise en place du plateau avec les différentes tuiles : 4 forêts, 4 prés, 4 champs, 3 collines, 3 montagnes, 1 désert ainsi que 6 cadres.
+.	Mise en place du plateau avec les différentes tuiles : 4 forêts, 4 prés, 4 champs, 3 collines,  3 montagnes, 1 désert ainsi que 6 cadres. On place les tuiles de façon aléatoire en les  mélangeant et en les plaçant au hasard.
 
-.. soit dans un placement préconçu pour le mode débutant
-.. soit de façon aléatoire en mélangeant les tuiles et en le plaçant au hasard.
+.	On place ensuite les jetons numérotés sur les tuiles dans le sens anti-horaire de l'extérieur  vers l'intérieur par ordre alphabétique (lorsque l'on tombe sur la case désert on l'ignore et  on place le jeton sur la case suivante) 
 
-. On place ensuite les jetons numérotés sur les tuiles dans le sens anti-horaire de l'extérieur vers l'intérieur par ordre alphabétique (lorsque l'on tombe sur la case désert on l'ignore et on place le jeton sur la case suivante) 
+.	Les joueurs reçoivent 5 colonies, 4 villes et 15 routes ainsi que 2 points de victoire. (s'il y  a 3 joueurs, on range les pions rouges)
 
-. Les joueurs reçoivent 5 colonies, 4 villes et 15 routes ainsi que 2 points de victoire. (s'il y a 3 joueurs, on range les pions rouges)
+.	Les joueurs placent 2 colonies ainsi que deux routes :
+a)	Ces pions sont placés en 2 tours :
+*	*1er tour:* Les joueurs lancent les dés, celui qui a le plus haut lancé commence.   Il place sa colonie sur une intersection de son choix et une route collée à sa colonie dans la direction de son choix. En suite le joueur à sa gauche fait de même et ainsi de suite (la contrainte distance soit être respectée)
+*	*2ème tour:* Une fois que chaque joueur à placé ses deux pions, on recommence dans le sens inverse (le dernier à avoir posé est le premier et vis  versa) avec les mêmes contraintes de placement qu'au premier tour. La deuxième colonie placée est la colonie étoilé.
 
-. Les joueurs placent 2 colonies ainsi que deux routes :
-.. soit c'est pré-placé par le mode débutant
-.. soit ils les placent en 2 tours :
-* 1er tour : Les joueurs lancent les dés, celui qui a le plus haut lancé commence.   Il place sa colonie sur une intersection de son choix et une route collée à sa colonie dans la direction de son choix. En suite le joueur à sa gauche fait de même et ainsi de suite (la contrainte distance soit être respectée)
-* 2ème tour : Une fois que chaque joueur à placé ses deux pions, on recommence dans le sens inverse (le dernier à avoir posé est le premier et vis  versa) avec les mêmes contraintes de placement qu'au premier tour. La deuxième colonie placée est la colonie étoilé.
+.	Les cartes ressources sont triées en 5 piles par types et placées face visible. Les cartes  développement sont mélangées et placées face cachée
 
-. Les cartes ressources sont triées en 5 piles par types et placées face visible. Les cartes développement sont mélangées et placées face cachée.
+.	Chaque joueur reçoit 1 cartes de chaque ressources juxtaposé à sa colonie étoilée. Les  cartes ressources possédées sont conservées face cachée.
 
-. Chaque joueur reçoit 1 cartes de chaque ressources juxtaposé à sa colonie étoilée. Les cartes ressources possédées sont conservées face cachée.
-
-. En mode débutant le joueur le plus âgé débute. Autrement, le premier joueur est le dernier à avoir placé ses pièces sur le plateau
+.	En mode débutant le joueur le plus âgé débute. Autrement, le premier joueur est le dernier à avoir placé ses pièces sur le plateau.

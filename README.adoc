@@ -77,9 +77,10 @@ git pull upstream master
 
 CAUTION: Les mises à jour peuvent créer des conflits sur vos divergences : vous devrez corriger ces conflits. Vous trouverez plus d'informations sur la résolution de conflits https://www.atlassian.com/fr/git/tutorials/using-branches/merge-conflicts[ici].
 
-== Tâches réalisée
+== Tâches réalisé
 
 include::setup.adoc[leveloffset=1]
+include::setup_beginner.adoc[leveloffset=1]
 include::gameTurn.adoc[leveloffset=1]
 
 == Tâches à réaliser
