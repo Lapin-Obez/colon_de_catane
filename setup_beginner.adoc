@@ -1,15 +1,15 @@
 === Mise en place - Débutant
 
-.	Mise en place du plateau avec les différentes tuiles : 4 forêts, 4 prés, 4 champs, 3 collines, 3 montagnes, 1 désert ainsi que 6 cadres. On les place dans un placement préconçu pour le mode débutant
+. Mise en place du plateau avec les différentes tuiles : 4 forêts, 4 prés, 4 champs, 3 collines, 3 montagnes, 1 désert ainsi que 6 cadres. On les place dans un placement préconçu pour le mode débutant
 
-.	On place ensuite les jetons numérotés sur les tuiles de façon pré construite.
+. On place ensuite les jetons numérotés sur les tuiles de façon pré construite.
 
-.	Les joueurs reçoivent 5 colonies, 4 villes et 15 routes ainsi que 2 points de victoire. (s'il y a 3 joueurs, on range les pions rouges)
+. Les joueurs reçoivent 5 colonies, 4 villes et 15 routes ainsi que 2 points de victoire. (s'il y a 3 joueurs, on range les pions rouges)
 
-.	Les joueurs placent 2 colonies ainsi que deux routes pré-placées par le mode débutant.
+. Les joueurs placent 2 colonies ainsi que deux routes pré-placées par le mode débutant.
 
-.	Les cartes ressources sont triées en 5 piles par types et placées face visible. Les cartes développement sont mélangées et placées face cachée.
+. Les cartes ressources sont triées en 5 piles par types et placées face visible. Les cartes développement sont mélangées et placées face cachée.
 
-.	Chaque joueur reçoit 1 cartes de chaque ressources juxtaposé à sa colonie étoilée. Les cartes ressources possédées sont conservées face cachée.
+. Chaque joueur reçoit 1 cartes de chaque ressources juxtaposé à sa colonie étoilée. Les cartes ressources possédées sont conservées face cachée.
 
-.	En mode débutant le joueur le plus âgé débute. Autrement, le premier joueur est le dernier à avoir placé ses pièces sur le plateau
+. Le joueur le plus âgé débute.
