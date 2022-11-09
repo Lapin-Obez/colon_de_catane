@@ -1,4 +1,4 @@
-Alan    PROVOST
-Gabriel POUPLIN
-Mathis  DUPUIS
-Quentin GOMES DOS REIS
+* Alan    PROVOST
+* Gabriel POUPLIN
+* Mathis  DUPUIS
+* Quentin GOMES DOS REIS
