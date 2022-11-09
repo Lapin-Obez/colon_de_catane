@@ -1,22 +1,23 @@
 === Tour de jeu
 
 . Production de ressources
-.. Le joueur lance les 2 dés
+.. Le joueur courant lance les 2 dés
 .. Tous les joueurs possédant une/des colonie(s) ou ville(s) touchant une tuile de numéro correspondant au résultat des dés récupère des cartes ressources ainsi : 1 carte par colonie et 2 cartes par villes.
 . Commerce
-.. Le joueur peut faire des échanges de ressources avec ses adversaires. A noter que les autres joueurs ne peuvent pas faire d'échange entre eux.
+.. Le joueur courant peut faire des échanges de ressources avec ses adversaires. A noter que les autres joueurs ne peuvent pas faire d'échange entre eux.
 .. Le joueur peut également faire du commerce maritime. Il peut échanger n'importe quelle ressource de son choix en défaussant 4 ressources identiques.
 . Construction
-.. Le joueur peut construire autant de route, de colonies ou de villes qu’il souhaite, tant qu’il a les ressources nécessaires. Une construction ne peut être construite qu’à côté d’une construction de la même couleur. A noter que deux villes/colonies doivent être séparer par au minimum deux routes, qu’une ville ne peut être construite que sur une colonie de la même couleur.
-.. Le joueur peut acheter des cartes développement contre des ressources. Il les conserve face caché jusqu’au moment de leur utilisation.
-. Cas particulier
-.. 7 aux dés: Personne ne reçoit de ressources et le pion voleurs est activé. Les joueurs possédant plus de 7 cartes ressources doivent défausser la moitié de ses cartes ressources arrondi à l’inférieur en cas de nombre impair. Ensuite le pion voleur est déplacé sur une autre tuile. Le joueur actif peut alors volé une ressource à un autre joueur ayant une ville collé à la tuile où se trouve le voleur. Le joueur actif continu ensuite son tour normalement.
+.. Le joueur courant peut construire autant de route, de colonies ou de villes qu’il souhaite, tant qu’il a les ressources nécessaires. Une construction ne peut être construite qu’à côté d’une construction de la même couleur. A noter que deux villes/colonies doivent être séparer par au minimum deux routes, qu’une ville ne peut être construite que sur une colonie de la même couleur.
+.. Le joueur courant peut acheter des cartes développement contre des ressources. Il les conserve face caché jusqu’au moment de leur utilisation.
 .. À tout moment de son tour, le joueur peut jouer une carte Développement qu’il a a acheté à un tour précédent.
-... Le joueur peut joueur une carte chevalier. Il rend la carte visible et déplace le pion voleurs (c.f. 4.a)
-... Le joueur peut joueur une carte progrès. Il réalise les instructions marquées sur la carte.
+... Le joueur courant peut joueur une carte chevalier. Il rend la carte visible et déplace le pion voleurs (c.f. 4.a)
+... Le joueur courant peut joueur une carte progrès. Il réalise les instructions marquées sur la carte.
 ...	Les cartes points de victoire sont conservées secrètes jusqu’à ce qu’un joueur ai au moins 10 points de victoire.
 
 ==== Alternatif:
-1.b) A noter que si le voleur est posé sur une tuile, aucune ressource provenant de cette tuile n'est récupérée. +
+1.b 1) 7 aux dés: Personne ne reçoit de ressources et le pion voleurs est activé. Les joueurs possédant plus de 7 cartes ressources doivent défausser la moitié de ses cartes ressources arrondi à l’inférieur en cas de nombre impair. Ensuite le pion voleur est déplacé sur une autre tuile. Le joueur actif peut alors volé une ressource à un autre joueur ayant une ville collé à la tuile où se trouve le voleur. Le joueur actif continu ensuite son tour normalement. A noter que si le voleur est posé sur une tuile, aucune ressource provenant de cette tuile n'est récupérée. +
+
 2.b) 1)  S'il possède une colonie ou une ville près d'un port "3:1", il peut défausser uniquement 3  ressources. +
 2.b) 2) Si c'est un port "2:1" spécialisé en une certaine ressource, il peut défausser 2 cartes de  cette ressource pour obtenir celle qu'il veut.
+
+
