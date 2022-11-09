@@ -297,6 +297,8 @@ NOTE: Liste des séquences d'actions de l'utilisateur et des réponses du systè
 
 ==== Exigences fonctionnelles
 
+include::use_cases.adoc[leveloffset=2]
+
 [NOTE]
 ====
 Détaillez les exigences fonctionnelles détaillées associées à cette fonctionnalité. Il s'agit des capacités logicielles qui doivent être présentes pour permettre à l'utilisateur d'effectuer les services fournis par la fonction ou d'exécuter le cas d'utilisation. 

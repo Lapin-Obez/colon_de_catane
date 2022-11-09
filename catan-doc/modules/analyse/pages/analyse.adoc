@@ -33,10 +33,12 @@ Utilisez le canevas proposé par Alistar Cockburn pour décrire les cas d'utilis
 Additionnellement, utilisez des diagrammes d'activités UML pour illustrer les cas d'utilisation.
 ====
 
+include::gameTurn.adoc[leveloffset=2]
 
 === Cas d'utilisation "Mise en place d'une partie"
 
-include::partial$uc-template.adoc[]
+include::setup.adoc[leveloffset=2]
+include::setup_beginner.adoc[leveloffset=2]
 
 .Diagramme d'activités: Mise en place d'une partie
 [plantuml]
@@ -44,9 +46,9 @@ include::partial$uc-template.adoc[]
 include::example$ad-mise-en-place.puml[]
 ....
 
-=== Cas d'utilisation B
+=== Cas d'utilisation "Tour de jeu"
 
-include::partial$uc-template-en.adoc[leveloffset=+2]
+include::gameTurn.adoc[leveloffset=2]
 
 .Diagramme d'activités: Cas d'utilisation B
 [plantuml]

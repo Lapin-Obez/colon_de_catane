@@ -77,13 +77,6 @@ git pull upstream master
 
 CAUTION: Les mises à jour peuvent créer des conflits sur vos divergences : vous devrez corriger ces conflits. Vous trouverez plus d'informations sur la résolution de conflits https://www.atlassian.com/fr/git/tutorials/using-branches/merge-conflicts[ici].
 
-== Tâches réalisés
-
-include::setup.adoc[leveloffset=1]
-include::setup_beginner.adoc[leveloffset=1]
-include::gameTurn.adoc[leveloffset=1]
-include::use_cases.adoc[leveloffset=1]
-
 == Tâches à réaliser
 
 Le processus de développement suivra le modèle de développement agile{nbsp}: vous allez réaliser et délivrer plusieurs versions du projet.
