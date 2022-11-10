@@ -33,8 +33,6 @@ Utilisez le canevas proposé par Alistar Cockburn pour décrire les cas d'utilis
 Additionnellement, utilisez des diagrammes d'activités UML pour illustrer les cas d'utilisation.
 ====
 
-include::gameTurn.adoc[leveloffset=2]
-
 === Cas d'utilisation "Mise en place d'une partie"
 
 include::setup.adoc[leveloffset=2]
