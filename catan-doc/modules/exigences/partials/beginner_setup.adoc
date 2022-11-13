@@ -1,0 +1,26 @@
+==== Mise en place - débutant
+
+[cols="30s,70n",options="header", frame=sides]
+|===
+| Item                  | Description
+|#                      |1A
+|Use case               |Mise en place débutant
+|Goal in context        |La partie a été créée
+|Scope                  |La partie
+|Level                  |Primaire
+|Frequency              |1 fois par partie (sauf si le mode de mise en place est «normale»)
+|Performance target     |
+|Success end condition  |Le plateau a été mis en place, les joueurs ont leurs pièces, le premier joueur a été désigné
+|Failed end condition   |
+|Trigger                |La partie commence et le mode de mis en place a été choisi comme débutant
+|Primary actor          |Les joueurs
+|Channel to primary     |
+|Secondary actor        |
+|Pre-condition          |La partie a été créé, les joueurs sont prêts
+|Post-condition         |
+|Superordinate use case |
+|Subordinate use case   |
+|Open issues            |Comment savoir quel est le joueur le plus âgé ?
+|Constraints            |
+|Annexes                |Voir Use Case #1B
+|===

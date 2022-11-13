@@ -1,0 +1,26 @@
+==== Tour de jeu
+
+[cols="30s,70n",options="header", frame=sides]
+|===
+| Item                  | Description
+|#                      |2
+|Use case               |Tour de jeu
+|Goal in context        |La partie a été mise en place et le jeu va débuter ou est en cours
+|Scope                  |La partie
+|Level                  |Primaire
+|Frequency              |1 fois par joueur et par tour
+|Performance target     |
+|Success end condition  |Le joueur a joué son tour
+|Failed end condition   |Le joueur n'a pas commencé son tour
+|Trigger                |La partie commence ou le joueur précédent à terminé son tour
+|Primary actor          |Le joueur, le serveur
+|Channel to primary     |
+|Secondary actor        |Les autres joueurs
+|Pre-condition          |La partie a été mise en place et le jeu débuté.
+|Post-condition         |Le joueur a réussi a effectuer toutes les actions qui voulait effectuer lors de son tour
+|Superordinate use case |
+|Subordinate use case   |
+|Open issues            |Le jeu peut rester bloqué lorsqu’un joueur meurt
+|Constraints            |
+|Annexes                |
+|===

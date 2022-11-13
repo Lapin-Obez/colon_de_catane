@@ -1,0 +1,26 @@
+==== Création d'une partie
+
+[cols="30s,70n",options="header", frame=sides]
+|===
+| Item                  | Description
+|#                      |4
+|Use case               |Créer une partie
+|Goal in context        |Créer une partie de Catane
+|Scope                  |La partie
+|Level                  |Primaire
+|Frequency              |1 fois par partie
+|Performance target     |
+|Success end condition  |Le joueur a réussi à créer une partie et s’est choisi un pseudo
+|Failed end condition   |Le joueur ne parvient pas à rejoindre la partie ou ne choisi pas de pseudonyme
+|Trigger                |
+|Primary actor          |Le joueur, le serveur
+|Channel to primary     |
+|Secondary actor        |
+|Pre-condition          |
+|Post-condition         |Le joueur est connecté à la partie
+|Superordinate use case |
+|Subordinate use case   |
+|Open issues            |
+|Constraints            |
+|Annexes                |
+|===

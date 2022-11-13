@@ -297,8 +297,6 @@ NOTE: Liste des séquences d'actions de l'utilisateur et des réponses du systè
 
 ==== Exigences fonctionnelles
 
-include::use_cases.adoc[leveloffset=2]
-
 [NOTE]
 ====
 Détaillez les exigences fonctionnelles détaillées associées à cette fonctionnalité. Il s'agit des capacités logicielles qui doivent être présentes pour permettre à l'utilisateur d'effectuer les services fournis par la fonction ou d'exécuter le cas d'utilisation. 
@@ -313,27 +311,49 @@ Chaque exigence doit être identifiée de manière unique par un numéro de séq
 * REQ-2:
 ====
 
-==== Description sous la forme d'un cas d'utilisation
+=== Fonctionnalité "Mettre en place une partie pour les débutants"
 
-.Cas d'utilisation A
-include::partial$uc-a.adoc[]
-
-=== Fonctionnalité B
-
-NOTE: Ajoutez la description de la fonctionnalité "B" en vous basant sur la structure de la fonctionnalité "A"
-
-==== Description sous la forme d'un cas d'utilisation
-.Cas d'utilisation B
-include::partial$uc-b.adoc[]
-
-=== Fonctionnalité C
-
-NOTE: Ajoutez la description de la fonctionnalité "C" en vous basant sur la structure de la fonctionnalité "A"
+Cette fonctionnalité doit permettre de mettre en place une partie pour des débutants avec les spécifications requises par le jeu de Catane pour une partie débutante.
 
 ==== Description sous la forme d'un cas d'utilisation
 
-.Cas d'utilisation C
-include::partial$uc-c.adoc[]
+include::partial$beginner_setup.adoc[]
+
+
+=== Fonctionnalité "Mettre en place une partie avec la manière classique"
+
+Cette fonctionnalité doit permettre de mettre en place une partie classique pour des joueurs plus expérimentés avec les spécifications requises par le jeu de Catane pour une partie classique.
+
+==== Description sous la forme d'un cas d'utilisation
+
+include::partial$classic_setup.adoc[]
+
+
+=== Fonctionnalité "Effectuer un tour de jeu"
+
+Cette fonctionnalité doit permettre de mettre aux joueurs d'effectuer un tour de jeu de manière correcte.
+
+==== Description sous la forme d'un cas d'utilisation
+
+include::partial$game_turn.adoc[]
+
+
+=== Fonctionnalité "Se connecter à une partie"
+
+Cette fonctionnalité doit permettre de mettre aux joueurs de pouvoir de joindre ou de se connecter à une partie existante.
+
+==== Description sous la forme d'un cas d'utilisation
+
+include::partial$connection.adoc[]
+
+
+=== Fonctionnalité "Créer une partie"
+
+Cette fonctionnalité doit permettre de mettre aux joueurs de créer une partie pour que cette dernière puisse être rejointe correctement par d'autres joueurs mais également que cette dernière puisse être jouée correctment.
+
+==== Description sous la forme d'un cas d'utilisation
+
+include::partial$game_creation.adoc[]
 
 
 [#nonfunctional]
