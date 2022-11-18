@@ -36,7 +36,6 @@ package "Server" {
 WS_server ---r--- "Interactions partie"
 REST_server ---r--- "Joindre ou créer une partie"
 
-
 package "Client" {
 
   [WS] as WS_client
@@ -45,7 +44,8 @@ package "Client" {
   
   WS_client -r- "Interaction client-serveur"
   [GameEventHandler] -l-> "Interaction client-serveur"
-  
+  [GameEventHandler] -d- "Intialisation du WebSocket"
+
   [LobbyHandler] -l-> "Joindre Partie"
   [LobbyHandler] -d-> "Demander création Partie"
   [LobbyHandler] -r- "Joindre/Création Partie"
@@ -54,15 +54,16 @@ package "Client" {
   REST_client -r- "Demander création Partie"
 
   GUI -l- "Miser à jour graphique"
-  GUI -u- "Évenement client"
+  GUI -u-> "Évenement client"
   GUI -d-> "Joindre/Création Partie"
-  "Miser à jour graphique" <-u- [GameEventHandler]
-  "Évenement client" <-l- [GameEventHandler]
+  "Miser à jour graphique" <-- [GameEventHandler]
+    [LobbyHandler] -u-> "Intialisation du WebSocket"
+
+  "Évenement client" -l- [GameEventHandler]
 }
 
 WS_client ---r---> "Interactions partie"
 REST_client ---r---> "Joindre ou créer une partie"
-
 
 @enduml
 ....
