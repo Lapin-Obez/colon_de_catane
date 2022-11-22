@@ -12,29 +12,29 @@ Utilisez des diagrammes d'interaction (séquence, communication) pour décrire l
 [plantuml]
 ....
 @startuml
-
+  
 package "Server" {
-  [GameFactory]
-
   [WS] as WS_server
-  WS_server -l- "Interaction Partie"
-  "Interaction Partie" <--l-- [GameManager]
+  WS_server -l- "ServerInteraction"
+  "ServerInteraction" <-l- [GameManager]
+  WS_server -u-> "ClientInteraction"
+  "ClientInteraction" -- [GameManager]
 
-  [GameManager] -l- "Création & Initialisation Partie"
-  "Création & Initialisation Partie" <--l-- [GameFactory]
+  [GameManager] -l- "CreateInitGame"
+  "CreateInitGame" <-l- [GameFactory]
 
-  [GameManager] -- "Création ou rejoindre une Partie"
-  "Création ou rejoindre une Partie" <-- [GameConnection]
+  [GameManager] -- "Create/Join Game"
+  "Create/Join Game" <-- [GameConnection]
 
   [REST] as REST_server
-  REST_server -l- "Connexion Partie"
-  REST_server -l- "Création Partie"
-  [GameConnection] -d-> "Connexion Partie"
-  [GameConnection] -r-> "Création Partie"
+  REST_server -l- "Connect game"
+  REST_server -l- "Create game"
+  [GameConnection] -d-> "Connect game"
+  [GameConnection] -r-> "Create game"
 }
 
-WS_server ---r--- "Interactions partie"
-REST_server ---r--- "Joindre ou créer une partie"
+WS_server --r-- "GameInteractions"
+REST_server --r-- "Create/Join a game"
 
 package "Client" {
 
@@ -42,28 +42,29 @@ package "Client" {
   [REST] as REST_client
   [GUI] as GUI
   
-  WS_client -r- "Interaction client-serveur"
-  [GameEventHandler] -l-> "Interaction client-serveur"
-  [GameEventHandler] -d- "Intialisation du WebSocket"
+  WS_client -u- "ClientInteraction "
+  [GameEventHandler] -u-> "ClientInteraction "
+  WS_client --> "ServerInteraction "
+  [GameEventHandler] -- "ServerInteraction "
+  [GameEventHandler] -r- "ClientEvent" 
+  [GameEventHandler] -u-> "GuiUpdate"
+  [GameEventHandler] -d- "Init WebSocket"
 
-  [LobbyHandler] -l-> "Joindre Partie"
-  [LobbyHandler] -d-> "Demander création Partie"
-  [LobbyHandler] -r- "Joindre/Création Partie"
+  [LobbyHandler] -l-> "Join Game"
+  [LobbyHandler] -d-> "Ask game creation"
+  [LobbyHandler] -r- "Join/Create Game"
+  [LobbyHandler] -u-> "Init WebSocket"
 
-  REST_client -u- "Joindre Partie"
-  REST_client -r- "Demander création Partie"
+  REST_client -u- "Join Game"
+  REST_client -r- "Ask game creation"
 
-  GUI -l- "Miser à jour graphique"
-  GUI -u-> "Évenement client"
-  GUI -d-> "Joindre/Création Partie"
-  "Miser à jour graphique" <-- [GameEventHandler]
-    [LobbyHandler] -u-> "Intialisation du WebSocket"
-
-  "Évenement client" -l- [GameEventHandler]
+  GUI -l-> "ClientEvent"
+  GUI -d- "GuiUpdate"
+  GUI -d-> "Join/Create Game"
 }
 
-WS_client ---r---> "Interactions partie"
-REST_client ---r---> "Joindre ou créer une partie"
+WS_client --r--> "GameInteractions"
+REST_client --r--> "Create/Join a game"
 
 @enduml
 ....
