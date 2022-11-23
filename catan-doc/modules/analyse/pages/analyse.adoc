@@ -21,7 +21,98 @@ Décrivez ici les classes conceptuelles du domaine, ainsi que leurs attributs et
 .Classes conceptuelles
 [plantuml]
 ....
-include::example$cd-analyse.puml[]
+@startuml
+enum Ressources {
+bois
+argile
+laine
+blé
+minerai
+}
+
+
+enum Couleur {
+bleu
+blanc
+orange
+rouge
+}
+
+enum Terrain {
+Forêts
+Collines
+Prés
+Champs
+Montagnes
+Déserts
+}
+
+enum Taux_Échange {
+4:1
+3:1
+2:1
+}
+
+enum Construction {
+Colonie
+Ville
+Route
+}
+
+
+class Partie
+class Plateau
+class Port{
+Taux_Échange taux
+Ressources ressource {@Nullable}
+}
+class Tuile{
+Terrain terrain
+Resssources ressource
+}
+class Intersection
+class Pion{
+Construction type
+Couleur couleur
+}
+class Voleur
+class Dés
+
+class Joueur{
+Couleur couleur
+}
+
+class Cartes
+class "Cartes Ressources"{
+  Ressources ressource
+}
+class "Cartes Développement"{
+  String description
+}
+
+
+
+Partie "1" *-- "1" Plateau
+Plateau "19" *-- "1" Tuile
+Plateau "54" -- "1" Intersection
+
+Intersection "0:1" *-- "0.1" Port
+
+Intersection "6" -- "1:3" Tuile
+Intersection "0:1" -- "1" Pion
+Tuile "0:1" -- "1" Voleur
+
+Partie "2" -- "1"  Dés
+Partie "many" -- "1" Cartes
+
+Cartes <|-- "Cartes Ressources"
+Cartes <|-- "Cartes Développement"
+
+Joueur "many" -- "0:1" Pion : Possède
+
+Partie "3:4" -- "1" Joueur
+Joueur "many" -- "0:1" Cartes : Possède
+@enduml
 ....
 
 == Cas d'utilisation
