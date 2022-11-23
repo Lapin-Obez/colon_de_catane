@@ -54,6 +54,7 @@ Ressources ressource {@Nullable}
 
 class Tuile{
 Resssources ressource
+int valeurJeton
 }
 
 class Intersection
@@ -97,6 +98,7 @@ Cartes <|-- CartesDéveloppement
 Partie --> "3:4" Joueur
 Joueur --> "0:n" Cartes
 Joueur --> "0:5" Port
+Joueur --> "0:n" Construction
 
 @enduml
 ....
