@@ -72,7 +72,6 @@ class CartesDéveloppement{
 }
 
 class Construction {
-  Couleur couleur
 }
 class Colonie
 class Ville
@@ -98,7 +97,7 @@ Cartes <|-- CartesDéveloppement
 Partie --> "3:4" Joueur
 Joueur --> "0:n" Cartes
 Joueur --> "0:5" Port
-Joueur --> "0:n" Construction
+Joueur "1" -- "0:n" Construction
 
 @enduml
 ....
