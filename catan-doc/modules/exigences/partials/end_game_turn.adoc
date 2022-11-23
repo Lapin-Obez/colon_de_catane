@@ -1,0 +1,26 @@
+==== Fin d'un tour de jeu
+
+[cols="30s,70n",options="header", frame=sides]
+|===
+| Item                  | Description
+|#                      |5
+|Use case               |Fin d'un tour de jeu
+|Goal in context        |Le joueur a effectué toutes les actions de son tour et passage au joueur suivant
+|Scope                  |La partie
+|Level                  |Primaire
+|Frequency              |1 fois par joueur et par tour
+|Performance target     |
+|Success end condition  |
+|Failed end condition   |
+|Trigger                |Le joueur a terminé ses actions
+|Primary actor          |Le joueur, le serveur
+|Channel to primary     |
+|Secondary actor        |Les joueur suivant
+|Pre-condition          |Le joueur a effectué ses actions et ensuite termine son tour
+|Post-condition         |Le tour passe au jeur suivant
+|Superordinate use case |
+|Subordinate use case   |
+|Open issues            |
+|Constraints            |
+|Annexes                |
+|===

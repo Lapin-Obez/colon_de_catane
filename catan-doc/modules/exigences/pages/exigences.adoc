@@ -355,6 +355,14 @@ Cette fonctionnalité doit permettre de mettre aux joueurs de créer une partie 
 
 include::partial$game_creation.adoc[]
 
+=== Fonctionnalité "Fin d'un tour de jeu"
+
+Cette fonctionnalité doit permettre au joueur de terminer son tour.
+
+==== Description sous la forme d'un cas d'utilisation
+
+include::partial$end_game_turn.adoc[]
+
 
 [#nonfunctional]
 == Autres exigences non-fonctionnelles
