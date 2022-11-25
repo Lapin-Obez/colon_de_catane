@@ -23,7 +23,7 @@ Décrivez ici les classes conceptuelles du domaine, ainsi que leurs attributs et
 ....
 @startuml
 
-enum Ressources {
+enum Ressource {
 Bois
 Argile
 Laine
@@ -49,11 +49,13 @@ class Plateau
 
 class Port{
 Taux_Échange taux
-Ressources ressource {@Nullable}
+Ressource ressource {@Nullable}
+
+int echange(Ressource ressource)
 }
 
 class Tuile{
-Resssources ressource {@Nullable}
+Resssource ressource {@Nullable}
 int valeurJeton
 }
 
@@ -61,20 +63,32 @@ class Intersection
 
 class Joueur{
 Couleur couleur
+
+void commerceMaritime(Ressource rDefausse, Ressource rRecup)
+int getPointsVictoire()
+setPorts(TODO)
 }
 
 class Cartes
 class CartesRessources{
-  Ressources ressource
+  Ressource ressource
 }
 class CartesDéveloppement{
   String description
 }
 
-class Construction {
+abstract class Construction {
+Couleur getCouleur()
+int getPuissance()
 }
-class Colonie
-class Ville
+class Colonie {
+int puissance
+int getPuissance()
+}
+class Ville {
+int puissance
+int getPuissance()
+}
 
 
 Partie *--> "1" Plateau
@@ -96,7 +110,7 @@ Cartes <|-- CartesDéveloppement
 
 Partie --> "3:4" Joueur
 Joueur --> "0:n" Cartes
-Joueur --> "0:5" Port
+Joueur --> "0:5" Port : ports: Map<Ressource, Port>
 Joueur "1" -- "0:n" Construction
 
 @enduml
