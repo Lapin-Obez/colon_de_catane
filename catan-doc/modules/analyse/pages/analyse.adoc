@@ -53,7 +53,7 @@ Ressources ressource {@Nullable}
 }
 
 class Tuile{
-Resssources ressource
+Resssources ressource {@Nullable}
 int valeurJeton
 }
 
