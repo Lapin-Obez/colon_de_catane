@@ -1,0 +1,89 @@
+@startuml
+
+
+box "Client" #LightGreen
+  participant "GUI" as GUI
+  participant "GameEventHandler" as GameEventHandler
+  participant "WS Client" as WSClient
+end box
+
+box "Server" #LightBlue
+  participant "WS Server" as WSServer
+  participant "GameManager" as GameManager
+end box
+
+activate WSClient
+activate WSServer
+
+GUI -> GameEventHandler : throwDice(idGame : String)
+activate GameEventHandler
+
+GameEventHandler -> WSClient : throwDice(idGame : String, idClient String)
+deactivate GameEventHandler
+
+WSClient --> WSServer : <<RequestThrowDice(idGame : String, idClient String)>>
+
+activate GameManager
+WSServer -> GameManager : throwDice(idGame : String, idClient String)
+
+alt #Pink "idGame doesn't refer to a game that exist"
+  GameManager x--> WSServer : ERROR: idGame invalid
+  deactivate GameManager
+  
+  WSServer --> WSClient : <<ErrorGameNotFound: idGame invalid>>
+
+  WSClient --> GameEventHandler : ERROR: idGame invalid
+  activate GameEventHandler
+
+  GameEventHandler --> GUI : ShowError("An error occured")
+  deactivate GameEventHandler
+
+else #Pink "idClient doesn't refer to a player of this game"
+  activate GameManager
+
+  GameManager x--> WSServer : ERROR: idClient invalid
+  deactivate GameManager
+  
+  WSServer --> WSClient : <<ErrorPlayerNotFound: idClient invalid>>
+
+  WSClient --> GameEventHandler : ERROR: idClient invalid
+  activate GameEventHandler
+
+  GameEventHandler --> GUI : ShowError("An error occured")
+  deactivate GameEventHandler
+
+else #LightGreen idGame and idClient are correct
+  
+  alt #Pink Not client turn's
+
+    activate GameManager
+
+    GameManager x--> WSServer : ERROR: client cannot play now
+    deactivate GameManager
+    
+    WSServer --> WSClient : <<ErrorCannotPlayYet: client must wait his turn>>
+  
+    WSClient --> GameEventHandler : ERROR: cannot play now
+    activate GameEventHandler
+  
+    GameEventHandler --> GUI : ShowError("An error occured")
+    deactivate GameEventHandler
+    
+  else #LightGreen Client can throw dice
+    
+    activate GameManager
+
+    GameManager --> WSServer : Object: DiceResult
+    deactivate GameManager
+    
+    WSServer --> WSClient : <<GameEvent: DiceResult, idClient>>
+  
+    WSClient --> GameEventHandler : GameEvent: DiceResult, idClient
+    activate GameEventHandler
+  
+    GameEventHandler --> GUI : ShowDiceResult()
+    deactivate GameEventHandler
+    
+  end
+end
+@enduml
