@@ -1,0 +1,147 @@
+@startuml
+
+
+box "Client" #LightGreen
+  participant "GUI" as GUI
+  participant "LobbyHandler" as LobbyHandler
+  participant "GameEventHandler" as GameEventHandler
+  participant "REST Client" as RESTClient
+  participant "WS Client" as WSClient
+end box
+
+box "Server" #LightBlue
+  participant "WS Server" as WSServer
+  participant "REST Server" as RESTServer
+  participant "GameConnection" as GameConnection
+  participant "GameManager" as GameManager
+end box
+
+GUI -> LobbyHandler : connectGame(idGame : String)
+activate LobbyHandler
+
+LobbyHandler -> RESTClient : connectGame(idGame : String)
+deactivate LobbyHandler
+activate RESTClient
+
+RESTClient --> RESTServer : <<RequestGameConnection(idGame : String)>>
+deactivate RESTClient
+activate RESTServer
+
+RESTServer -> GameConnection : connectGame(idGame : String)
+activate GameConnection
+
+GameConnection -> GameManager : connectGame(idGame : String)
+activate GameManager
+
+alt #Pink The requested game doesn't exist
+  GameManager x--> GameConnection : ERROR: Game not found
+  deactivate GameManager
+  
+  GameConnection --> RESTServer : ERROR: Game not found
+  deactivate GameConnection
+    
+  RESTServer --> RESTClient : <<ErrorGameConnection: Game not found>>
+  deactivate RESTServer
+  activate RESTClient
+    
+  RESTClient --> LobbyHandler : ERROR: Game not found
+  deactivate RESTClient  
+  activate LobbyHandler
+    
+  LobbyHandler --> GUI : ShowError("Requested Game doesn't exist")
+  deactivate LobbyHandler
+
+else #Pink The requested game is full
+  activate GameManager
+  activate GameConnection
+  activate RESTServer
+
+  GameManager x--> GameConnection : ERROR: Game full
+  deactivate GameManager
+  
+  GameConnection --> RESTServer : ERROR: Game full
+  deactivate GameConnection
+    
+  RESTServer --> RESTClient : <<ErrorGameConnection: Game full>>
+  deactivate RESTServer
+  activate RESTClient
+    
+  RESTClient --> LobbyHandler : ERROR: Game full
+  deactivate RESTClient  
+  activate LobbyHandler
+    
+  LobbyHandler --> GUI : ShowError("Requested Game is full")
+  deactivate LobbyHandler
+
+else #LightGreen The Game can be joigned
+  activate GameManager
+  activate GameConnection
+  activate RESTServer
+
+  GameManager --> GameConnection : Object: GameParameters
+  deactivate GameManager
+
+  GameConnection --> RESTServer : Object: GameParameters
+  deactivate GameConnection
+  
+  RESTServer --> RESTClient : <<Answer GameParameters>>
+  deactivate RESTServer
+  activate RESTClient
+  
+  RESTClient --> LobbyHandler : Object: GameParameters
+  deactivate RESTClient
+  activate LobbyHandler
+  
+  LobbyHandler --> GUI : ShowStatus()
+  LobbyHandler -> GameEventHandler : InitWS(GameParameters)
+  deactivate LobbyHandler
+  activate GameEventHandler
+  GameEventHandler -> WSClient : InitWS(GameParameters)
+  activate WSClient
+  
+  alt #Pink WSClient could not reach WSServer
+
+    WSClient ->x WSServer : Unable to join server
+    WSClient x--> GameEventHandler : ERROR: Cannot join server
+    deactivate WSClient
+    GameEventHandler --> GUI : ShowError("Unable to initiate communication with the server !")
+    deactivate GameEventHandler
+
+    
+  else #LightGreen WSClient could reach WSServer
+    
+    activate WSClient
+    
+    WSClient -> WSServer : <<InitWS - GameParameters>>
+    activate WSServer
+    WSServer --> WSClient : <<WS initialized>>
+    WSServer -> GameManager : getGame(GameParameters)
+    activate GameManager
+    
+    alt #Pink The game doesn't exist
+      GameManager x--> WSServer : ERROR: The game doesn't exist
+      deactivate GameManager
+      WSServer --> WSClient : <<ErrorGameJoin: The game doesn't exist>>
+      WSServer --> WSClient : <<Closing WS>>
+      deactivate WSServer
+      WSClient --> GameEventHandler : ERROR: The game doesn't exist
+      deactivate WSClient
+      activate GameEventHandler
+      GameEventHandler --> GUI : ShowError("The game doesn't exist")
+      deactivate GameEventHandler
+      
+  else #LightGreen The game doesn't exist
+    activate GameManager
+    activate WSServer
+    activate WSClient
+    GameManager --> WSServer : GameInformations
+    deactivate GameManager
+    WSServer --> WSClient : <<Answer GameInformations>>
+    WSClient --> GameEventHandler : Object: GameInformations
+    activate GameEventHandler
+    GameEventHandler --> GUI : ShowInGameLobby()
+    end
+  end
+end
+
+@enduml
