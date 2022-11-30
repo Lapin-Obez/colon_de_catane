@@ -75,7 +75,7 @@ else #LightGreen idGame and idClient are correct
     GameManager x--> WSServer : ERROR: idIntersection is invalid
     deactivate GameManager
     
-    WSServer --> WSClient : <<ErrorWrongIntersection: client must wait his turn>>
+    WSServer --> WSClient : <<ErrorWrongIntersection: idIntersection is invalid>>
   
     WSClient --> GameEventHandler : ERROR: idIntersection is invalid
     activate GameEventHandler
