@@ -123,13 +123,15 @@ else #LightGreen idGame and idClient are correct
     GameManager --> WSServer : Object: ConstructionEvent
     deactivate GameManager
     
-    WSServer --> WSClient : <<GameEvent: ConstructionEvent, idClient>>
+    group #LightYellow Notify/Update [For every clients]
+      WSServer --> WSClient : <<GameEvent: ConstructionEvent, idClient>>
+      WSClient --> GameEventHandler : GameEvent: ConstructionEvent, idClient
+      activate GameEventHandler
   
-    WSClient --> GameEventHandler : GameEvent: ConstructionEvent, idClient
-    activate GameEventHandler
-  
-    GameEventHandler --> GUI : ShowNewRoad()
-    deactivate GameEventHandler
+      GameEventHandler --> GUI : ShowNewRoad()
+      deactivate GameEventHandler
+    end
+    
     
   end
 end
