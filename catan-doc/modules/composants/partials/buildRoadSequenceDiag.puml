@@ -1,0 +1,137 @@
+@startuml
+
+
+box "Client" #LightGreen
+  participant "GUI" as GUI
+  participant "GameEventHandler" as GameEventHandler
+  participant "WS Client" as WSClient
+end box
+
+box "Server" #LightBlue
+  participant "WS Server" as WSServer
+  participant "GameManager" as GameManager
+end box
+
+activate WSClient
+activate WSServer
+
+GUI -> GameEventHandler : buildRoad(idGame : String, idClient : String, idIntersectionA : integer, idIntersectionB : integer)
+activate GameEventHandler
+
+GameEventHandler -> WSClient : buildRoad(idGame : String, idClient : String, idIntersectionA : integer, idIntersectionB : integer)
+deactivate GameEventHandler
+
+WSClient --> WSServer : <<RequestRoadConstruction(idGame : String, idClient : String, idIntersectionA : integer, idIntersectionB : integer)>>
+
+activate GameManager
+WSServer -> GameManager : buildRoad(idGame : String, idClient : String, idIntersectionA : integer, idIntersectionB : integer)
+
+alt #Pink "idGame doesn't refer to a game that exist"
+  GameManager x--> WSServer : ERROR: idGame invalid
+  deactivate GameManager
+  
+  WSServer --> WSClient : <<ErrorGameNotFound: idGame invalid>>
+
+  WSClient --> GameEventHandler : ERROR: idGame invalid
+  activate GameEventHandler
+
+  GameEventHandler --> GUI : ShowError("An error occured")
+  deactivate GameEventHandler
+
+else #Pink "idClient doesn't refer to a player of this game"
+  activate GameManager
+
+  GameManager x--> WSServer : ERROR: idClient invalid
+  deactivate GameManager
+  
+  WSServer --> WSClient : <<ErrorPlayerNotFound: idClient invalid>>
+
+  WSClient --> GameEventHandler : ERROR: idClient invalid
+  activate GameEventHandler
+
+  GameEventHandler --> GUI : ShowError("An error occured")
+  deactivate GameEventHandler
+
+else #LightGreen idGame and idClient are correct
+  
+  alt #Pink Not client turn's
+
+    activate GameManager
+
+    GameManager x--> WSServer : ERROR: client cannot play now
+    deactivate GameManager
+    
+    WSServer --> WSClient : <<ErrorCannotPlayYet: client must wait his turn>>
+  
+    WSClient --> GameEventHandler : ERROR: cannot play now
+    activate GameEventHandler
+  
+    GameEventHandler --> GUI : ShowError("An error occured")
+    deactivate GameEventHandler
+    
+  else #Pink idIntersectionA is invalid or idIntersectionB is invalid
+
+    activate GameManager
+
+    GameManager x--> WSServer : ERROR: intersection IDs are invalid
+    deactivate GameManager
+    
+    WSServer --> WSClient : <<ErrorWrongIntersection: intersection IDs are invalid>>
+  
+    WSClient --> GameEventHandler : ERROR: idIntersection is invalid
+    activate GameEventHandler
+  
+    GameEventHandler --> GUI : ShowError("An error occured")
+    deactivate GameEventHandler
+    
+    
+  else #Pink intersection IDs are valid but a road is already present
+
+    activate GameManager
+
+    GameManager x--> WSServer : ERROR: Cannot build road, a read is already present
+    deactivate GameManager
+    
+    WSServer --> WSClient : <<ErrorRoadAlreadyPresent: Cannot build road, a road is already present>>
+  
+    WSClient --> GameEventHandler : ERROR: Cannot build road, a road is already present
+    activate GameEventHandler
+  
+    GameEventHandler --> GUI : ShowError("Cannot build road, a road is already present")
+    deactivate GameEventHandler
+    
+    
+  else #Pink Player does not have enough ressources 
+
+    activate GameManager
+
+    GameManager x--> WSServer : ERROR: Player does not have enough ressources 
+    deactivate GameManager
+    
+    WSServer --> WSClient : <<ErrorNotEnoughEessources : Player does not have enough ressources >>
+  
+    WSClient --> GameEventHandler : ERROR: Player does not have enough ressources
+    activate GameEventHandler
+  
+    GameEventHandler --> GUI : ShowError("Not enough ressources to build a road ")
+    deactivate GameEventHandler
+    
+  else #LightGreen Player can build the road
+    
+    activate GameManager
+
+    GameManager --> WSServer : Object: ConstructionEvent
+    deactivate GameManager
+    
+    WSServer --> WSClient : <<GameEvent: ConstructionEvent, idClient>>
+  
+    WSClient --> GameEventHandler : GameEvent: ConstructionEvent, idClient
+    activate GameEventHandler
+  
+    GameEventHandler --> GUI : ShowNewRoad()
+    deactivate GameEventHandler
+    
+  end
+end
+
+@enduml
