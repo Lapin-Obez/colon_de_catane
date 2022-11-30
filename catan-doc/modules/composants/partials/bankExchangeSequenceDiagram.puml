@@ -1,0 +1,64 @@
+@startuml
+
+box "Client" #LightGreen
+  participant "GUI" as GUI
+  participant "GameEventHandler" as GameEventHandler
+  participant "WS Client" as WSClient
+end box
+
+box "Server" #LightBlue
+  participant "WS Server" as WSServer
+  participant "GameManager" as GameManager
+end box
+
+activate WSClient
+activate WSServer
+
+GUI -> GameEventHandler : BankExchange(rssWantedType : Ressource, \n rssSoldType : Ressource)
+activate GameEventHandler
+GameEventHandler -> WSClient : BankExchange(rssWantedType : Ressource, rssSoldType : Ressource, \n idClient : String, idGame : String)
+deactivate GameEventHandler
+WSClient -> WSServer : BankExchange(rssWantedType : Ressource, rssSoldType : Ressource, \n idClient : String, idGame : String)
+
+WSServer -> GameManager : BankExchange(rssWantedType : Ressource, rssSoldType : Ressource, \n idClient : String, idGame : String)
+activate GameManager
+alt #Pink The requested game doesn't exist
+  GameManager x--> WSServer : ERROR: idGame invalid
+  deactivate GameManager
+  WSServer --> WSClient : <<ErrorGameNotFound: idGame invalid>>
+  WSClient --> GameEventHandler : ERROR: idGame invalid
+  activate GameEventHandler
+  GameEventHandler --> GUI : ShowError("An error occured")
+  deactivate GameEventHandler
+  activate GameManager
+else #Pink "idClient doesn't refer to a player of this game"
+  GameManager x--> WSServer : ERROR: idClient invalid
+  deactivate GameManager
+  WSServer --> WSClient : <<ErrorPlayerNotFound: idClient invalid>>
+  WSClient --> GameEventHandler : ERROR: idClient invalid
+  activate GameEventHandler
+  GameEventHandler --> GUI : ShowError("An error occured")
+  deactivate GameEventHandler
+  activate GameManager
+else #LightGreen idGame and idClient are correct
+  alt #Pink Not client turn's
+    GameManager x--> WSServer : ERROR: client cannot play now
+    deactivate GameManager
+    WSServer --> WSClient : <<ErrorCannotPlayYet: client must wait his turn>>
+    WSClient --> GameEventHandler : ERROR: cannot play now
+    activate GameEventHandler
+    GameEventHandler --> GUI : ShowError("An error occured")
+    deactivate GameEventHandler
+    activate GameManager
+  else #LightGreen
+    GameManager --> WSServer : Object: BankExchange Event
+    deactivate GameManager
+    WSServer --> WSClient : <GameEvent: BankExchange Event>
+    WSClient --> GameEventHandler : GameEvent: BankExchange Event
+    activate GameEventHandler
+    GameEventHandler --> GUI : showModificationRessources()
+    deactivate GameEventHandler
+  end
+end
+
+@enduml
