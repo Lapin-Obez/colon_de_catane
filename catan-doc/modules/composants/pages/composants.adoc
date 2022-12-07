@@ -81,54 +81,54 @@ include::example$pd-example.plantuml[]
 .Connexion à une Game existante à partir d'un identifiant de Game
 [plantuml]
 ----
-include::partials$connectGameSequenceDiag.puml[]
+include::partials$connectGameSequenceDiag.plantuml[]
 ----
 
 .Création d'une Game
 [plantuml]
 ----
-include::partials$createGameSequenceDiag.puml[]
+include::partials$createGameSequenceDiag.plantuml[]
 ----
 
 .Construction d'une colonie
 [plantuml]
 ----
-include::partials$buildColonySequenceDiag.puml[]
+include::partials$buildColonySequenceDiag.plantuml[]
 ----
 
 .Construction d'une ville, qui est l'upgrade d'une colonie
 [plantuml]
 ----
-include::partials$upgradeToCitySequenceDiag.puml[]
+include::partials$upgradeToCitySequenceDiag.plantuml[]
 ----
 
 .Construction d'une route
 [plantuml]
 ----
-include::partials$buildRoadSequenceDiag.puml[]
+include::partials$buildRoadSequenceDiag.plantuml[]
 ----
 
 .Commerce avec la banque
 [plantuml]
 ----
-include::partials$bankExchangeSequenceDiag.puml[]
+include::partials$bankExchangeSequenceDiag.plantuml[]
 ----
 
 .Lancer des dés
 [plantuml]
 ----
-include::throwDiceSequenceDiag.puml[]
+include::throwDiceSequenceDiag.plantuml[]
 ----
 
 .Fin du tour (Cf Fin du tour jeu d'un joueur, problème de génération avec PlantUML)
 [plantuml]
 ----
-include::endGameTurnSequenceDiag.puml[]
+include::endGameTurnSequenceDiag.plantuml[]
 ----
 
 .Fin du jeu (Cf Fin du jeu)
 [plantuml]
 ----
-include::endGameSequenceDiag.puml[]
+include::endGameSequenceDiag.plantuml[]
 ----
 
