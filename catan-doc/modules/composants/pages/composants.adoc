@@ -68,3 +68,67 @@ REST_client --r--> "Create/Join a game"
 
 @enduml
 ....
+
+
+.Diagramme de classes des compétences
+[plantuml]
+----
+include::example$pd-example.plantuml[]
+----
+
+== Diagramme de séquence
+
+.Connexion à une Game existante à partir d'un identifiant de Game
+[plantuml]
+----
+include::partials$connectGameSequenceDiag.puml[]
+----
+
+.Création d'une Game
+[plantuml]
+----
+include::partials$createGameSequenceDiag.puml[]
+----
+
+.Construction d'une colonie
+[plantuml]
+----
+include::partials$buildColonySequenceDiag.puml[]
+----
+
+.Construction d'une ville, qui est l'upgrade d'une colonie
+[plantuml]
+----
+include::partials$upgradeToCitySequenceDiag.puml[]
+----
+
+.Construction d'une route
+[plantuml]
+----
+include::partials$buildRoadSequenceDiag.puml[]
+----
+
+.Commerce avec la banque
+[plantuml]
+----
+include::partials$bankExchangeSequenceDiag.puml[]
+----
+
+.Lancer des dés
+[plantuml]
+----
+include::throwDiceSequenceDiag.puml[]
+----
+
+.Fin du tour (Cf Fin du tour jeu d'un joueur, problème de génération avec PlantUML)
+[plantuml]
+----
+include::endGameTurnSequenceDiag.puml[]
+----
+
+.Fin du jeu (Cf Fin du jeu)
+[plantuml]
+----
+include::endGameSequenceDiag.puml[]
+----
+
