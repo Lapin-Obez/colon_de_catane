@@ -1,0 +1,51 @@
+@startuml
+package Server{
+class GameFactory {
+
+}
+class GameManager {
+
+}
+class WSServer {
+
+}
+class GameConnection {
+
+}
+class RESTServer {
+
+}
+}
+package Client{
+class RESTClient {
+
+}
+class WSClient {
+
+}
+class GameEventHandler {
+
+}
+class GUI {
+
+}
+class LobbyHandler {
+
+}
+}
+
+GameFactory -- GameManager
+GameManager -- WSServer
+GameManager -- GameConnection
+GameConnection -- RESTServer
+RESTClient -- RESTServer
+WSServer -- WSClient
+WSClient -- GameEventHandler
+GameEventHandler -- GUI
+GameEventHandler -- LobbyHandler
+LobbyHandler -- RESTClient
+
+
+
+@enduml
+
