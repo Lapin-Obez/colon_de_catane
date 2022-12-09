@@ -17,7 +17,7 @@ activate WSClient
 activate WSServer
 
 
-GUI -> GameEventHandler : endGameTurn(idGame : String, idClient : String)
+GUI -> GameEventHandler : endGameTurn()
 activate GameEventHandler
 
 GameEventHandler -> WSClient : endGameTurn(idGame : String, idClient : String)

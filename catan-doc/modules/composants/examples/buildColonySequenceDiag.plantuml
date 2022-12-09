@@ -14,7 +14,7 @@ end box
 activate WSClient
 activate WSServer
 
-GUI -> GameEventHandler : buildColony(idGame : String, idClient : String, idIntersection : integer)
+GUI -> GameEventHandler : buildColony(idIntersection : integer)
 activate GameEventHandler
 
 GameEventHandler -> WSClient : buildColony(idGame : String, idClient : String, idIntersection : integer)

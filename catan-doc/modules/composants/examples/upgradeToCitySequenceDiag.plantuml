@@ -15,7 +15,7 @@ end box
 activate WSClient
 activate WSServer
 
-GUI -> GameEventHandler : upgradeToCity(idGame : String, idClient : String, idIntersection : integer)
+GUI -> GameEventHandler : upgradeToCity(idIntersection : integer)
 activate GameEventHandler
 
 GameEventHandler -> WSClient : upgradeToCity(idGame : String, idClient : String, idIntersection : integer)

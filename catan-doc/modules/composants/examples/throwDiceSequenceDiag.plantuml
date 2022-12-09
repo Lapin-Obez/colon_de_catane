@@ -15,7 +15,7 @@ end box
 activate WSClient
 activate WSServer
 
-GUI -> GameEventHandler : throwDice(idGame : String)
+GUI -> GameEventHandler : throwDice()
 activate GameEventHandler
 
 GameEventHandler -> WSClient : throwDice(idGame : String, idClient String)

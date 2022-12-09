@@ -15,7 +15,7 @@ end box
 activate WSClient
 activate WSServer
 
-GUI -> GameEventHandler : buildRoad(idGame : String, idClient : String, idIntersectionA : integer, idIntersectionB : integer)
+GUI -> GameEventHandler : buildRoad(idIntersectionA : integer, idIntersectionB : integer)
 activate GameEventHandler
 
 GameEventHandler -> WSClient : buildRoad(idGame : String, idClient : String, idIntersectionA : integer, idIntersectionB : integer)
