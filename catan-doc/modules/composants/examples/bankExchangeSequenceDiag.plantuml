@@ -56,7 +56,8 @@ else #LightGreen idGame and idClient are correct
     WSServer --> WSClient : <GameEvent: BankExchange Event>
     WSClient --> GameEventHandler : GameEvent: BankExchange Event
     activate GameEventHandler
-    GameEventHandler --> GUI : showModificationRessources()
+    GameEventHandler --> GUI :   showModificationRessources(rss : List<Ressource>, rssAmount : List<Integer>)
+
     deactivate GameEventHandler
   end
 end
