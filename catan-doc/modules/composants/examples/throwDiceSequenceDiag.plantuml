@@ -81,7 +81,7 @@ else #LightGreen idGame and idClient are correct
     WSClient --> GameEventHandler : GameEvent: DiceResult, idClient
     activate GameEventHandler
   
-    GameEventHandler --> GUI : ShowDiceResult()
+    GameEventHandler --> GUI : ShowDiceResult(diceResult:int)
     deactivate GameEventHandler
     
   end
