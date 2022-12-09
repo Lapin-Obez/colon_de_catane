@@ -76,6 +76,11 @@ REST_client --r--> "Create/Join a game"
 include::../examples/gameClassDiag.plantuml[]
 ----
 
+.Diagramme des interfaces
+[plantuml]
+----
+include::../examples/composantsInterfacesDiag.plantuml[]
+----
 
 == Diagramme de séquence
 
@@ -117,7 +122,8 @@ include::../examples/bankExchangeSequenceDiag.plantuml[]
 
 .Lancer des dés
 [plantuml]
-----
+----'https://plantuml.com/component-diagram
+
 include::../examples/throwDiceSequenceDiag.plantuml[]
 ----
 

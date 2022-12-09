@@ -1,13 +1,13 @@
 @startuml
 package Server{
-class GameFactory {
+interface GameFactory {
 GameFactory()
 buildNewGame()
 }
-class WSServer {
+interface WSServer {
 
 }
-class GameManager {
+interface GameManager {
 buildColony(idGame : String, idClient : String, idIntersection : integer)
 buildRoad(idGame : String, idClient : String, idIntersectionA : integer, idIntersectionB : integer)
 BankExchange(rssWantedType : Ressource, rssSoldType : Ressource, idClient : String, idGame : String)
@@ -19,27 +19,27 @@ getGame(GameParameters)
 connectGame(idGame : String)
 }
 
-class GameConnection {
+interface GameConnection {
 createGame()
 connectGame(idGame : String)
 }
-class RESTServer {
+interface RESTServer {
 createGame()
 connectGame(idGame : String)
 }
 }
 package Client{
-class RESTClient {
+interface RESTClient {
 createGame()
 connectGame(idGame : String)
 }
-class WSClient {
+interface WSClient {
 buildColony(idGame : String, idClient : String, idIntersection : integer)
 buildRoad(idGame : String, idClient : String, idIntersectionA : integer, idIntersectionB : integer)
   
 bankExchange(rssWantedType : Ressource, rssSoldType : Ressource, idClient : String, idGame : String)
 }
-class GameEventHandler {
+interface GameEventHandler {
 buildColony(idIntersection : integer)
 buildRoad(idIntersectionA : integer, idIntersectionB : integer)  
 bankExchange(rssWantedType : Ressource, rssSoldType : Ressource)
@@ -47,7 +47,7 @@ throwDice(idGame : String, idClient String)
 endGameTurn(idGame : String, idClient : String)
 upgradeToCity(idGame : String, idClient : String, idIntersection : integer)
 }
-class GUI {
+interface GUI {
 showInGameLobby()
 showNewCity()
 showDiceResult(diceResult:int)
@@ -66,25 +66,11 @@ throwDice()
 endGameTurn()
 upgradeToCity(idIntersection : integer)
 }
-class LobbyHandler {
+interface LobbyHandler {
 createGame()
 connectGame(idGame : String)
 }
 }
-
-GameFactory -- GameManager
-GameManager -- WSServer
-GameManager -- GameConnection
-GameConnection -- RESTServer
-RESTClient -- RESTServer
-WSServer -- WSClient
-WSClient -- GameEventHandler
-GameEventHandler -- GUI
-GameEventHandler -- LobbyHandler
-LobbyHandler -- RESTClient
-LobbyHandler -- GUI
-
-
 
 @enduml
 
