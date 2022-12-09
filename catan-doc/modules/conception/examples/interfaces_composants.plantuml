@@ -1,36 +1,73 @@
 @startuml
 package Server{
 class GameFactory {
-
-}
-class GameManager {
-
+GameFactory()
+buildNewGame()
 }
 class WSServer {
 
 }
-class GameConnection {
+class GameManager {
+buildColony(idGame : String, idClient : String, idIntersection : integer)
+buildRoad(idGame : String, idClient : String, idIntersectionA : integer, idIntersectionB : integer)
+BankExchange(rssWantedType : Ressource, rssSoldType : Ressource, idClient : String, idGame : String)
+throwDice(idGame : String, idClient String)
+upgradeToCity(idGame : String, idClient : String, idIntersection : integer)
+endGameTurn(idGame : String, idClient : String)
+newGame()
+getGame(GameParameters)
+connectGame(idGame : String)
+}
 
+class GameConnection {
+createGame()
 }
 class RESTServer {
-
+createGame()
+connectGame(idGame : String)
 }
 }
 package Client{
 class RESTClient {
-
+createGame()
+connectGame(idGame : String)
 }
 class WSClient {
-
+buildColony(idGame : String, idClient : String, idIntersection : integer)
+buildRoad(idGame : String, idClient : String, idIntersectionA : integer, idIntersectionB : integer)
+  
+BankExchange(rssWantedType : Ressource, rssSoldType : Ressource, idClient : String, idGame : String)
 }
 class GameEventHandler {
-
+buildColony(idIntersection : integer)
+buildRoad(idIntersectionA : integer, idIntersectionB : integer)  
+BankExchange(rssWantedType : Ressource, rssSoldType : Ressource)
+throwDice(idGame : String, idClient String)
+endGameTurn(idGame : String, idClient : String)
+upgradeToCity(idGame : String, idClient : String, idIntersection : integer)
 }
 class GUI {
-
+ShowInGameLobby()
+ShowNewCity()
+ShowDiceResult(diceResult:int)
+ShowEndTurn()
+ShowMyGameTurn()
+ShowNextPlayer()
+ShowEndOfGame()
+ShowWinningGame()
+ShowNewColony(color : String, idIntersection : integer)
+ShowNewRoad(color : String, idIntersectionA : integer, idIntersectionB : integer)
+showError(error : String)
+showModificationRessources(rss : List<Ressource>, rssAmount : List<Integer>)
+createGame()
+connectGame(idGame : String)
+throwDice()
+endGameTurn()
+upgradeToCity(idIntersection : integer)
 }
 class LobbyHandler {
-
+createGame()
+connectGame(idGame : String)
 }
 }
 
@@ -44,6 +81,7 @@ WSClient -- GameEventHandler
 GameEventHandler -- GUI
 GameEventHandler -- LobbyHandler
 LobbyHandler -- RESTClient
+LobbyHandler -- GUI
 
 
 
