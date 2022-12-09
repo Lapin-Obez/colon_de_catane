@@ -126,7 +126,7 @@ else #LightGreen idGame and idClient are correct
     WSClient --> GameEventHandler : GameEvent: ConstructionEvent, idClient
     activate GameEventHandler
   
-    GameEventHandler --> GUI : ShowNewColony()
+    GameEventHandler --> GUI : ShowNewColony(color : String, idIntersection : integer)
     deactivate GameEventHandler
     
   end

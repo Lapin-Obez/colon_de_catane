@@ -128,7 +128,7 @@ else #LightGreen idGame and idClient are correct
       WSClient --> GameEventHandler : GameEvent: ConstructionEvent, idClient
       activate GameEventHandler
   
-      GameEventHandler --> GUI : ShowNewRoad()
+      GameEventHandler --> GUI : ShowNewRoad(color : String, idIntersectionA : integer, idIntersectionB : integer)
       deactivate GameEventHandler
     end
     
