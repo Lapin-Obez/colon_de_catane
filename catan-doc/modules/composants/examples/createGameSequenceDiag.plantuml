@@ -75,7 +75,6 @@ else #LightGreen The nbGame limit is not reached
   deactivate RESTClient
   activate LobbyHandler
   
-  LobbyHandler --> GUI : ShowStatus()
   LobbyHandler -> GameEventHandler : InitWS(GameParameters)
   deactivate LobbyHandler
   activate GameEventHandler
