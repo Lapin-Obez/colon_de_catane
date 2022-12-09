@@ -1,0 +1,119 @@
+@startuml
+
+enum Ressource {
+Bois
+Argile
+Laine
+Blé
+Minerai
+}
+
+enum Couleur {
+Bleu
+Blanc
+Orange
+Rouge
+}
+
+enum Taux_Échange {
+4:1
+3:1
+2:1
+}
+
+enum Developpement {
+PointsDeVictoire
+Chevalier
+Monopole
+Invention
+ConstructionDeRoutes
+}
+
+enum FicheSpeciale {
+RoutePlusLongue
+ArmeePlusPuissante
+}
+
+class Partie {
+Map<Developpement, Integer> piocheDeveloppement
+Map<Ressource, Integer> piocheRessource
+
+void calculerArmeePlusPuissante()
+void calculerRoutePlusLongue()
+List<Joueur> jouerVoleur(Tuile tuile)
+Ressource volerRessource(Joueur voleur, Joueur victime)
+void monopole(Joueur joueur, Ressource ressource)
+void invention(Joueur joueur)
+}
+
+class Plateau {
+int getLongueurRoute(Couleur couleur)
+void deplacerVoleur(Tuile tuile)
+void distribuerRessources(int valeurJeton)
+}
+
+class Port{
+Taux_Échange taux
+Ressource ressource {@Nullable}
+
+int echange(Ressource ressource)
+}
+
+class Tuile{
+Resssource ressource {@Nullable}
+int valeurJeton
+}
+
+class Intersection
+
+class Joueur{
+Couleur couleur
+Map<Ressource, Integer> mainRessource
+Map<Developpement, Integer> mainDeveloppement
+int nbChevaliers
+List<FicheSpecial> fichesSpeciales
+
+void commerceMaritime(Ressource rDefausse, Ressource rRecup)
+int getPointsVictoire()
+int getNbChevaliers()
+void jouerChevalier()
+void occtroyerFicheSpeciale(FicheSpeciale fiche)
+void retirerFicheSpeciale(FicheSpeciale fiche)
+void addCarteDeveloppement(Developpement carte)
+Ressource getRessourceAleatoire()
+int deleteRessource(Ressource ressource)
+setPorts(TODO)
+}
+
+abstract class Construction {
+Couleur getCouleur()
+{abstract} int getPuissance()
+}
+class Colonie {
+int puissance
+int getPuissance()
+}
+class Ville {
+int puissance
+int getPuissance()
+}
+
+
+Partie *--> "1" Plateau
+Plateau *--> "19" Tuile
+Plateau --> "1" Tuile : emplacementVoleur
+Plateau *--> "54" Intersection
+
+Construction <|-- Ville
+Construction <|-- Colonie
+
+Intersection *--> "0:1" Construction
+Intersection --> "2:3" Intersection : Map<Intersection, Couleur> routes
+Intersection "6" <-- Tuile
+Intersection *--> "0.1" Port
+
+Partie --> "3:4" Joueur
+Joueur --> "5" Port : Map<Ressource, Port> ports
+Joueur "1" -- "0:n" Construction
+
+@enduml
