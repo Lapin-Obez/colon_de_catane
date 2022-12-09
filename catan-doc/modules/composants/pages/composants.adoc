@@ -70,65 +70,62 @@ REST_client --r--> "Create/Join a game"
 ....
 
 
-.Diagramme de classes des compétences
-[plantuml]
-----
-include::example$pd-example.plantuml[]
-----
+.Diagramme de classes des composants
+
 
 == Diagramme de séquence
 
 .Connexion à une Game existante à partir d'un identifiant de Game
 [plantuml]
 ----
-include::examples$connectGameSequenceDiag.plantuml[]
+include::../examples/connectGameSequenceDiag.plantuml[]
 ----
 
 .Création d'une Game
 [plantuml]
 ----
-include::examples$createGameSequenceDiag.plantuml[]
+include::../examples/createGameSequenceDiag.plantuml[]
 ----
 
 .Construction d'une colonie
 [plantuml]
 ----
-include::examples$buildColonySequenceDiag.plantuml[]
+include::../examples/buildColonySequenceDiag.plantuml[]
 ----
 
 .Construction d'une ville, qui est l'upgrade d'une colonie
 [plantuml]
 ----
-include::examples$upgradeToCitySequenceDiag.plantuml[]
+include::../examples/upgradeToCitySequenceDiag.plantuml[]
 ----
 
 .Construction d'une route
 [plantuml]
 ----
-include::examples$buildRoadSequenceDiag.plantuml[]
+include::../examples/buildRoadSequenceDiag.plantuml[]
 ----
 
 .Commerce avec la banque
 [plantuml]
 ----
-include::examples$bankExchangeSequenceDiag.plantuml[]
+include::../examples/bankExchangeSequenceDiag.plantuml[]
 ----
 
 .Lancer des dés
 [plantuml]
 ----
-include::throwDiceSequenceDiag.plantuml[]
+include::../throwDiceSequenceDiag.plantuml[]
 ----
 
 .Fin du tour (Cf Fin du tour jeu d'un joueur, problème de génération avec PlantUML)
 [plantuml]
 ----
-include::endGameTurnSequenceDiag.plantuml[]
+include::../endGameTurnSequenceDiag.plantuml[]
 ----
 
 .Fin du jeu (Cf Fin du jeu)
 [plantuml]
 ----
-include::endGameSequenceDiag.plantuml[]
+include::../endGameSequenceDiag.plantuml[]
 ----
 
