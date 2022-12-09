@@ -18,7 +18,7 @@ GUI -> GameEventHandler : BankExchange(rssWantedType : Ressource, \n rssSoldType
 activate GameEventHandler
 GameEventHandler -> WSClient : BankExchange(rssWantedType : Ressource, rssSoldType : Ressource, \n idClient : String, idGame : String)
 deactivate GameEventHandler
-WSClient -> WSServer : BankExchange(rssWantedType : Ressource, rssSoldType : Ressource, \n idClient : String, idGame : String)
+WSClient -> WSServer : <<RequestBankExchange(rssWantedType : Ressource, rssSoldType : Ressource, \n idClient : String, idGame : String)>>
 
 WSServer -> GameManager : BankExchange(rssWantedType : Ressource, rssSoldType : Ressource, \n idClient : String, idGame : String)
 activate GameManager
