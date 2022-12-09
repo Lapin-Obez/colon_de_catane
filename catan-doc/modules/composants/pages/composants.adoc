@@ -114,18 +114,18 @@ include::../examples/bankExchangeSequenceDiag.plantuml[]
 .Lancer des dés
 [plantuml]
 ----
-include::../throwDiceSequenceDiag.plantuml[]
+include::../examples/throwDiceSequenceDiag.plantuml[]
 ----
 
 .Fin du tour (Cf Fin du tour jeu d'un joueur, problème de génération avec PlantUML)
 [plantuml]
 ----
-include::../endGameTurnSequenceDiag.plantuml[]
+include::../examples/endGameTurnSequenceDiag.plantuml[]
 ----
 
 .Fin du jeu (Cf Fin du jeu)
 [plantuml]
 ----
-include::../endGameSequenceDiag.plantuml[]
+include::../examples/endGameSequenceDiag.plantuml[]
 ----
 
