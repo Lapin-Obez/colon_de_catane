@@ -21,6 +21,7 @@ connectGame(idGame : String)
 
 class GameConnection {
 createGame()
+connectGame(idGame : String)
 }
 class RESTServer {
 createGame()
@@ -36,27 +37,27 @@ class WSClient {
 buildColony(idGame : String, idClient : String, idIntersection : integer)
 buildRoad(idGame : String, idClient : String, idIntersectionA : integer, idIntersectionB : integer)
   
-BankExchange(rssWantedType : Ressource, rssSoldType : Ressource, idClient : String, idGame : String)
+bankExchange(rssWantedType : Ressource, rssSoldType : Ressource, idClient : String, idGame : String)
 }
 class GameEventHandler {
 buildColony(idIntersection : integer)
 buildRoad(idIntersectionA : integer, idIntersectionB : integer)  
-BankExchange(rssWantedType : Ressource, rssSoldType : Ressource)
+bankExchange(rssWantedType : Ressource, rssSoldType : Ressource)
 throwDice(idGame : String, idClient String)
 endGameTurn(idGame : String, idClient : String)
 upgradeToCity(idGame : String, idClient : String, idIntersection : integer)
 }
 class GUI {
-ShowInGameLobby()
-ShowNewCity()
-ShowDiceResult(diceResult:int)
-ShowEndTurn()
-ShowMyGameTurn()
-ShowNextPlayer()
-ShowEndOfGame()
-ShowWinningGame()
-ShowNewColony(color : String, idIntersection : integer)
-ShowNewRoad(color : String, idIntersectionA : integer, idIntersectionB : integer)
+showInGameLobby()
+showNewCity()
+showDiceResult(diceResult:int)
+showEndTurn()
+showMyGameTurn()
+showNextPlayer()
+showEndOfGame()
+showWinningGame()
+showNewColony(color : String, idIntersection : integer)
+showNewRoad(color : String, idIntersectionA : integer, idIntersectionB : integer)
 showError(error : String)
 showModificationRessources(rss : List<Ressource>, rssAmount : List<Integer>)
 createGame()

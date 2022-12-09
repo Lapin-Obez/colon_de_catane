@@ -15,5 +15,4 @@ public class CatanApplication {
         SpringApplication.run(CatanApplication.class, args);
     }
 
-
 }
