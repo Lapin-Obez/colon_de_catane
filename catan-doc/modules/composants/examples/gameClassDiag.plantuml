@@ -35,8 +35,8 @@ ArmeePlusPuissante
 }
 
 class Partie {
-Map<Developpement, Integer> piocheDeveloppement
-Map<Ressource, Integer> piocheRessource
+Map<int, Developpement> piocheDeveloppement
+Map<int, Ressource> piocheRessource
 
 void calculerArmeePlusPuissante()
 void calculerRoutePlusLongue()
@@ -47,8 +47,14 @@ void invention(Joueur joueur)
 }
 
 class Plateau {
+int idTuileVoleur
+Map<int, Map<int, Couleur>> routes
+Map<int, Intersection> intersections
+Map<int, Tuile> tuiles
+Map<int, Intersections[]> listIntersectionTuile
+
 int getLongueurRoute(Couleur couleur)
-void deplacerVoleur(Tuile tuile)
+void deplacerVoleur(int idTuile)
 void distribuerRessources(int valeurJeton)
 }
 
@@ -64,12 +70,15 @@ Resssource ressource {@Nullable}
 int valeurJeton
 }
 
-class Intersection
+class Intersection{
+Construction construction { @Nullable }
+Port port { @Nullable }
+}
 
 class Joueur{
 Couleur couleur
-Map<Ressource, Integer> mainRessource
-Map<Developpement, Integer> mainDeveloppement
+Map<int, Ressource> mainRessource
+Map<int, Developpement> mainDeveloppement
 int nbChevaliers
 List<FicheSpecial> fichesSpeciales
 
@@ -82,38 +91,43 @@ void retirerFicheSpeciale(FicheSpeciale fiche)
 void addCarteDeveloppement(Developpement carte)
 Ressource getRessourceAleatoire()
 int deleteRessource(Ressource ressource)
-setPorts(TODO)
 }
 
-abstract class Construction {
+abstract Construction {
 Couleur getCouleur()
-{abstract} int getPuissance()
-}
-class Colonie {
-int puissance
 int getPuissance()
 }
+
 class Ville {
 int puissance
+
+Couleur getCouleur()
 int getPuissance()
 }
+
+class Colonie {
+int puissance
+
+Couleur getCouleur()
+int getPuissance()
+}
+
+
+
+Construction <-d- Ville
+Construction <-d- Colonie
 
 
 Partie *--> "1" Plateau
 Plateau *--> "19" Tuile
-Plateau --> "1" Tuile : emplacementVoleur
 Plateau *--> "54" Intersection
 
-Construction <|-- Ville
-Construction <|-- Colonie
-
 Intersection *--> "0:1" Construction
-Intersection --> "2:3" Intersection : Map<Intersection, Couleur> routes
-Intersection "6" <-- Tuile
+Intersection --> "2:3" Intersection : Map<int, Map<int, Couleur>> routes
+
 Intersection *--> "0.1" Port
 
 Partie --> "3:4" Joueur
-Joueur --> "5" Port : Map<Ressource, Port> ports
 Joueur "1" -- "0:n" Construction
 
 @enduml
