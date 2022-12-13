@@ -135,3 +135,5 @@ Intersection *--> "0.1" Port
 
 Partie --> "3:4" Joueur
 Joueur "1" -- "0:n" Construction
+
+@enduml
