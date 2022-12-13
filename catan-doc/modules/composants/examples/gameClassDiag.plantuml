@@ -93,7 +93,7 @@ Ressource getRessourceAleatoire()
 int deleteRessource(Ressource ressource)
 }
 
-abstract Construction {
+interface Construction {
 Couleur getCouleur()
 int getPuissance()
 }
