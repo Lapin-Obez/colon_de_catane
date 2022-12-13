@@ -49,16 +49,30 @@ Exceptions :
 
 - `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
 
+
 |`private void evalueFinPartie()`
 |Calcul le score des joueurs et met fin à la partie si le joueur actuel a plus de 10 points. Met ce joueur en tant que gagnant si c'est le cas.
+
 
 |`boolean partieEstTerminee()`
 |Renvoie vrai si la partie est terminée.
 
+
 |`Joueur getGagnant()`
-|Renvoie le gagnant de la partie.
+a|Renvoie le gagnant de la partie.
+
+Exceptions :
 
 - `GameStatusException` si la partie n'est pas finie et qu'il n'y a donc pas encore de gagnant.
+
+
+|`int lancerDes(Joueur joueurAct)`
+a|Lance les dés (`DiceThrow.throw()`) et appel `Plateau.distribuerRessources()` en fonction du résultat des dés.
+À l'aide du résultat de cette dernière méthode, distribuer les ressources aux joueurs.
+
+Exceptions :
+
+- `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
 
 |===
 
@@ -100,8 +114,18 @@ Exceptions :
 - `IllegalParameterException` si une des intersections est invalide.
 - `ImpossibleBuildException` si la route n'a pas pu être constuite. C'est-à-dire, si il y a déjà une route, ou si elle n'est pas ratachée à une colonie.
 
-|===
 
+|`Map<Couleur,Map<Ressource,Integer>> distribuerRessources(int valeurJeton)`
+a| Renvoie un dictionnaire attribuant à une `couleur` un couple `(Ressource,Integer)` indiquant le nombre de ressource
+à distribuer au joueur de cette `couleur`.
+
+Récupère les tuiles de numéro `valeurJeton` et appelle `tuile.distribuerRessources()`.
+Additionne les deux résultats obtenue et renvoie le résultat.
+
+- `IllegalArgumentExeption` si la `valeurJeton` ne correspond à aucune tuile.
+
+
+|===
 
 
 === Interface Intersection
@@ -118,5 +142,29 @@ Exceptions :
 
 |`Map<IIntersection, Couleur> getVoisines()`
 |Renvoie les intersections voisines.
+
+|===
+
+
+=== Interface Tuile
+
+[options="header"]
+|===
+|Méthode |Documentation
+
+|`List<Intersection> getIntersections()`
+|Renvoie la liste des intersections autour de la tuile.
+
+|`Ressource getRessource()`
+|Renvoie la ressource de la tuile.
+
+|`Map<Couleur,Map<Ressource,Integer>> distribuerRessources()`
+a| Renvoie un dictionnaire attribuant à une `couleur` un couple `(Ressource,Integer)` indiquant le nombre de ressource
+à distribuer au joueur de cette `couleur`.
+
+Récupère les constructions des intersections autour de la tuile.
+Pour chacune des ces constructions, récupérer sa couleur et sa `puissance`, et modifier le dictionnaire ainsi :
+
+`result[couleur][ressource] += puissance`, `ressource` étant la ressource de la tuile.
 
 |===
