@@ -17,7 +17,7 @@ Appliquez les concepts vus en cours: design patterns, principes GRASP, bonnes pr
 
 [NOTE]
 ====
-Expliquez dans cette section les répondes aux différentes exigences non-fonctionnelles spécifiées.
+Expliquez dans cette section les réponses aux différentes exigences non-fonctionnelles spécifiées.
 ====
 
 === Concurrence
@@ -35,11 +35,11 @@ NOTE: TODO!
 
 === Portabilité
 
-NOTE: TODO!
+Notre système utilise du Java pour le côté serveur et du javascript pour le côté client. Le Java n'est pas un problème à installer sur un serveur web et le javascript peut être lu par n'importe quel navigateur web.
 
 === Sécurité
 
-NOTE: TODO!
+Les interractions du client sont limités et transittent par le serveur afin d'empêcher le client de tricher en cours de partie.
 
 ==== Exigence de sécurité
 
@@ -48,11 +48,7 @@ Notre système doit être sécurisé, même si nous ne manipulons pas des donné
 
 N'ayant pas à nous occuper de l'authentification de l'utilisateur nous admettons que le système s'occupant de cela est correct et lui-même sécurisé. Nous admettons également que, quelle que soit la plateforme utilisée (web, logiciel, application) le service d'authentification sera le même pour tous.
 
-=== Maintenanbilité
-
-NOTE: TODO!
-
-==== Maintenabilité
+=== Maintenabilité
 
 NOTE: TODO!
 

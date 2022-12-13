@@ -1,0 +1,20 @@
+@startuml
+(*) --> ===B1===
+--> "Placement des cadres du plateau"
+--> ===B2===
+
+===B1=== --> "Placement des tuiles"
+--> ===B2===
+--> "Placement des jetons"
+"Placement des jetons" --> "Les joueurs reçoivent leur pions"
+"Les joueurs reçoivent leur pions" ---> ===B3===
+--> "Les joueurs placent 2 colonies"
+--> ===B4===
+
+===B3=== --> "Les joueurs placent 2 routes"
+--> ===B4===
+--> "Placement des cartes"
+"Placement des cartes" --> "Les joueurs reçoivent leur cartes ressources"
+"Les joueurs reçoivent leur cartes ressources" --> "Les premier joueur joue"
+"Les premier joueur joue" --> (*)
+@enduml
