@@ -51,7 +51,6 @@ int idTuileVoleur
 Map<int, Map<int, Couleur>> routes
 Map<int, Intersection> intersections
 Map<int, Tuile> tuiles
-Map<int, Intersections[]> listIntersectionTuile
 
 int getLongueurRoute(Couleur couleur)
 void deplacerVoleur(int idTuile)
@@ -66,13 +65,19 @@ int echange(Ressource ressource)
 }
 
 class Tuile{
+int[] listIdIntersections
 Resssource ressource {@Nullable}
 int valeurJeton
+
+Intersection[] getAllIntersections()
 }
 
 class Intersection{
 Construction construction { @Nullable }
 Port port { @Nullable }
+
+Construction getConstruction()
+Port getPort()
 }
 
 class Joueur{
@@ -122,6 +127,7 @@ Partie *--> "1" Plateau
 Plateau *--> "19" Tuile
 Plateau *--> "54" Intersection
 
+Tuile "2:3" *-->"6" Intersection
 Intersection *--> "0:1" Construction
 Intersection --> "2:3" Intersection : Map<int, Map<int, Couleur>> routes
 
@@ -129,5 +135,3 @@ Intersection *--> "0.1" Port
 
 Partie --> "3:4" Joueur
 Joueur "1" -- "0:n" Construction
-
-@enduml

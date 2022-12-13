@@ -1,11 +1,12 @@
 @startuml
 node "Game Server" as server {
-    artifact "Module A" as modeA
-    artifact "Module B" as modeB
+    artifact "catanServer" as modeA
+    artifact "Springboot" as modeB
 }
 node "Game Player" as player {
     artifact "Module C" as modeC
     artifact "Module D" as modeD
 }
 server "[1]" -- "[*]" player : <<protocol>> Web Sockets
+server "[1]" -d- "[*]" player : <<protocol>> HTTP
 @enduml

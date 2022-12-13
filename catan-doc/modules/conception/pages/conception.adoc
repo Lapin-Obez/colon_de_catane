@@ -10,9 +10,6 @@ Spécification détaillée des composants: leur structure (diagramme de classes 
 Moyens::
 Appliquez les concepts vus en cours: design patterns, principes GRASP, bonnes pratiques, etc.
 
-
-
-
 == Réponses aux exigences non-fonctionnelles
 
 [NOTE]
@@ -32,9 +29,6 @@ Dans le cadre de notre projet, nous devons penser, concevoir et développer ce d
 
 Il faudrait également que ce dernier puisse scaler en fonction du nombre de joueurs afin que la performance et l'expérience de jeu reste inchangée pour le joueur.
 
-
-Corrigé avec https://www.corrector.co/fr/
-
 === Interopérabilité
 
 NOTE: TODO!
@@ -48,7 +42,7 @@ Notre système utilise du Java pour le côté serveur et du javascript pour le c
 
 Les interractions du client sont limités et transittent par le serveur afin d'empêcher le client de tricher en cours de partie.
 
-==== Exigence de sécurité
+=== Exigence de sécurité
 
 Notre système doit être sécurisé, même si nous ne manipulons pas des données sensibles. Pour cela nous devons vérifier l'identité de l'utilisateur.
 
@@ -61,6 +55,13 @@ La maintenabilité, un grand point du développement logiciel, pour notre projet
 
 Pour compléter ce point, la documentation ne sera pas suffisante à elle seule.
 En effet, le test du programme réalisé est aussi primordial, il faudra également veiller à utiliser des versions LTS et non expérimentales des frameworks et des librairies utilisées, il faudra aussi qu'elles soient maintenues activement pour maximiser notre maintenabilité.
+
+=== Diagramme de classes du domaine du jeu
+.Diagramme de classes du Jeu
+[plantuml]
+----
+include::../examples/gameClassDiag.plantuml[]
+----
 
 === Interface utilisateur
 

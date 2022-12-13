@@ -70,12 +70,6 @@ REST_client --r--> "Create/Join a game"
 ....
 
 
-.Diagramme de classes du Jeu
-[plantuml]
-----
-include::../examples/gameClassDiag.plantuml[]
-----
-
 .Diagramme des interfaces
 [plantuml]
 ----

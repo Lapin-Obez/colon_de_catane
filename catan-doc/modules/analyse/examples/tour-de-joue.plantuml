@@ -33,6 +33,6 @@ else
 "Joue carte chevalier"-->===B6===
 "Joue carte progrès"-->===B6===
 ===B6===-->===B4===
-===B4===-->===B1===
+===B1===-->===B4===
 ===B4===-->(*)
 @enduml
