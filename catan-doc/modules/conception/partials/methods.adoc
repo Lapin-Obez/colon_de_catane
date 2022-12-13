@@ -1,0 +1,195 @@
+=== Interface Partie
+
+[options="header"]
+|===
+|Méthode |Documentation
+
+|`void construireColonie(Joueur joueur, int intersection)`
+a|
+Construit une colonie de la `Couleur` du `joueur` donné, à l' `intersection` donnée.
+Appelle `Plateau.construireColonie()`.
+
+Exceptions :
+
+- `GameStatusException` si le joueur ne peut pas jouer.
+- `IllegalParameterException` si l'intersection est invalide.
+- `ImpossibleBuildException` si l'intersection est déjà occupée ou si elle n'est pas à deux routes minimum d'une autre colonie.
+- `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
+
+
+|`void construireVille(Joueur joueur, int intersection)`
+a|
+Améliore une colonie au niveau de ville. Cette ville se trouve à l' `intersection`.
+Appelle `Plateau.construireVille()`.
+
+
+Exceptions :
+
+- `GameStatusException` si le joueur ne peut pas jouer.
+- `IllegalParameterException` si l'intersection est invalide.
+- `ColonyDoesNotExistException` s'il n'y a pas de colonie sur l'intersection.
+- `WrongColorException` si la colonie n'appartient pas au joueur.
+- `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
+
+
+|`void construireRoute(Joueur joueur, int intersectionA, int intersectionB)`
+a| Construit une route de la couleur du joueur entre deux intersections données.
+
+Exceptions :
+
+- `GameStatusException` si le joueur ne peut pas jouer.
+- `IllegalParameterException` si une des intersections est invalide.
+- `ImpossibleBuildException` si la route n'a pas pu être constuite.
+- `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
+
+
+|`Joueur endGameTurn(Joueur joueurAct)`
+a| Termine le tour du joueur actuel et renvoie le joueur à qui c'est maintenant le tour.
+
+Exceptions :
+
+- `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
+
+
+|`private void evalueFinPartie()`
+| Calcul le score des joueurs et met fin à la partie si le joueur actuel a plus de 10 points.
+Met ce joueur en tant que gagnant si c'est le cas.
+
+
+|`boolean partieEstTerminee()`
+| Renvoie vrai si la partie est terminée.
+
+
+|`Joueur getGagnant()`
+a| Renvoie le gagnant de la partie.
+
+Exceptions :
+
+- `GameStatusException` si la partie n'est pas finie et qu'il n'y a donc pas encore de gagnant.
+
+
+|`int lancerDes(Joueur joueurAct)`
+a| Lance les dés (`DiceThrow.throw()`) et appel `Plateau.distribuerRessources()` en fonction du résultat des dés.
+À l'aide du résultat de cette dernière méthode, distribuer les ressources aux joueurs.
+
+Exceptions :
+
+- `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
+
+|===
+
+
+
+=== Interface Plateau
+
+[options="header"]
+|===
+|Méthode |Documentation
+
+
+|`void construireColonie(Couleur couleur, int intersection)`
+a| Construit une colonie de la `Couleur` donnée à l'intersection donnée.
+
+Exceptions :
+
+- `IllegalParameterException` si l'intersection est invalide.
+- `ImpossibleBuildException` si l'intersection est déjà occupée, si elle n'est pas à deux de distance minimum d'une autre colonie.
+
+
+|`void construireVille(Couleur couleur, int intersection)`
+a| Améliore une colonie au niveau de ville. Cette ville se trouve à l' `intersection`.
+
+Exceptions :
+
+- `IllegalParameterException` si l'intersection est invalide.
+- `ColonyDoesNotExistException` s'il n'y a pas de colonie sur l'intersection.
+- `WrongColorException` si la colonie n'appartient pas au joueur.
+
+
+|`void construireRoute(Couleur couleur, int intersectionA, int intersectionB)`
+a| Construit une route de la couleur donnée entre deux intersections données.
+
+Exceptions :
+
+- `IllegalParameterException` si une des intersections est invalide.
+- `ImpossibleBuildException` si la route n'a pas pu être constuite. C'est-à-dire, si il y a déjà une route, ou si elle n'est pas ratachée à une colonie.
+
+
+|`Map<Couleur,Map<Ressource,Integer>> distribuerRessources(int valeurJeton)`
+a| Renvoie un dictionnaire attribuant à une `couleur` un couple `(Ressource,Integer)` indiquant le nombre de ressource
+à distribuer au joueur de cette `couleur`.
+
+Récupère les tuiles de numéro `valeurJeton` et appelle `tuile.distribuerRessources()`.
+Additionne les deux résultats obtenue et renvoie le résultat.
+
+- `IllegalArgumentExeption` si la `valeurJeton` ne correspond à aucune tuile.
+
+
+|===
+
+
+=== Interface Intersection
+
+[options="header"]
+|===
+|Méthode |Documentation
+
+|`Construction getConstruction()`
+|Renvoie la construction.
+
+|`void setConstruction(Construction colonie)`
+|Permet de set la construction.
+
+|`Map<IIntersection, Couleur> getVoisines()`
+|Renvoie les intersections voisines.
+
+|===
+
+
+=== Interface Tuile
+
+[options="header"]
+|===
+|Méthode |Documentation
+
+|`List<Intersection> getIntersections()`
+| Renvoie la liste des intersections autour de la tuile.
+
+|`Ressource getRessource()`
+| Renvoie la ressource de la tuile.
+
+|`Map<Couleur,Map<Ressource,Integer>> distribuerRessources()`
+a| Renvoie un dictionnaire attribuant à une `couleur` un couple `(Ressource,Integer)` indiquant le nombre de ressource
+à distribuer au joueur de cette `couleur`.
+
+Récupère les constructions des intersections autour de la tuile.
+Pour chacune des ces constructions, récupérer sa couleur et sa `puissance`, et modifier le dictionnaire ainsi :
+
+`result[couleur][ressource] += puissance`, `ressource` étant la ressource de la tuile.
+
+|===
+
+=== Interface Joueur
+
+[options="header"]
+|===
+|Méthode |Documentation
+
+|`Couleur getCouleur()`
+| Renvoie la couleur du joueur.
+
+|`int getNbRessources(Ressource ressource)`
+| Renvoie le nombre de ressources de type `ressource` du joueur.
+
+|`void removeRessources(Ressource ressource, int amount)`
+a| Supprime `amount` ressources de type `ressource` au joueur.
+
+Exception :
+
+- `TODOException` si le joueur n'a pas `amount` ressources de type `Ressource`.
+
+|`int getPointsVictoire()`
+a| Calcul le nombre du points du joueur en prenant en compte ses constructions, ses fiches spéciales
+(plus grande armée et route la plus longue), et ses cartes Victoire.
+
+|===
