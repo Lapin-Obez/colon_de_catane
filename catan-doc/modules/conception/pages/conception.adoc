@@ -22,11 +22,18 @@ Expliquez dans cette section les réponses aux différentes exigences non-foncti
 
 === Concurrence
 
-NOTE: TODO!
+Dans le cadre de notre projet, nous allons avoir besoin de gérer la concurrence lorsque les joueurs joueront.
+En effet, il ne va pas falloir qu'on ait la possibilité qu'il y ait un autre joueur qui joue en même temps que le joueur qui doit jouer son tour.
+C'est pour cela que nous allons devoir gérer ce point-là.
 
 === Performance
 
-NOTE: TODO!
+Dans le cadre de notre projet, nous devons penser, concevoir et développer ce dernier pour que celui-ci soit réactif et qu'il soit agréable pour l'utilisateur.
+
+Il faudrait également que ce dernier puisse scaler en fonction du nombre de joueurs afin que la performance et l'expérience de jeu reste inchangée pour le joueur.
+
+
+Corrigé avec https://www.corrector.co/fr/
 
 === Interopérabilité
 
@@ -50,7 +57,10 @@ N'ayant pas à nous occuper de l'authentification de l'utilisateur nous admetton
 
 === Maintenabilité
 
-NOTE: TODO!
+La maintenabilité, un grand point du développement logiciel, pour notre projet, afin de garantir ce point, la documentation est essentielle tant celle de la conception que celle présente dans le code.
+
+Pour compléter ce point, la documentation ne sera pas suffisante à elle seule.
+En effet, le test du programme réalisé est aussi primordial, il faudra également veiller à utiliser des versions LTS et non expérimentales des frameworks et des librairies utilisées, il faudra aussi qu'elles soient maintenues activement pour maximiser notre maintenabilité.
 
 === Interface utilisateur
 
