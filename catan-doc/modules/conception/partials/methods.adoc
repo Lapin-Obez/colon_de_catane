@@ -42,6 +42,24 @@ Exceptions :
 - `ImpossibleBuildException` si la route n'a pas pu être constuite.
 - `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
 
+|`Joueur endGameTurn(Joueur joueurAct)`
+a|Termine le tour du joueur actuel et renvoie le joueur à qui c'est maintenant le tour.
+
+Exceptions :
+
+- `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
+
+|`private void evalueFinPartie()`
+|Calcul le score des joueurs et met fin à la partie si le joueur actuel a plus de 10 points. Met ce joueur en tant que gagnant si c'est le cas.
+
+|`boolean partieEstTerminee()`
+|Renvoie vrai si la partie est terminée.
+
+|`Joueur getGagnant()`
+|Renvoie le gagnant de la partie.
+
+- `GameStatusException` si la partie n'est pas finie et qu'il n'y a donc pas encore de gagnant.
+
 |===
 
 
