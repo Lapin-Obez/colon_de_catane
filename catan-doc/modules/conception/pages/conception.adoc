@@ -17,6 +17,8 @@ Appliquez les concepts vus en cours: design patterns, principes GRASP, bonnes pr
 Expliquez dans cette section les réponses aux différentes exigences non-fonctionnelles spécifiées.
 ====
 
+include::partial$methods.adoc[leveloffset=2]
+
 === Concurrence
 
 Dans le cadre de notre projet, nous allons avoir besoin de gérer la concurrence lorsque les joueurs joueront.
