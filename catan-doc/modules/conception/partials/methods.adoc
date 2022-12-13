@@ -16,6 +16,7 @@ Exceptions :
 - `ImpossibleBuildException` si l'intersection est déjà occupée ou si elle n'est pas à deux routes minimum d'une autre colonie.
 - `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
 
+
 |`void construireVille(Joueur joueur, int intersection)`
 a|
 Améliore une colonie au niveau de ville. Cette ville se trouve à l' `intersection`.
@@ -30,16 +31,27 @@ Exceptions :
 - `WrongColorException` si la colonie n'appartient pas au joueur.
 - `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
 
-|
-|
+
+|`void construireRoute(Joueur joueur, int intersectionA, int intersectionB)`
+a|Construit une route de la couleur du joueur entre deux intersections données.
+
+Exceptions :
+
+- `GameStatusException` si le joueur ne peut pas jouer.
+- `IllegalParameterException` si une des intersections est invalide.
+- `ImpossibleBuildException` si la route n'a pas pu être constuite.
+- `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
 
 |===
+
+
 
 === Interface Plateau
 
 [options="header"]
 |===
 |Méthode |Documentation
+
 
 |`void construireColonie(Couleur couleur, int intersection)`
 a|
@@ -49,6 +61,7 @@ Exceptions :
 
 - `IllegalParameterException` si l'intersection est invalide.
 - `ImpossibleBuildException` si l'intersection est déjà occupée, si elle n'est pas à deux de distance minimum d'une autre colonie.
+
 
 |`void construireVille(Couleur couleur, int intersection)`
 a|
@@ -60,7 +73,18 @@ Exceptions :
 - `ColonyDoesNotExistException` s'il n'y a pas de colonie sur l'intersection.
 - `WrongColorException` si la colonie n'appartient pas au joueur.
 
+
+|`void construireRoute(Couleur couleur, int intersectionA, int intersectionB)`
+a|Construit une route de la couleur donnée entre deux intersections données.
+
+Exceptions :
+
+- `IllegalParameterException` si une des intersections est invalide.
+- `ImpossibleBuildException` si la route n'a pas pu être constuite. C'est-à-dire, si il y a déjà une route, ou si elle n'est pas ratachée à une colonie.
+
 |===
+
+
 
 === Interface Intersection
 
