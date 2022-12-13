@@ -32,9 +32,6 @@ Dans le cadre de notre projet, nous devons penser, concevoir et développer ce d
 
 Il faudrait également que ce dernier puisse scaler en fonction du nombre de joueurs afin que la performance et l'expérience de jeu reste inchangée pour le joueur.
 
-
-Corrigé avec https://www.corrector.co/fr/
-
 === Interopérabilité
 
 NOTE: TODO!
