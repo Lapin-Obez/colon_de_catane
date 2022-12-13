@@ -115,8 +115,8 @@ Additionnellement, utilisez des diagrammes d'activités UML pour illustrer les c
 
 === Cas d'utilisation "Mise en place d'une partie"
 
-include::setup.adoc[leveloffset=2]
-include::setup_beginner.adoc[leveloffset=2]
+include::partial$setup.adoc[leveloffset=2]
+include::partial$setup_beginner.adoc[leveloffset=2]
 
 .Diagramme d'activités: Mise en place d'une partie
 [plantuml]
@@ -126,7 +126,7 @@ include::example$mise-en-place.plantuml[]
 
 === Cas d'utilisation "Tour de jeu"
 
-include::gameTurn.adoc[leveloffset=2]
+include::partial$gameTurn.adoc[leveloffset=2]
 
 .Diagramme d'activités: Cas d'utilisation B
 [plantuml]
