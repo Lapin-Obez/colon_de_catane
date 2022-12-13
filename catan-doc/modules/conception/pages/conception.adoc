@@ -69,7 +69,7 @@ include::partial$methods.adoc[leveloffset=3]
 
 === Interface utilisateur
 
-NOTE: TODO!
+L'interface utilisateur sera une interface graphique réalisée à l'aide de typescript et angular sur un fichier html que le client pourra ouvrir à l'aide d'un simple navigateur internet.
 
 === Interface logicielle
 
@@ -77,7 +77,7 @@ NOTE: TODO!
 
 === Interface ou protocoles de communication
 
-NOTE: TODO!
+Notre logiciel utilisera des websockets pour communiquer entre les clients et le serveur ainsi que le protocole HTTP pour établir cette communication.
 
 === Correction
 
