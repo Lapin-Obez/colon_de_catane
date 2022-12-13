@@ -33,7 +33,7 @@ Exceptions :
 
 
 |`void construireRoute(Joueur joueur, int intersectionA, int intersectionB)`
-a|Construit une route de la couleur du joueur entre deux intersections données.
+a| Construit une route de la couleur du joueur entre deux intersections données.
 
 Exceptions :
 
@@ -42,8 +42,9 @@ Exceptions :
 - `ImpossibleBuildException` si la route n'a pas pu être constuite.
 - `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
 
+
 |`Joueur endGameTurn(Joueur joueurAct)`
-a|Termine le tour du joueur actuel et renvoie le joueur à qui c'est maintenant le tour.
+a| Termine le tour du joueur actuel et renvoie le joueur à qui c'est maintenant le tour.
 
 Exceptions :
 
@@ -51,15 +52,16 @@ Exceptions :
 
 
 |`private void evalueFinPartie()`
-|Calcul le score des joueurs et met fin à la partie si le joueur actuel a plus de 10 points. Met ce joueur en tant que gagnant si c'est le cas.
+| Calcul le score des joueurs et met fin à la partie si le joueur actuel a plus de 10 points.
+Met ce joueur en tant que gagnant si c'est le cas.
 
 
 |`boolean partieEstTerminee()`
-|Renvoie vrai si la partie est terminée.
+| Renvoie vrai si la partie est terminée.
 
 
 |`Joueur getGagnant()`
-a|Renvoie le gagnant de la partie.
+a| Renvoie le gagnant de la partie.
 
 Exceptions :
 
@@ -67,7 +69,7 @@ Exceptions :
 
 
 |`int lancerDes(Joueur joueurAct)`
-a|Lance les dés (`DiceThrow.throw()`) et appel `Plateau.distribuerRessources()` en fonction du résultat des dés.
+a| Lance les dés (`DiceThrow.throw()`) et appel `Plateau.distribuerRessources()` en fonction du résultat des dés.
 À l'aide du résultat de cette dernière méthode, distribuer les ressources aux joueurs.
 
 Exceptions :
@@ -86,8 +88,7 @@ Exceptions :
 
 
 |`void construireColonie(Couleur couleur, int intersection)`
-a|
-Construit une colonie de la `Couleur` donnée à l'intersection donnée.
+a| Construit une colonie de la `Couleur` donnée à l'intersection donnée.
 
 Exceptions :
 
@@ -96,8 +97,7 @@ Exceptions :
 
 
 |`void construireVille(Couleur couleur, int intersection)`
-a|
-Améliore une colonie au niveau de ville. Cette ville se trouve à l' `intersection`.
+a| Améliore une colonie au niveau de ville. Cette ville se trouve à l' `intersection`.
 
 Exceptions :
 
@@ -107,7 +107,7 @@ Exceptions :
 
 
 |`void construireRoute(Couleur couleur, int intersectionA, int intersectionB)`
-a|Construit une route de la couleur donnée entre deux intersections données.
+a| Construit une route de la couleur donnée entre deux intersections données.
 
 Exceptions :
 
@@ -153,10 +153,10 @@ Additionne les deux résultats obtenue et renvoie le résultat.
 |Méthode |Documentation
 
 |`List<Intersection> getIntersections()`
-|Renvoie la liste des intersections autour de la tuile.
+| Renvoie la liste des intersections autour de la tuile.
 
 |`Ressource getRessource()`
-|Renvoie la ressource de la tuile.
+| Renvoie la ressource de la tuile.
 
 |`Map<Couleur,Map<Ressource,Integer>> distribuerRessources()`
 a| Renvoie un dictionnaire attribuant à une `couleur` un couple `(Ressource,Integer)` indiquant le nombre de ressource
@@ -166,5 +166,30 @@ Récupère les constructions des intersections autour de la tuile.
 Pour chacune des ces constructions, récupérer sa couleur et sa `puissance`, et modifier le dictionnaire ainsi :
 
 `result[couleur][ressource] += puissance`, `ressource` étant la ressource de la tuile.
+
+|===
+
+=== Interface Joueur
+
+[options="header"]
+|===
+|Méthode |Documentation
+
+|`Couleur getCouleur()`
+| Renvoie la couleur du joueur.
+
+|`int getNbRessources(Ressource ressource)`
+| Renvoie le nombre de ressources de type `ressource` du joueur.
+
+|`void removeRessources(Ressource ressource, int amount)`
+a| Supprime `amount` ressources de type `ressource` au joueur.
+
+Exception :
+
+- `TODOException` si le joueur n'a pas `amount` ressources de type `Ressource`.
+
+|`int getPointsVictoire()`
+a| Calcul le nombre du points du joueur en prenant en compte ses constructions, ses fiches spéciales
+(plus grande armée et route la plus longue), et ses cartes Victoire.
 
 |===
