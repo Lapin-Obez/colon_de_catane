@@ -134,26 +134,31 @@ diagrammes de conception UML en code source Java et TypeScript.
 | UML | Java | TypeScript
 
 | Integer
-|
-|
+| int
+| number
 
 | Boolean
-|
-|
+| boolean
+| boolean
 
 | String
-|
-|
+| String
+| string
 
 | Real
-|
-|
+| double
+| number
 
 |===
 
 === Conventions de codage
+==== Pour le TypeScript, côté client
 
-NOTE: Expliquez ici les conventions de codage, Java et TypeScript, que les développeurs devront respecter.
+Pour le côté client, on utilise du TypeScript et par conséquent, nous allons utiliser les conventions de codage pour le TypeScript définies par Google https://google.github.io/styleguide/tsguide.html[ici].
+
+==== Pour le Java, côté serveur
+
+Pour le côté serveur, on utilise du Java et par conséquent, nous allons utiliser les conventions de codage pour le Java définies par Google https://google.github.io/styleguide/javaguide.html[ici].
 
 === Règles de traduction des composants
 
