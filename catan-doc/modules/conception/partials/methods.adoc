@@ -1,0 +1,122 @@
+=== Interface Partie
+
+[options="header"]
+|===
+|Méthode |Documentation
+
+|`void construireColonie(Joueur joueur, int intersection)`
+a|
+Construit une colonie de la `Couleur` du `joueur` donné, à l' `intersection` donnée.
+Appelle `Plateau.construireColonie()`.
+
+Exceptions :
+
+- `GameStatusException` si le joueur ne peut pas jouer.
+- `IllegalParameterException` si l'intersection est invalide.
+- `ImpossibleBuildException` si l'intersection est déjà occupée ou si elle n'est pas à deux routes minimum d'une autre colonie.
+- `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
+
+
+|`void construireVille(Joueur joueur, int intersection)`
+a|
+Améliore une colonie au niveau de ville. Cette ville se trouve à l' `intersection`.
+Appelle `Plateau.construireVille()`.
+
+
+Exceptions :
+
+- `GameStatusException` si le joueur ne peut pas jouer.
+- `IllegalParameterException` si l'intersection est invalide.
+- `ColonyDoesNotExistException` s'il n'y a pas de colonie sur l'intersection.
+- `WrongColorException` si la colonie n'appartient pas au joueur.
+- `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
+
+
+|`void construireRoute(Joueur joueur, int intersectionA, int intersectionB)`
+a|Construit une route de la couleur du joueur entre deux intersections données.
+
+Exceptions :
+
+- `GameStatusException` si le joueur ne peut pas jouer.
+- `IllegalParameterException` si une des intersections est invalide.
+- `ImpossibleBuildException` si la route n'a pas pu être constuite.
+- `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
+
+|`Joueur endGameTurn(Joueur joueurAct)`
+a|Termine le tour du joueur actuel et renvoie le joueur à qui c'est maintenant le tour.
+
+Exceptions :
+
+- `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
+
+|`private void evalueFinPartie()`
+|Calcul le score des joueurs et met fin à la partie si le joueur actuel a plus de 10 points. Met ce joueur en tant que gagnant si c'est le cas.
+
+|`boolean partieEstTerminee()`
+|Renvoie vrai si la partie est terminée.
+
+|`Joueur getGagnant()`
+|Renvoie le gagnant de la partie.
+
+- `GameStatusException` si la partie n'est pas finie et qu'il n'y a donc pas encore de gagnant.
+
+|===
+
+
+
+=== Interface Plateau
+
+[options="header"]
+|===
+|Méthode |Documentation
+
+
+|`void construireColonie(Couleur couleur, int intersection)`
+a|
+Construit une colonie de la `Couleur` donnée à l'intersection donnée.
+
+Exceptions :
+
+- `IllegalParameterException` si l'intersection est invalide.
+- `ImpossibleBuildException` si l'intersection est déjà occupée, si elle n'est pas à deux de distance minimum d'une autre colonie.
+
+
+|`void construireVille(Couleur couleur, int intersection)`
+a|
+Améliore une colonie au niveau de ville. Cette ville se trouve à l' `intersection`.
+
+Exceptions :
+
+- `IllegalParameterException` si l'intersection est invalide.
+- `ColonyDoesNotExistException` s'il n'y a pas de colonie sur l'intersection.
+- `WrongColorException` si la colonie n'appartient pas au joueur.
+
+
+|`void construireRoute(Couleur couleur, int intersectionA, int intersectionB)`
+a|Construit une route de la couleur donnée entre deux intersections données.
+
+Exceptions :
+
+- `IllegalParameterException` si une des intersections est invalide.
+- `ImpossibleBuildException` si la route n'a pas pu être constuite. C'est-à-dire, si il y a déjà une route, ou si elle n'est pas ratachée à une colonie.
+
+|===
+
+
+
+=== Interface Intersection
+
+[options="header"]
+|===
+|Méthode |Documentation
+
+|`Construction getConstruction()`
+|Renvoie la construction.
+
+|`void setConstruction(Construction colonie)`
+|Permet de set la construction.
+
+|`Map<IIntersection, Couleur> getVoisines()`
+|Renvoie les intersections voisines.
+
+|===
