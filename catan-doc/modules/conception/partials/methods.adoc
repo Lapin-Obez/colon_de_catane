@@ -4,7 +4,7 @@
 |===
 |Méthode |Documentation
 
-|`void construireColonie(Joueur joueur, int intersection)`
+|`void construireColonie(Joueur joueur, int idIntersection)`
 a|
 Construit une colonie de la `Couleur` du `joueur` donné, à l' `intersection` donnée.
 Appelle `Plateau.construireColonie()`.
@@ -14,10 +14,10 @@ Exceptions :
 - `GameStatusException` si le joueur ne peut pas jouer.
 - `IllegalParameterException` si l'intersection est invalide.
 - `ImpossibleBuildException` si l'intersection est déjà occupée ou si elle n'est pas à deux routes minimum d'une autre colonie.
-- `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
+- `NotEnoughRessourcesException` si le joueur n'a pas les ressources nécessaires.
 
 
-|`void construireVille(Joueur joueur, int intersection)`
+|`void construireVille(Joueur joueur, int idIntersection)`
 a|
 Améliore une colonie au niveau de ville. Cette ville se trouve à l' `intersection`.
 Appelle `Plateau.construireVille()`.
@@ -29,7 +29,7 @@ Exceptions :
 - `IllegalParameterException` si l'intersection est invalide.
 - `ColonyDoesNotExistException` s'il n'y a pas de colonie sur l'intersection.
 - `WrongColorException` si la colonie n'appartient pas au joueur.
-- `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
+- `NotEnoughRessourcesException` si le joueur n'a pas les ressources nécessaires.
 
 
 |`void construireRoute(Joueur joueur, int intersectionA, int intersectionB)`
@@ -40,7 +40,7 @@ Exceptions :
 - `GameStatusException` si le joueur ne peut pas jouer.
 - `IllegalParameterException` si une des intersections est invalide.
 - `ImpossibleBuildException` si la route n'a pas pu être constuite.
-- `NotEnoughRessources` si le joueur n'a pas les ressources nécessaires.
+- `NotEnoughRessourcesException` si le joueur n'a pas les ressources nécessaires.
 
 
 |`Joueur endGameTurn(Joueur joueurAct)`
@@ -69,12 +69,34 @@ Exceptions :
 
 
 |`int lancerDes(Joueur joueurAct)`
-a| Lance les dés (`DiceThrow.throw()`) et appel `Plateau.distribuerRessources()` en fonction du résultat des dés.
+a| Lance les dés (`DiceThrow.throw()`) et renvoie le résultat.
+
+Si le résultat est 7, appelle pour chaque joueur `joueur.deleteHalfRessources()`.
+
+Si le résultat n'est pas 7, appelle `Plateau.distribuerRessources()` en fonction du résultat des dés.
 À l'aide du résultat de cette dernière méthode, distribuer les ressources aux joueurs.
 
 Exceptions :
 
 - `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
+
+
+|`List<Joueur> jouerVoleur(Joueur joueurAct, int idTuile)`
+a| Change le voleur de tuile et renvoie quels joueurs on peut voler.
+
+Exceptions :
+
+- `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
+- `IllegalArgumentException` si la tuile n'est pas valide.
+
+
+|`void volerRessource(Joueur voleur, Joueur victime)`
+a| Permet de voler une ressource aléatoire au joueur volé et de la donner au voleur.
+
+Exceptions :
+
+- `GameStatusException` si le voleur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
+- `NotEnoughRessourcesException` si le joueur volé n'a pas de ressources.
 
 |===
 
@@ -87,7 +109,7 @@ Exceptions :
 |Méthode |Documentation
 
 
-|`void construireColonie(Couleur couleur, int intersection)`
+|`void construireColonie(Couleur couleur, int idIntersection)`
 a| Construit une colonie de la `Couleur` donnée à l'intersection donnée.
 
 Exceptions :
@@ -96,7 +118,7 @@ Exceptions :
 - `ImpossibleBuildException` si l'intersection est déjà occupée, si elle n'est pas à deux de distance minimum d'une autre colonie.
 
 
-|`void construireVille(Couleur couleur, int intersection)`
+|`void construireVille(Couleur couleur, int idIntersection)`
 a| Améliore une colonie au niveau de ville. Cette ville se trouve à l' `intersection`.
 
 Exceptions :
@@ -122,8 +144,17 @@ a| Renvoie un dictionnaire attribuant à une `couleur` un couple `(Ressource,Int
 Récupère les tuiles de numéro `valeurJeton` et appelle `tuile.distribuerRessources()`.
 Additionne les deux résultats obtenue et renvoie le résultat.
 
+Si une des tuiles est la tuile où se situe le voleur, `tuile.distribuerRessources()` n'est pas appelé pour cette tuile.
+
 - `IllegalArgumentExeption` si la `valeurJeton` ne correspond à aucune tuile.
 
+
+|`List<Joueur> jouerVoleur(int idTuile)`
+a| Change le voleur de tuile et renvoie quelles couleurs sont sur cette tuile.
+
+Exception :
+
+- `IllegalArgumentException` si la tuile n'est pas valide.
 
 |===
 
@@ -140,7 +171,7 @@ Additionne les deux résultats obtenue et renvoie le résultat.
 |`void setConstruction(Construction colonie)`
 |Permet de set la construction.
 
-|`Map<IIntersection, Couleur> getVoisines()`
+|`Map<Intersection, Couleur> getVoisines()`
 |Renvoie les intersections voisines.
 
 |===
@@ -169,6 +200,7 @@ Pour chacune des ces constructions, récupérer sa couleur et sa `puissance`, et
 
 |===
 
+
 = Interface Joueur
 
 [options="header"]
@@ -181,15 +213,49 @@ Pour chacune des ces constructions, récupérer sa couleur et sa `puissance`, et
 |`int getNbRessources(Ressource ressource)`
 | Renvoie le nombre de ressources de type `ressource` du joueur.
 
+|`int getNbAllRessources()`
+| Renvoie le nombre de toutes les ressources du joueur.
+
 |`void removeRessources(Ressource ressource, int amount)`
 a| Supprime `amount` ressources de type `ressource` au joueur.
 
 Exception :
 
-- `TODOException` si le joueur n'a pas `amount` ressources de type `Ressource`.
+- `NotEnoughRessourcesException` si le joueur n'a pas `amount` ressources de type `Ressource`.
+
 
 |`int getPointsVictoire()`
 a| Calcul le nombre du points du joueur en prenant en compte ses constructions, ses fiches spéciales
 (plus grande armée et route la plus longue), et ses cartes Victoire.
+
+
+|`Ressource getRessourceAleatoire()`
+a| Retourne une ressource aléatoire que le joueur possède.
+
+Exceptions :
+
+- `NotEnoughRessourcesException` si le joueur n'a pas de ressources.
+
+|`void deleteHalfRessources()`
+a| Supprime la moitié des ressources du joueur.
+
+Si le joueur a un nombre impair de ressources, on arrondit le nombre de ressources restantes à la borne inférieur. (e.g. pour 9 ressources de base, on se retrouve avec 4.)
+
+Tant qu'on a pas supprimé la moitié des ressource, on supprime la moitié de chaque type de ressource, un par un. Si le nombre de ressources pour un type est impair, on arrondit le nombre de ressources restantes à la borne supérieure (e.g. pour 3 ressources de base, on se retrouve avec 2).
+
+|===
+
+
+= Interface Construction
+
+[options="header"]
+|===
+|Méthode |Documentation
+
+|`Couleur getCouleur()`
+| Renvoie la couleur de la construction
+
+|`int getPuissance()`
+| Renvoie la puissance de la constrution. 1 pour une colonie, 2 pour une ville.
 
 |===
