@@ -1,4 +1,4 @@
-=== Interface Partie
+= Interface Partie
 
 [options="header"]
 |===
@@ -80,7 +80,7 @@ Exceptions :
 
 
 
-=== Interface Plateau
+= Interface Plateau
 
 [options="header"]
 |===
@@ -128,7 +128,7 @@ Additionne les deux résultats obtenue et renvoie le résultat.
 |===
 
 
-=== Interface Intersection
+= Interface Intersection
 
 [options="header"]
 |===
@@ -146,7 +146,7 @@ Additionne les deux résultats obtenue et renvoie le résultat.
 |===
 
 
-=== Interface Tuile
+= Interface Tuile
 
 [options="header"]
 |===
@@ -169,7 +169,7 @@ Pour chacune des ces constructions, récupérer sa couleur et sa `puissance`, et
 
 |===
 
-=== Interface Joueur
+= Interface Joueur
 
 [options="header"]
 |===
