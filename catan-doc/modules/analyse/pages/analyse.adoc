@@ -116,22 +116,33 @@ Additionnellement, utilisez des diagrammes d'activités UML pour illustrer les c
 === Cas d'utilisation "Mise en place d'une partie"
 
 include::partial$setup.adoc[leveloffset=2]
-include::partial$setup_beginner.adoc[leveloffset=2]
 
-.Diagramme d'activités: Mise en place d'une partie
+include::partial$setup_beginner.adoc[leveloffset=2]
+.Diagramme d'activités : Mise en place d'une partie
 [plantuml]
 ....
 include::example$mise-en-place.plantuml[]
 ....
+Le diagramme ne change pas entre la mise en place classique et la mise en place débutant. Les joueurs adapteront simplement ce placement en fonction de s'ils jouent en mode débutant ou non.
 
 === Cas d'utilisation "Tour de jeu"
 
 include::partial$gameTurn.adoc[leveloffset=2]
 
-.Diagramme d'activités: Cas d'utilisation B
+.Diagramme d'activités Tour de jeu
 [plantuml]
 ....
-include::example$ad-mise-en-place.puml[]
+include::example$tour-de-joue.plantuml[]
+....
+
+=== Cas d'utilisation "Fin de la partie"
+
+include::partial$endGame.adoc[leveloffset=2]
+
+.Diagramme d'activités Tour de jeu
+[plantuml]
+....
+include::example$endGame.plantuml[]
 ....
 
 == Activités

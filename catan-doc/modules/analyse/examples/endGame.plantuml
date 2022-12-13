@@ -1,0 +1,19 @@
+@startuml
+(*) --> "Un joueur termine son tour"
+-->===B1===
+===B1===-->"Calcule points des colonies"
+===B1===-->"Calcule points des villes"
+===B1===-->"Calcule points de la plus grande route"
+===B1===-->"Calcule points de la plus grande armée"
+"Calcule points des colonies"-->===B2===
+"Calcule points des villes"-->===B2===
+"Calcule points de la plus grande route"-->===B2===
+"Calcule points de la plus grande armée"-->===B2===
+===B2===--> if "Point de victoire d'un joueur >=10"
+-->[true] "La partie est gagné"
+else
+-->[false]"La partie continue"
+"La partie est gagné"-->===B3===
+"La partie continue"-->===B3===
+===B3===-->(*)
+@enduml

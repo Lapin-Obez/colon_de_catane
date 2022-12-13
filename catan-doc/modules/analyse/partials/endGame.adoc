@@ -1,0 +1,6 @@
+=== Fin de la partie
+. Un joueur termine son tour.
+
+. On recalcule les points des joueurs, (nbPts = 1*nbColonies + 2*nbVilles + 1*nbCarteVictoire + 2*plusGrdArmée + 2*plusGrdRoute)
+
+. Si un joueur possède 10 points ou plus il a gagné la partie, sinon elle continue.

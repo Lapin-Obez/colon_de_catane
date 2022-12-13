@@ -1,0 +1,38 @@
+@startuml
+(*) --> "Le joueur actif lance les dés"
+--> if "Lancé = 7" then
+-->[true] "Deplacement du pion voleur"
+else
+-->[false] "Les joueurs récupèrent les ressources produites"
+-->===B1===
+"Deplacement du pion voleur"-->===B1===
+--> "Commerce"
+-->===BCommerce===
+-->"Echanges avec les autres joueurs"
+-->===B2===
+===BCommerce===-->"Echange avec la banque"
+"Echange avec la banque"-->===B2===
+===B1===-->"Construction"
+"Construction"-->===BConstruction===
+===BConstruction===-->"Route"
+===BConstruction===-->"Colonie"
+===BConstruction===-->"Ville"
+"Route"-->===B3===
+"Colonie"-->===B3===
+"Ville"-->===B3===
+===B3===-->===B4===
+===B2===-->===B4===
+===B1===-->"Cartes"
+"Cartes"-->===B5===
+===B5===-->"Acheter une carte"
+"Acheter une carte"-->===B6===
+===B5===-->"Jouer une cartes"
+"Jouer une cartes"-->===B7===
+===B7===-->"Joue carte chevalier"
+===B7===-->"Joue carte progrès"
+"Joue carte chevalier"-->===B6===
+"Joue carte progrès"-->===B6===
+===B6===-->===B4===
+===B4===-->===B1===
+===B4===-->(*)
+@enduml
