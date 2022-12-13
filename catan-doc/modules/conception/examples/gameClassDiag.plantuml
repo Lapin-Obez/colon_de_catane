@@ -65,7 +65,7 @@ int echange(Ressource ressource)
 }
 
 class Tuile{
-int[] listIdIntersections
+Itersection[] listIntersections
 Resssource ressource {@Nullable}
 int valeurJeton
 
@@ -73,8 +73,8 @@ Intersection[] getAllIntersections()
 }
 
 class Intersection{
-Construction construction { @Nullable }
-Port port { @Nullable }
+Construction construction {@Nullable}
+Port port {@Nullable}
 
 Construction getConstruction()
 Port getPort()
