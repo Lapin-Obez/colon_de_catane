@@ -5,7 +5,7 @@ import fr.univnantes.alma.modele.api.enums.FicheSpecial;
 import fr.univnantes.alma.modele.api.enums.Ressource;
 
 public interface Joueur {
-    void commerceMaritime(Ressource rDefausse, Ressource rRecup)
+    void commerceMaritime(Ressource rDefausse, Ressource rRecup);
     int getPointsVictoire();
     int getNbChevaliers();
     void jouerChevalier();
