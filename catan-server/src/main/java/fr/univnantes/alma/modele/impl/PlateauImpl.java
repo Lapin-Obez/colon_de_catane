@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class PlateauImpl implements Plateau {
 
-    private int idTuileVoleur;
+    private Tuile tuileVoleur;
     private Map<Integer, Map<Integer, Couleur>> routes;
     private Map<Integer, Intersection> intersections;
     private Map<Integer, Tuile> tuiles;
