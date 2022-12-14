@@ -9,6 +9,7 @@ public class IntersectionImpl implements Intersection {
     private Construction construction;
     private Port port;
 
+    @Override
     public void setConstruction(Construction construction) {
         this.construction = construction;
     }
