@@ -26,9 +26,8 @@ Appelle `Plateau.construireVille()`.
 Exceptions :
 
 - `GameStatusException` si le joueur ne peut pas jouer.
-- `IllegalParameterException` si l'intersection est invalide.
-- `ColonyDoesNotExistException` s'il n'y a pas de colonie sur l'intersection.
-- `WrongColorException` si la colonie n'appartient pas au joueur.
+- `IllegalArgumentException` si l'intersection est invalide.
+- `ImpossibleBuildException` s'il n'y a pas de colonie sur l'intersection ou si la colonie n'appartient pas au joueur.
 - `NotEnoughRessourcesException` si le joueur n'a pas les ressources nécessaires.
 
 
@@ -39,7 +38,7 @@ Exceptions :
 
 - `GameStatusException` si le joueur ne peut pas jouer.
 - `IllegalParameterException` si une des intersections est invalide.
-- `ImpossibleBuildException` si la route n'a pas pu être constuite.
+- `ImpossibleBuildException` si la route n'a pas pu être construite.
 - `NotEnoughRessourcesException` si le joueur n'a pas les ressources nécessaires.
 
 
@@ -82,7 +81,8 @@ Exceptions :
 
 
 |`List<Joueur> jouerVoleur(Joueur joueurAct, int idTuile)`
-a| Change le voleur de tuile et renvoie quels joueurs on peut voler.
+a| Change le voleur de tuile et renvoie quels joueurs on peut voler, c'est-à-dire ceux qui ont une construction à une
+intersection de la tuile où le voleur se déplace et qui ont des ressources.
 
 Exceptions :
 
@@ -124,8 +124,7 @@ a| Améliore une colonie au niveau de ville. Cette ville se trouve à l' `inters
 Exceptions :
 
 - `IllegalParameterException` si l'intersection est invalide.
-- `ColonyDoesNotExistException` s'il n'y a pas de colonie sur l'intersection.
-- `WrongColorException` si la colonie n'appartient pas au joueur.
+- `ImpossibleBuildException` s'il n'y a pas de colonie sur l'intersection ou si la colonie n'appartient pas au joueur.
 
 
 |`void construireRoute(Couleur couleur, int intersectionA, int intersectionB)`
