@@ -216,16 +216,16 @@ Pour chacune des ces constructions, récupérer sa couleur et sa `puissance`, et
 |`int getNbAllRessources()`
 | Renvoie le nombre de toutes les ressources du joueur.
 
-|`void removeRessources(Ressource ressource, int amount)`
+|`void supprimeRessources(Ressource ressource, int amount)`
 a| Supprime `amount` ressources de type `ressource` au joueur.
 
 Exception :
 
-- `NotEnoughRessourcesException` si le joueur n'a pas `amount` ressources de type `Ressource`.
+- `NotEnoughRessourcesException` si le joueur n'a pas `amount` ressources de type `ressource`.
 
 
 |`int getPointsVictoire()`
-a| Calcul le nombre du points du joueur en prenant en compte ses constructions, ses fiches spéciales
+a| Calcul le nombre de points du joueur en prenant en compte ses constructions, ses fiches spéciales
 (plus grande armée et route la plus longue), et ses cartes Victoire.
 
 
@@ -239,9 +239,12 @@ Exceptions :
 |`void deleteHalfRessources()`
 a| Supprime la moitié des ressources du joueur.
 
-Si le joueur a un nombre impair de ressources, on arrondit le nombre de ressources restantes à la borne inférieur. (e.g. pour 9 ressources de base, on se retrouve avec 4.)
+Si le joueur a un nombre impair de ressources, on arrondit le nombre de ressources restantes à la borne inférieur.
+(e.g. pour 9 ressources de base, on se retrouve avec 4.)
 
-Tant qu'on a pas supprimé la moitié des ressource, on supprime la moitié de chaque type de ressource, un par un. Si le nombre de ressources pour un type est impair, on arrondit le nombre de ressources restantes à la borne supérieure (e.g. pour 3 ressources de base, on se retrouve avec 2).
+Tant qu'on n'a pas supprimé la moitié des ressources, on supprime la moitié de chaque type de ressource,
+un par un. Si le nombre de ressources pour un type est impair, on arrondit le nombre de ressources restantes
+à la borne supérieure (e.g. pour 3 ressources de base, on se retrouve avec 2).
 
 |===
 
@@ -256,6 +259,6 @@ Tant qu'on a pas supprimé la moitié des ressource, on supprime la moitié de c
 | Renvoie la couleur de la construction
 
 |`int getPuissance()`
-| Renvoie la puissance de la constrution. 1 pour une colonie, 2 pour une ville.
+| Renvoie la puissance de la construction. 1 pour une colonie, 2 pour une ville.
 
 |===
