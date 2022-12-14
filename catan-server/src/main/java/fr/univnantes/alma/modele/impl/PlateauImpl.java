@@ -13,6 +13,11 @@ public class PlateauImpl implements Plateau {
     private Map<Integer, Map<Integer, Couleur>> routes;
     private Map<Integer, Intersection> intersections;
     private Map<Integer, Tuile> tuiles;
+
+    public PlateauImpl() {
+    }
+
+
     @Override
     public int getLongueurRoute(Couleur couleur) {
         return 0;

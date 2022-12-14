@@ -6,11 +6,26 @@ import fr.univnantes.alma.modele.api.enums.Ressource;
 
 public class TuileImpl implements Tuile {
 
-    Intersection[] listIntersections;
-    Ressource ressource;
-    int valeurJeton;
+    private Intersection[] listIntersections;
+    private final Ressource ressource;
+    private int valeurJeton;
+
+    public TuileImpl(Intersection[] listIntersections, Ressource ressource, int valeurJeton) {
+        this.listIntersections = listIntersections;
+        this.ressource = ressource;
+        this.valeurJeton = valeurJeton;
+    }
+
     @Override
     public Intersection[] getAllIntersections() {
-        return new Intersection[0];
+        return listIntersections;
+    }
+
+    public Ressource getRessource() {
+        return ressource;
+    }
+
+    public int getValeurJeton() {
+        return valeurJeton;
     }
 }

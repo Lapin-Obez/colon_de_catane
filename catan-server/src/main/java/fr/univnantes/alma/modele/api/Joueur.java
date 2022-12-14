@@ -1,7 +1,7 @@
 package fr.univnantes.alma.modele.api;
 
 import fr.univnantes.alma.modele.api.enums.Developpement;
-import fr.univnantes.alma.modele.api.enums.FicheSpecial;
+import fr.univnantes.alma.modele.api.enums.FicheSpeciale;
 import fr.univnantes.alma.modele.api.enums.Ressource;
 
 public interface Joueur {
@@ -9,8 +9,8 @@ public interface Joueur {
     int getPointsVictoire();
     int getNbChevaliers();
     void jouerChevalier();
-    void occtroyerFicheSpeciale(FicheSpecial fiche);
-    void retirerFicheSpeciale(FicheSpecial fiche);
+    void occtroyerFicheSpeciale(FicheSpeciale fiche);
+    void retirerFicheSpeciale(FicheSpeciale fiche);
     void addCarteDeveloppement(Developpement carte);
     Ressource getRessourceAleatoire();
     int deleteRessource(Ressource ressource);

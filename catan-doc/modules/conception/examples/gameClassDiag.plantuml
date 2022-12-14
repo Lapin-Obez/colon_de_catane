@@ -65,8 +65,8 @@ int echange(Ressource ressource)
 }
 
 class Tuile{
-Itersection[] listIntersections
-Resssource ressource {@Nullable}
+Intersection[] listIntersections
+Ressource ressource {@Nullable}
 int valeurJeton
 
 Intersection[] getAllIntersections()

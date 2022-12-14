@@ -3,7 +3,7 @@ package fr.univnantes.alma.modele.impl;
 import fr.univnantes.alma.modele.api.Joueur;
 import fr.univnantes.alma.modele.api.enums.Couleur;
 import fr.univnantes.alma.modele.api.enums.Developpement;
-import fr.univnantes.alma.modele.api.enums.FicheSpecial;
+import fr.univnantes.alma.modele.api.enums.FicheSpeciale;
 import fr.univnantes.alma.modele.api.enums.Ressource;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class JoueurImpl implements Joueur {
     private Map<Integer, Ressource> mainRessource;
     private Map<Integer, Developpement> mainDeveloppement;
     private int nbChevaliers;
-    private List<FicheSpecial> fichesSpeciales;
+    private List<FicheSpeciale> fichesSpeciales;
     @Override
     public void commerceMaritime(Ressource rDefausse, Ressource rRecup) {
 
@@ -37,12 +37,12 @@ public class JoueurImpl implements Joueur {
     }
 
     @Override
-    public void occtroyerFicheSpeciale(FicheSpecial fiche) {
+    public void occtroyerFicheSpeciale(FicheSpeciale fiche) {
 
     }
 
     @Override
-    public void retirerFicheSpeciale(FicheSpecial fiche) {
+    public void retirerFicheSpeciale(FicheSpeciale fiche) {
 
     }
 

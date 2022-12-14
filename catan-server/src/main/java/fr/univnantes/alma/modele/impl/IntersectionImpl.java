@@ -8,6 +8,15 @@ public class IntersectionImpl implements Intersection {
 
     private Construction construction;
     private Port port;
+
+    public void setConstruction(Construction construction) {
+        this.construction = construction;
+    }
+
+    public void setPort(Port port) {
+        this.port = port;
+    }
+
     @Override
     public Construction getConstruction() {
         return null;
