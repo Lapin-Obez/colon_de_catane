@@ -98,6 +98,22 @@ Exceptions :
 - `GameStatusException` si le voleur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
 - `NotEnoughRessourcesException` si le joueur volé n'a pas de ressources.
 
+
+|`void commerceMaritime(Joueur joueur, Ressource rDefausse, Ressource rRecup)`
+a| Permet à un joueur d'échanger une ressource `rRecup` en défaussant de 2 à 4 ressources `rDeffausse`.
+
+De base, on doit défausser 4 ressources identiques pour en obtenir 1 de son choix.
+Si le joueur possède un port de taux d'échange 3-1, on doit en défausser 3.
+Si le joueur possède un port de taux d'échange 2-1 pour une ressource spécifique, il peut défausser
+deux cartes de cette ressource.
+
+Appelle `joueur.commerceMaritime()`.
+
+Exceptions :
+
+- `GameStatusException` si le voleur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
+- `NotEnoughRessourcesException` si le joueur n'a pas assez de ressource `rDeffausse`.
+
 |===
 
 
@@ -185,8 +201,10 @@ Exception :
 |`List<Intersection> getIntersections()`
 | Renvoie la liste des intersections autour de la tuile.
 
+
 |`Ressource getRessource()`
 | Renvoie la ressource de la tuile.
+
 
 |`Map<Couleur,Map<Ressource,Integer>> distribuerRessources()`
 a| Renvoie un dictionnaire attribuant à une `couleur` un couple `(Ressource,Integer)` indiquant le nombre de ressources
@@ -197,8 +215,24 @@ Pour chacune de ces constructions, récupérer sa couleur et sa `puissance`, et 
 
 `result[couleur][ressource] += puissance`, `ressource` étant la ressource de la tuile.
 
+
 |`int getValeurJeton()`
 | Renvoie la valeur du jeton de la tuile.
+
+
+|`void commerceMaritime(Ressource rDefausse, Ressource rRecup)`
+a| Permet d'échanger une ressource `rRecup` en défaussant de 2 à 4 ressources `rDeffausse`.
+
+De base, on doit défausser 4 ressources identiques pour en obtenir 1 de son choix.
+Si le joueur possède un port de taux d'échange 3-1, on doit en défausser 3.
+Si le joueur possède un port de taux d'échange 2-1 pour une ressource spécifique, il peut défausser
+deux cartes de cette ressource.
+
+Regarde parmis les ports du joueur le taux d'échange correspondant à la ressource `rDefausse`.
+
+Exceptions :
+
+- `NotEnoughRessourcesException` si le joueur n'a pas assez de ressource `rDeffausse`.
 
 |===
 
