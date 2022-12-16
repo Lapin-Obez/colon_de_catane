@@ -95,4 +95,9 @@ public class PartieImpl implements Partie {
     public void volerRessource(Joueur voleur, Joueur victime) throws GameStatusException, NotEnoughRessourcesException {
 
     }
+
+    @Override
+    public void commerceMaritime(Joueur joueur, Ressource rDefausse, Ressource rRecup) {
+
+    }
 }

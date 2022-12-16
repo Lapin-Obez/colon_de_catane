@@ -1,6 +1,7 @@
 package fr.univnantes.alma.modele.impl;
 
 import fr.univnantes.alma.modele.api.Joueur;
+import fr.univnantes.alma.modele.api.Port;
 import fr.univnantes.alma.modele.api.enums.Couleur;
 import fr.univnantes.alma.modele.api.enums.Developpement;
 import fr.univnantes.alma.modele.api.enums.FicheSpeciale;
@@ -20,6 +21,11 @@ public class JoueurImpl implements Joueur {
 
     @Override
     public void commerceMaritime(Ressource rDefausse, Ressource rRecup) {
+
+    }
+
+    @Override
+    public void ajoutePort(Port port) {
 
     }
 

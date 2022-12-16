@@ -1,7 +1,9 @@
 package fr.univnantes.alma.modele.api;
 
 import fr.univnantes.alma.modele.api.enums.Ressource;
-import fr.univnantes.alma.modele.api.exceptions.*;
+import fr.univnantes.alma.modele.api.exceptions.GameStatusException;
+import fr.univnantes.alma.modele.api.exceptions.ImpossibleBuildException;
+import fr.univnantes.alma.modele.api.exceptions.NotEnoughRessourcesException;
 
 import java.util.List;
 
@@ -16,7 +18,9 @@ public interface Partie {
     /**
      * Construit une colonie de la couleur du `joueur` donné, à l'intersection d'id `idIntersection`.
      *
-     * Appelle `Plateau.construireColonie()`.
+     * Appelle `Plateau.construireColonie()`. Cette méthode retourne un potentiel port.
+     * Si ce port existe, appelle `joueur.ajoutePort(port)`.
+     *
      * @param joueur le Joueur.
      * @param idIntersection un int, l'id de l'intersection.
      * @throws GameStatusException si le joueur ne peut pas jouer.
@@ -120,4 +124,9 @@ public interface Partie {
      * @throws NotEnoughRessourcesException si le joueur volé n'a pas de ressources.
      */
     void volerRessource(Joueur voleur, Joueur victime) throws GameStatusException, NotEnoughRessourcesException;
+
+    /**
+     * DOC TODO
+     */
+    void commerceMaritime(Joueur joueur, Ressource rDefausse, Ressource rRecup);
 }

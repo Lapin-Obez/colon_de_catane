@@ -10,9 +10,9 @@ import java.util.Map;
 
 public class TuileImpl implements Tuile {
 
-    private List<Intersection> listIntersections;
+    private final List<Intersection> listIntersections;
     private final Ressource ressource;
-    private int valeurJeton;
+    private final int valeurJeton;
 
     public TuileImpl(List<Intersection> listIntersections, Ressource ressource, int valeurJeton) {
         this.listIntersections = listIntersections;

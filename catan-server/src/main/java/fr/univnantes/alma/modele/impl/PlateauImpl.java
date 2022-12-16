@@ -1,15 +1,13 @@
 package fr.univnantes.alma.modele.impl;
 
-import fr.univnantes.alma.modele.api.Intersection;
-import fr.univnantes.alma.modele.api.Joueur;
-import fr.univnantes.alma.modele.api.Plateau;
-import fr.univnantes.alma.modele.api.Tuile;
+import fr.univnantes.alma.modele.api.*;
 import fr.univnantes.alma.modele.api.enums.Couleur;
 import fr.univnantes.alma.modele.api.enums.Ressource;
 import fr.univnantes.alma.modele.api.exceptions.ImpossibleBuildException;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class PlateauImpl implements Plateau {
 
@@ -22,8 +20,8 @@ public class PlateauImpl implements Plateau {
     }
 
     @Override
-    public void construireColonie(Couleur couleur, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException {
-
+    public Optional<Port> construireColonie(Couleur couleur, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException {
+        return Optional.empty();
     }
 
     @Override

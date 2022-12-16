@@ -6,6 +6,7 @@ import fr.univnantes.alma.modele.api.exceptions.ImpossibleBuildException;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface Plateau {
     int getLongueurRoute(Couleur couleur);
@@ -15,11 +16,12 @@ public interface Plateau {
      * Construit une colonie de la `couleur` donnée à l'intersection donnée.
      * @param couleur la Couleur.
      * @param idIntersection un int, l'id de l'intersection.
+     * @return le potentiel Port de l'intersection.
      * @throws IllegalArgumentException si l'intersection est invalide.
      * @throws ImpossibleBuildException si l'intersection est déjà occupée ou
      *                                  si elle n'est pas à deux de distance minimum d'une autre colonie.
      */
-    void construireColonie(Couleur couleur, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException;
+    Optional<Port> construireColonie(Couleur couleur, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException;
 
     /**
      * Améliore une colonie au niveau de ville. Cette colonie se trouve à l'intersection d'id `idIntersection`.

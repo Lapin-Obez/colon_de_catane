@@ -1,5 +1,7 @@
 package fr.univnantes.alma.modele.api;
 
+import java.util.Optional;
+
 public interface Intersection {
 
     /**
@@ -14,5 +16,8 @@ public interface Intersection {
      */
     void setConstruction(Construction construction);
 
-    Port getPort();
+    /**
+     * Renvoie le potentiel port de l'intersection.
+     */
+    Optional<Port> getPort();
 }

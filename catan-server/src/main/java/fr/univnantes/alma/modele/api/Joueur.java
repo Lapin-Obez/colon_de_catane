@@ -1,10 +1,12 @@
 package fr.univnantes.alma.modele.api;
 
-import fr.univnantes.alma.modele.api.enums.*;
-import fr.univnantes.alma.modele.api.exceptions.*;
+import fr.univnantes.alma.modele.api.enums.Couleur;
+import fr.univnantes.alma.modele.api.enums.Developpement;
+import fr.univnantes.alma.modele.api.enums.FicheSpeciale;
+import fr.univnantes.alma.modele.api.enums.Ressource;
+import fr.univnantes.alma.modele.api.exceptions.NotEnoughRessourcesException;
 
 public interface Joueur {
-    void commerceMaritime(Ressource rDefausse, Ressource rRecup);
     int getNbChevaliers();
     void jouerChevalier();
     void occtroyerFicheSpeciale(FicheSpeciale fiche);
@@ -58,4 +60,14 @@ public interface Joueur {
      * à la borne supérieure (e.g. pour 3 ressources de base, on se retrouve avec 2).
      */
     void supprimeMoitieRessources();
+
+    /**
+     * DOC TODO
+     */
+    void commerceMaritime(Ressource rDefausse, Ressource rRecup);
+
+    /**
+     * DOC TODO
+     */
+    void ajoutePort(Port port);
 }

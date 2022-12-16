@@ -4,6 +4,8 @@ import fr.univnantes.alma.modele.api.Construction;
 import fr.univnantes.alma.modele.api.Intersection;
 import fr.univnantes.alma.modele.api.Port;
 
+import java.util.Optional;
+
 public class IntersectionImpl implements Intersection {
 
     private Construction construction;
@@ -24,7 +26,7 @@ public class IntersectionImpl implements Intersection {
     }
 
     @Override
-    public Port getPort() {
-        return null;
+    public Optional<Port> getPort() {
+        return Optional.ofNullable(this.port);
     }
 }
