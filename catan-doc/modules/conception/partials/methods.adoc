@@ -120,7 +120,7 @@ Exceptions :
 |`void monopoly(Player player, Resource resource)`
 a| Permet à un joueur de jouer la carte Monopole.
 
-Appelle `player.removeDevelopmentCard(MONOPOLY)` pour le joueur actuel.
+Appelle `player.playDevelopmentCard(MONOPOLY)` pour le joueur actuel.
 Appelle `player.deleteRessource()` pour tous les joueurs sauf le joueur actuel et donne au joueur actuel la somme des ressources retirées.
 
 Exceptions :
@@ -132,8 +132,10 @@ Exceptions :
 |`void yearOfPlenty(Player player, Resource resource1, Resource resource2)`
 a| Permet à un joueur de jouer la carte Invention (Year of Plenty).
 
-Appelle `player.removeDevelopmentCard(YEAR_OF_PLENTY)`.
+Appelle `player.playDevelopmentCard(YEAR_OF_PLENTY)`.
 Appelle `player.addResource(resource)` pour les deux ressources demandées par le joueur.
+
+Exceptions :
 
 - `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel.
 - `NotEnoughDevelopmentCardException` si le joueur n'a pas de carte Invention.
@@ -142,10 +144,23 @@ Appelle `player.addResource(resource)` pour les deux ressources demandées par l
 |`void roadBuildingCard(Player player)`
 a| Permet à un joueur de jouer la carte "Construction de routes".
 
-Appelle `player.removeDevelopmentCard(ROAD_BUILDING)`.
+Appelle `player.playDevelopmentCard(ROAD_BUILDING)`.
+
+Exceptions :
 
 - `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel.
 - `NotEnoughDevelopmentCardException` si le joueur n'a pas de carte "Construction de routes".
+
+
+|`void knightCard(Player player)`
+a| Permet à un joueur de jouer la carte Chevalier.
+
+Appelle `player.playDevelopmentCard(KNIGHT)`.
+
+Exceptions :
+
+- `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel.
+- `NotEnoughDevelopmentCardException` si le joueur n'a pas de carte Chevalier.
 
 |===
 
@@ -195,6 +210,8 @@ Récupère les tuiles de numéro `valeurJeton` et appelle `tuile.distribuerResso
 Additionne les deux résultats obtenue et renvoie le résultat.
 
 Si une des tuiles est la tuile où se situe le voleur, `tuile.distribuerRessources()` n'est pas appelé pour cette tuile.
+
+Exception :
 
 - `IllegalArgumentExeption` si la `valeurJeton` ne correspond à aucune tuile.
 
@@ -341,10 +358,13 @@ Si le port est de taux 4:1, ne fait rien car c'est le taux d'échange de base.
 Appelle `port1.aMeilleurTaux(port2)` pour savoir si un port a un taux plus avantageux qu'un autre.
 
 
-|`void removeDevelopmentCard(Development type)`
-a| Supprime de la main d'un joueur une carte Development de type `type`.
+|`void playDevelopmentCard(Development type)`
+a| "Joue" et supprime de la main d'un joueur une carte Development de type `type`.
+
+Si le `type` de la carte est Chevalier, ajoute 1 au nombre de chevaliers du joueur.
 
 Exceptions :
+
 - `NotEnoughDevelopmentCardException` si le joueur n'a pas de carte Development de type `type`.
 
 |===

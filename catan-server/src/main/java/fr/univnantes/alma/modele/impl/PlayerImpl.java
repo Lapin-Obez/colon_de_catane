@@ -76,7 +76,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void removeDevelopmentCard(Development type) throws NotEnoughDevelopmentCardException {
+    public void playDevelopmentCard(Development type) throws NotEnoughDevelopmentCardException {
 
     }
 

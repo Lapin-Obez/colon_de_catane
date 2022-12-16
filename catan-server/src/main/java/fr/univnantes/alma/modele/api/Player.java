@@ -6,8 +6,6 @@ import fr.univnantes.alma.modele.api.exceptions.*;
 public interface Player {
     int getNumberOfKnight();
 
-    void playKnight();
-
     void grantSpecialCard(SpecialCard fiche);
 
     void removeSpecialCard(SpecialCard fiche);
@@ -85,6 +83,6 @@ public interface Player {
     /**
      * DOC TODO
      */
-    void removeDevelopmentCard(Development type) throws NotEnoughDevelopmentCardException;
+    void playDevelopmentCard(Development type) throws NotEnoughDevelopmentCardException;
 
 }
