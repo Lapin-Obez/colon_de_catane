@@ -6,6 +6,7 @@ import fr.univnantes.alma.modele.api.enums.Color;
 import fr.univnantes.alma.modele.api.enums.Development;
 import fr.univnantes.alma.modele.api.enums.Resource;
 import fr.univnantes.alma.modele.api.enums.SpecialCard;
+import fr.univnantes.alma.modele.api.exceptions.NotEnoughDevelopmentCardException;
 import fr.univnantes.alma.modele.api.exceptions.NotEnoughResourcesException;
 
 import java.util.List;
@@ -40,11 +41,6 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void playKnight() {
-
-    }
-
-    @Override
     public void grantSpecialCard(SpecialCard card) {
 
     }
@@ -75,6 +71,11 @@ public class PlayerImpl implements Player {
     }
 
     @Override
+    public void playDevelopmentCard(Development type) throws NotEnoughDevelopmentCardException {
+
+    }
+
+    @Override
     public Color getColor() {
         return null;
     }
@@ -86,6 +87,11 @@ public class PlayerImpl implements Player {
 
     @Override
     public void deleteResources(Resource resource, int amount) throws NotEnoughResourcesException {
+
+    }
+
+    @Override
+    public void addResource(Resource resource) {
 
     }
 }

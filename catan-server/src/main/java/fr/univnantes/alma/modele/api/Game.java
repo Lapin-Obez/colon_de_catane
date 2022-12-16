@@ -1,17 +1,13 @@
 package fr.univnantes.alma.modele.api;
 
 import fr.univnantes.alma.modele.api.enums.Resource;
-import fr.univnantes.alma.modele.api.exceptions.GameStatusException;
-import fr.univnantes.alma.modele.api.exceptions.ImpossibleBuildException;
-import fr.univnantes.alma.modele.api.exceptions.NotEnoughResourcesException;
+import fr.univnantes.alma.modele.api.exceptions.*;
 
 import java.util.List;
 
 public interface Game {
     void calculateStrongestArmy();
     void calculateLongestRoad();
-    List<Player> playStealer(Tile tile);
-    void monopoly(Player player, Resource resource);
     void invention(Player player);
 
 
@@ -128,5 +124,30 @@ public interface Game {
     /**
      * DOC TODO
      */
-    void maritimeTrade(Player player, Resource rDefausse, Resource rRecup);
+    void maritimeTrade(Player player, Resource rDefausse, Resource rRecup) throws GameStatusException, NotEnoughResourcesException;
+
+    /**
+     * DOC TODO
+     */
+    void drawDevelopmentCard(Player player) throws GameStatusException, NotEnoughResourcesException;
+
+    /**
+     * DOC TODO
+     */
+    void monopoly(Player player, Resource resource) throws GameStatusException, NotEnoughDevelopmentCardException;
+
+    /**
+     * DOC TODO
+     */
+    void yearOfPlenty(Player player, Resource resource1, Resource resource2) throws GameStatusException, NotEnoughDevelopmentCardException;
+
+    /**
+     * DOC TODO
+     */
+    void roadBuildingCard(Player player) throws GameStatusException, NotEnoughDevelopmentCardException;
+
+    /**
+     * DOC TODO
+     */
+    void knightCard(Player player) throws GameStatusException, NotEnoughDevelopmentCardException;
 }
