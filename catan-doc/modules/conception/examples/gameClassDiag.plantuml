@@ -1,139 +1,174 @@
 @startuml
 
-enum Ressource {
-Bois
-Argile
-Laine
-Blé
-Minerai
+enum Resource {
+    Bois
+    Argile
+    Laine
+    Blé
+    Minerai
 }
 
-enum Couleur {
-Bleu
-Blanc
-Orange
-Rouge
+enum Color {
+    Bleu
+    Blanc
+    Orange
+    Rouge
 }
 
-enum Taux_Échange {
-4:1
-3:1
-2:1
+enum ExchangeRate {
+    4:1
+    3:1
+    2:1
 }
 
-enum Developpement {
-PointsDeVictoire
-Chevalier
-Monopole
-Invention
-ConstructionDeRoutes
+enum Development {
+    PointsDeVictoire
+    Chevalier
+    Monopole
+    Invention
+    ConstructionDeRoutes
 }
 
-enum FicheSpeciale {
-RoutePlusLongue
-ArmeePlusPuissante
+enum SpecialCard {
+    RoutePlusLongue
+    ArmeePlusPuissante
 }
 
-class Partie {
-Map<int, Developpement> piocheDeveloppement
-Map<int, Ressource> piocheRessource
+class Game {
+    - Map<Integer, Development> deckDevelopment
+    - Map<Integer, Resource> deckResource
+    - List<Player> listOfPlayers
+    - Player winner
+    - Board board
 
-void calculerArmeePlusPuissante()
-void calculerRoutePlusLongue()
-List<Joueur> jouerVoleur(Tuile tuile)
-Ressource volerRessource(Joueur voleur, Joueur victime)
-void monopole(Joueur joueur, Ressource ressource)
-void invention(Joueur joueur)
+    + void calculateStrongestArmy()
+    + void calculateLongestRoad()
+    + List<Player> playStealer(Tile tile)
+    + void monopoly(Player player, Resource resource)
+    + void invention(Player player)
+    + void buildColony(Player player, int intersectionID) throws GameStatusException, IllegalArgumentException, ImpossibleBuildException, NotEnoughResourcesException
+    + void buildCity(Player player, int intersectionID) throws GameStatusException, IllegalArgumentException, ImpossibleBuildException, NotEnoughResourcesException
+    + void buildRoad(Player player, int intersectionA, int intersectionB) throws GameStatusException, IllegalArgumentException, ImpossibleBuildException, NotEnoughResourcesException
+    - void evaluateEndGame()
+    + Player endGameTurn(Player playerAct) throws GameStatusException
+    + boolean isGameOver()
+    + Player getWinner() throws GameStatusException
+    + int throwDice(Player playerAct) throws GameStatusException
+    + List<Player> playStealer(Player playerAct, int tileID) throws GameStatusException, IllegalArgumentException
+    + void stealResources(Player stealer, Player victim) throws GameStatusException, NotEnoughResourcesException
+    + void maritimeTrade(Player player, Resource rDefausse, Resource rRecup)
 }
 
-class Plateau {
-int idTuileVoleur
-Map<int, Map<int, Couleur>> routes
-Map<int, Intersection> intersections
-Map<int, Tuile> tuiles
+class Board {
+    - final Integer NBINTERSECTIONS
+    - int idSealerTile
+    - Map<Integer, Map<Integer, Color>> roads
+    - Map<Integer, Intersection> intersections
+    - Map<Integer, Tile> tiles
 
-int getLongueurRoute(Couleur couleur)
-void deplacerVoleur(int idTuile)
-void distribuerRessources(int valeurJeton)
+    + BoardImpl()
+    - TilesConstructor()
+    - Tile TileGenerator(Integer id, Integer intersection, Resource resource, int tokenValue)
+    + int getRoadLength(Color color)
+    + void moveStealer(int tileID)
+    + List<Player> playStealer(int tileID) throws IllegalArgumentException
+    +Optional<Harbour> buildColony(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException
+    + void buildCity(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException
+    + void buildRoad(Color color, int intersectionA, int intersectionB) throws IllegalArgumentException, ImpossibleBuildException
+    Map<Color, Map<Resource,Integer>> distributeResources(int tokenValue) throws IllegalArgumentException
+    + void distributeResources(int tokenValue)
 }
 
-class Port{
-Taux_Échange taux
-Ressource ressource {@Nullable}
+class Harbor{
+    - ExchangeRate rate
+    - Resource resource {@Nullable}
 
-int echange(Ressource ressource)
+    + Optional<Resource> getResource()
 }
 
-class Tuile{
-Intersection[] listIntersections
-Ressource ressource {@Nullable}
-int valeurJeton
+class Tile{
+    - final List<Intersection> listIntersections
+    - final Resource resource {@Nullable}
+    - final int tokenValue
 
-Intersection[] getAllIntersections()
+    + TileImpl(List<Intersection> listIntersections, Resource resource, int tokenValue)
+    + Resource getResource()
+    + Map<Color, Map<Resource, Integer>> distributeResources()
+    + int getTokenValue()
 }
 
 class Intersection{
-Construction construction {@Nullable}
-Port port {@Nullable}
+    - Construction construction {@Nullable}
+    - Harbour harbour {@Nullable}
 
-Construction getConstruction()
-Port getPort()
+    + void setConstruction(Construction construction)
+    + void setPort(Harbour harbour)
+    + Construction getConstruction()
+    + Optional<Harbour> getHarbour()
 }
 
-class Joueur{
-Couleur couleur
-Map<int, Ressource> mainRessource
-Map<int, Developpement> mainDeveloppement
-int nbChevaliers
-List<FicheSpecial> fichesSpeciales
+class Player{
+    - Color color
+    - Map<int, Resource> mainResource
+    - Map<int, Development> mainDevelopment
+    - int numberOfKnight
+    - List<SpecialCard> specialCards
 
-void commerceMaritime(Ressource rDefausse, Ressource rRecup)
-int getPointsVictoire()
-int getNbChevaliers()
-void jouerChevalier()
-void occtroyerFicheSpeciale(FicheSpeciale fiche)
-void retirerFicheSpeciale(FicheSpeciale fiche)
-void addCarteDeveloppement(Developpement carte)
-Ressource getRessourceAleatoire()
-int deleteRessource(Ressource ressource)
+    + void maritimeTrade(Resource rDefausse, Resource rRecup)
+    + void addHarbour(Harbour harbour)
+    + int getVictoryPoints()
+    + int getNumberOfKnight()
+    + void playKnight()
+    + void grantSpecialCard(SpecialCard card)
+    + void removeSpecialCard(SpecialCard card)
+    + void addDevelopmentCard(Development card)
+    + Resource getRandomResources() throws NotEnoughResourcesException
+    + void deleteHalfResources()
+    + int deleteResource(Resource resource)
+    + Color getColor()
+    + int getNumberOfResources(Resource resource)
+    + void deleteResources(Resource resource, int amount) throws NotEnoughResourcesException
 }
 
 interface Construction {
-Couleur getCouleur()
-int getPuissance()
+    + Color getColor()
+    + int getPower()
 }
 
-class Ville {
-int puissance
+class City {
+    - Color color
+    - int power
 
-Couleur getCouleur()
-int getPuissance()
+    + City(Color color)
+    + Color getColor()
+    + int getPower()
 }
 
-class Colonie {
-int puissance
+class Colony {
+    - Color color
+    - int power
 
-Couleur getCouleur()
-int getPuissance()
+    + Colony(Color color)
+    + Color getColor()
+    + int getPower()
 }
 
 
 
-Construction <-d- Ville
-Construction <-d- Colonie
+Construction <-d- City
+Construction <-d- Colony
 
 
-Partie *--> "1" Plateau
-Plateau *--> "19" Tuile
-Plateau *--> "54" Intersection
+Game *--> "1" Board
+Board *--> "19" Tile
+Board *--> "54" Intersection
 
-Tuile "2:3" *-->"6" Intersection
+Tile "2:3" *-->"6" Intersection
 Intersection *--> "0:1" Construction
-Intersection --> "2:3" Intersection : Map<int, Map<int, Couleur>> routes
 
-Intersection *--> "0.1" Port
+Intersection *--> "0.1" Harbor
 
-Partie --> "3:4" Joueur
-Joueur "1" -- "0:n" Construction
+Game --> "3:4" Player
+Player "1" -- "0:n" Construction
 
 @enduml
