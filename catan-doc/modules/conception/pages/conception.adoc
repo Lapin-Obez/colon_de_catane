@@ -72,7 +72,7 @@ include::partial$methods.adoc[leveloffset=3]
 .Diagramme d'état de l'interface Game
 [plantuml]
 ---
-include::../examples/stateDiagram.puml[]
+include::../examples/stateDiagram.plantuml[]
 ---
 
 === Interface utilisateur
