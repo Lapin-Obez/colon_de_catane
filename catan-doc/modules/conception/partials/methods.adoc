@@ -120,12 +120,23 @@ Exceptions :
 |`void monopoly(Player player, Resource resource)`
 a| Permet à un joueur de jouer la carte Monopole.
 
+Appelle `player.removeDevelopmentCard(MONOPOLY)` pour le joueur actuel.
 Appelle `player.deleteRessource()` pour tous les joueurs sauf le joueur actuel et donne au joueur actuel la somme des ressources retirées.
 
 Exceptions :
 
 - `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel
 - `NotEnoughDevelopmentCardException` si le joueur n'a pas de carte Monopole.
+
+
+|`void yearOfPlenty(Player player, Resource resource1, Resource resource2)`
+a| Permet à un joueur de jouer la carte Invention (Year of Plenty).
+
+Appelle `player.removeDevelopmentCard(YEAR_OF_PLENTY)`.
+Appelle `player.addResource(resource)` pour les deux ressources demandées par le joueur.
+
+- `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel.
+- `NotEnoughDevelopmentCardException` si le joueur n'a pas de carte Invention.
 
 |===
 
@@ -254,6 +265,10 @@ Pour chacune de ces constructions, récupérer sa couleur et sa `puissance`, et 
 
 |`int getNbAllRessources()`
 | Renvoie le nombre de toutes les ressources du joueur.
+
+|`void addResource(Resource resource)`
+| Ajoute la `resource` à la main du joueur.
+
 
 |`void supprimeRessources(Ressource ressource, int amount)`
 a| Supprime `amount` ressources de type `ressource` au joueur.

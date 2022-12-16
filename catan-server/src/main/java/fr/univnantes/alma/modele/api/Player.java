@@ -37,6 +37,11 @@ public interface Player {
     void deleteResources(Resource resource, int amount) throws NotEnoughResourcesException;
 
     /**
+     * DOC TODO
+     */
+    void addResource(Resource resource);
+
+    /**
      * Calcul le nombre de points du joueur en prenant en compte ses constructions, ses fiches spéciales
      * (plus grande armée et route la plus longue), et ses cartes Victoire.
      * @return un int, le nombre de points de victoire du joueur.

@@ -130,4 +130,9 @@ public interface Game {
      * DOC TODO
      */
     void monopoly(Player player, Resource resource) throws GameStatusException, NotEnoughDevelopmentCardException;
+
+    /**
+     * DOC TODO
+     */
+    void yearOfPlenty(Player player, Resource resource1, Resource resource2) throws GameStatusException, NotEnoughDevelopmentCardException;
 }
