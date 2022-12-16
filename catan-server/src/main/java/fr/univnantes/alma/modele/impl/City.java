@@ -1,8 +1,8 @@
 package fr.univnantes.alma.modele.impl;
 
-public class Ville extends ConstructionImpl {
+public class City extends ConstructionImpl {
     @Override
-    public int getPuissance() {
+    public int getPower() {
         return 2;
     }
 }

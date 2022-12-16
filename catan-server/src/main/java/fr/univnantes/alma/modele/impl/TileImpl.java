@@ -1,22 +1,22 @@
 package fr.univnantes.alma.modele.impl;
 
 import fr.univnantes.alma.modele.api.Intersection;
-import fr.univnantes.alma.modele.api.Tuile;
-import fr.univnantes.alma.modele.api.enums.Couleur;
-import fr.univnantes.alma.modele.api.enums.Ressource;
+import fr.univnantes.alma.modele.api.Tile;
+import fr.univnantes.alma.modele.api.enums.Color;
+import fr.univnantes.alma.modele.api.enums.Resource;
 
 import java.util.List;
 import java.util.Map;
 
-public class TuileImpl implements Tuile {
+public class TileImpl implements Tile {
 
     private final List<Intersection> listIntersections;
-    private final Ressource ressource;
+    private final Resource resource;
     private final int valeurJeton;
 
-    public TuileImpl(List<Intersection> listIntersections, Ressource ressource, int valeurJeton) {
+    public TileImpl(List<Intersection> listIntersections, Resource resource, int valeurJeton) {
         this.listIntersections = listIntersections;
-        this.ressource = ressource;
+        this.resource = resource;
         this.valeurJeton = valeurJeton;
     }
 
@@ -26,17 +26,17 @@ public class TuileImpl implements Tuile {
     }
 
     @Override
-    public Ressource getRessource() {
-        return ressource;
+    public Resource getResource() {
+        return resource;
     }
 
     @Override
-    public Map<Couleur, Map<Ressource, Integer>> distribuerRessources() {
+    public Map<Color, Map<Resource, Integer>> distributeResources() {
         return null;
     }
 
     @Override
-    public int getValeurJeton() {
+    public int getTokenValue() {
         return valeurJeton;
     }
 }

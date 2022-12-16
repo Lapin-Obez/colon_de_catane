@@ -1,6 +1,6 @@
 package fr.univnantes.alma.modele.api.enums;
 
-public enum Ressource {
+public enum Resource {
     Bois,
     Argile,
     Laine,

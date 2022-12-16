@@ -1,8 +1,8 @@
 package fr.univnantes.alma.modele.impl;
 
-public class Colonie extends ConstructionImpl {
+public class Colony extends ConstructionImpl {
     @Override
-    public int getPuissance() {
+    public int getPower() {
         return 1;
     }
 }

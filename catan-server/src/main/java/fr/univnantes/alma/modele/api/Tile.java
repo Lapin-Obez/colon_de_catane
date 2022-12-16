@@ -1,12 +1,12 @@
 package fr.univnantes.alma.modele.api;
 
-import fr.univnantes.alma.modele.api.enums.Ressource;
-import fr.univnantes.alma.modele.api.enums.Couleur;
+import fr.univnantes.alma.modele.api.enums.Color;
+import fr.univnantes.alma.modele.api.enums.Resource;
 
 import java.util.List;
 import java.util.Map;
 
-public interface Tuile {
+public interface Tile {
 
     /**
      * Renvoie la liste des intersections autour de la tuile.
@@ -16,7 +16,7 @@ public interface Tuile {
     /**
      * Renvoie la ressource de la tuile.
      */
-    Ressource getRessource();
+    Resource getResource();
 
     /**
      * Renvoie un dictionnaire attribuant à une `couleur` un couple `(Ressource,Integer)` indiquant le nombre de ressources
@@ -26,10 +26,10 @@ public interface Tuile {
      * Pour chacune de ces constructions, récupérer sa couleur et sa `puissance`, et modifier le dictionnaire ainsi :
      * `result[couleur][ressource] += puissance`, `ressource` étant la ressource de la tuile.
      */
-    Map<Couleur, Map<Ressource,Integer>> distribuerRessources();
+    Map<Color, Map<Resource,Integer>> distributeResources();
 
     /**
      * Renvoie la valeur du jeton de la tuile.
      */
-    int getValeurJeton();
+    int getTokenValue();
 }

@@ -1,18 +1,18 @@
 package fr.univnantes.alma.modele.api;
 
-import fr.univnantes.alma.modele.api.enums.Couleur;
+import fr.univnantes.alma.modele.api.enums.Color;
 
 public interface Construction {
 
     /**
      * Retourne la couleur de la construction.
-     * @return la Couleur.
+     * @return la Color.
      */
-    Couleur getCouleur();
+    Color getColor();
 
     /**
      * Retourne la puissance de la construction. 1 pour une colonie, 2 pour une ville.
      * @return un int, la puissance.
      */
-    int getPuissance();
+    int getPower();
 }

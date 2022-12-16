@@ -1,59 +1,59 @@
 package fr.univnantes.alma.modele.api;
 
-import fr.univnantes.alma.modele.api.enums.Couleur;
-import fr.univnantes.alma.modele.api.enums.Ressource;
+import fr.univnantes.alma.modele.api.enums.Color;
+import fr.univnantes.alma.modele.api.enums.Resource;
 import fr.univnantes.alma.modele.api.exceptions.ImpossibleBuildException;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public interface Plateau {
-    int getLongueurRoute(Couleur couleur);
-    void deplacerVoleur(int idTuile);
+public interface Board {
+    int getLongueurRoute(Color color);
+    void moveStealer(int tileID);
 
     /**
-     * Construit une colonie de la `couleur` donnée à l'intersection donnée.
-     * @param couleur la Couleur.
+     * Construit une colonie de la `color` donnée à l'intersection donnée.
+     * @param color la Color.
      * @param idIntersection un int, l'id de l'intersection.
      * @return le potentiel Port de l'intersection.
      * @throws IllegalArgumentException si l'intersection est invalide.
      * @throws ImpossibleBuildException si l'intersection est déjà occupée ou
      *                                  si elle n'est pas à deux de distance minimum d'une autre colonie.
      */
-    Optional<Port> construireColonie(Couleur couleur, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException;
+    Optional<Harbour> buildColony(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException;
 
     /**
      * Améliore une colonie au niveau de ville. Cette colonie se trouve à l'intersection d'id `idIntersection`.
-     * @param couleur la Couleur.
+     * @param color la Color.
      * @param idIntersection un int, l'id de l'intersection.
      * @throws IllegalArgumentException si l'intersection est invalide.
      * @throws ImpossibleBuildException s'il n'y a pas de colonie sur l'intersection ou
      *                                  si la colonie n'appartient pas au joueur.
      */
-    void construireVille(Couleur couleur, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException;
+    void buildCity(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException;
 
     /**
-     * Construit une route de la couleur donnée entre deux intersections données.
-     * @param couleur la Couleur.
+     * Construit une route de la color donnée entre deux intersections données.
+     * @param color la Color.
      * @param intersectionA un int, l'id de la première intersection.
      * @param intersectionB un int, l'id de la deuxième intersection.
      */
-    void construireRoute(Couleur couleur, int intersectionA, int intersectionB) throws IllegalArgumentException, ImpossibleBuildException;
+    void buildRoad(Color color, int intersectionA, int intersectionB) throws IllegalArgumentException, ImpossibleBuildException;
 
     /**
      * Renvoie un dictionnaire attribuant à une `couleur` un couple `(Ressource,Integer)` indiquant le nombre de ressources
      * à distribuer au joueur de cette `couleur`.
-     * @param valeurJeton unt int, la valeur du jeton.
-     * @throws IllegalArgumentException si la `valeurJeton` ne correspond à aucune tuile.
+     * @param tokenValue unt int, la valeur du jeton.
+     * @throws IllegalArgumentException si la `tokenValue` ne correspond à aucune tuile.
      */
-    Map<Couleur, Map<Ressource,Integer>> distribuerRessources(int valeurJeton) throws IllegalArgumentException;
+    Map<Color, Map<Resource,Integer>> distributeResources(int tokenValue) throws IllegalArgumentException;
 
     /**
      * Change le voleur de tuile et renvoie quelles couleurs sont sur cette tuile.
-     * @param idTuile un int, l'id de la tuile.
-     * @return la liste des Couleur présentes sur la tuile volée.
+     * @param tileID un int, l'id de la tuile.
+     * @return la liste des Color présentes sur la tuile volée.
      * @throws IllegalArgumentException si la tuile n'est pas valide.
      */
-    List<Joueur> jouerVoleur(int idTuile) throws IllegalArgumentException;
+    List<Player> playStealer(int tileID) throws IllegalArgumentException;
 }

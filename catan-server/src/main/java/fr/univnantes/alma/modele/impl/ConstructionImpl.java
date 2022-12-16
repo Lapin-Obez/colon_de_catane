@@ -1,14 +1,14 @@
 package fr.univnantes.alma.modele.impl;
 
 import fr.univnantes.alma.modele.api.Construction;
-import fr.univnantes.alma.modele.api.enums.Couleur;
+import fr.univnantes.alma.modele.api.enums.Color;
 
 abstract class ConstructionImpl implements Construction {
 
-    private Couleur couleur;
+    private Color color;
 
     @Override
-    public Couleur getCouleur() {
-        return couleur;
+    public Color getColor() {
+        return color;
     }
 }

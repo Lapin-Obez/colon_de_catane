@@ -1,53 +1,53 @@
 package fr.univnantes.alma.modele.api;
 
-import fr.univnantes.alma.modele.api.enums.Couleur;
+import fr.univnantes.alma.modele.api.enums.Color;
 import fr.univnantes.alma.modele.api.enums.Developpement;
-import fr.univnantes.alma.modele.api.enums.FicheSpeciale;
-import fr.univnantes.alma.modele.api.enums.Ressource;
-import fr.univnantes.alma.modele.api.exceptions.NotEnoughRessourcesException;
+import fr.univnantes.alma.modele.api.enums.Resource;
+import fr.univnantes.alma.modele.api.enums.SpecialCard;
+import fr.univnantes.alma.modele.api.exceptions.NotEnoughResourcesException;
 
-public interface Joueur {
-    int getNbChevaliers();
-    void jouerChevalier();
-    void occtroyerFicheSpeciale(FicheSpeciale fiche);
-    void retirerFicheSpeciale(FicheSpeciale fiche);
-    void addCarteDeveloppement(Developpement carte);
-    int deleteRessource(Ressource ressource);
+public interface Player {
+    int getNumberOfKnight();
+    void playKnight();
+    void grantSpecialCard(SpecialCard fiche);
+    void removeSpecialCard(SpecialCard fiche);
+    void addDevelopmentCard(Developpement carte);
+    int deleteResource(Resource resource);
 
     /**
      * Retourne la couleur du joueur.
-     * @return la Couleur
+     * @return la Color
      */
-    Couleur getCouleur();
+    Color getColor();
 
     /**
      * Retourne le nombre de ressources de type `ressource` du joueur.
-     * @param ressource la Ressource.
+     * @param resource la Ressource.
      * @return un int, le nombre de ressources de la ressource donnée.
      */
-    int getNbRessources(Ressource ressource);
+    int getNumberOfResources(Resource resource);
 
     /**
      * Supprime `amount` ressources de type `ressource` au joueur.
-     * @param ressource la Ressource.
+     * @param resource la Ressource.
      * @param amount le nombre de ressources à supprimer.
-     * @throws NotEnoughRessourcesException si le joueur n'a pas `amount` ressources de type `ressource`.
+     * @throws NotEnoughResourcesException si le joueur n'a pas `amount` ressources de type `ressource`.
      */
-    void supprimeRessources(Ressource ressource, int amount) throws NotEnoughRessourcesException;
+    void deleteResources(Resource resource, int amount) throws NotEnoughResourcesException;
 
     /**
      * Calcul le nombre de points du joueur en prenant en compte ses constructions, ses fiches spéciales
      * (plus grande armée et route la plus longue), et ses cartes Victoire.
      * @return un int, le nombre de points de victoire du joueur.
      */
-    int getPointsVictoire();
+    int getVictoryPoints();
 
     /**
      * Retourne une ressource aléatoire que le joueur possède.
      * @return la Ressource.
-     * @throws NotEnoughRessourcesException si le joueur n'a pas de ressources.
+     * @throws NotEnoughResourcesException si le joueur n'a pas de ressources.
      */
-    Ressource getRessourceAleatoire() throws NotEnoughRessourcesException;
+    Resource getRandomResources() throws NotEnoughResourcesException;
 
     /**
      * Supprime la moitié des ressources du joueur.
@@ -59,15 +59,15 @@ public interface Joueur {
      * un par un. Si le nombre de ressources pour un type est impair, on arrondit le nombre de ressources restantes
      * à la borne supérieure (e.g. pour 3 ressources de base, on se retrouve avec 2).
      */
-    void supprimeMoitieRessources();
+    void deleteHalfResources();
 
     /**
      * DOC TODO
      */
-    void commerceMaritime(Ressource rDefausse, Ressource rRecup);
+    void maritimeTrade(Resource rDefausse, Resource rRecup);
 
     /**
      * DOC TODO
      */
-    void ajoutePort(Port port);
+    void addHarbour(Harbour harbour);
 }

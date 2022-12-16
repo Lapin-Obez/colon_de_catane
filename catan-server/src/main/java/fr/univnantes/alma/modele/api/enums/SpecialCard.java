@@ -1,6 +1,6 @@
 package fr.univnantes.alma.modele.api.enums;
 
-public enum FicheSpeciale {
+public enum SpecialCard {
     RoutePlusLongue,
     ArmeePlusPuissante;
 }

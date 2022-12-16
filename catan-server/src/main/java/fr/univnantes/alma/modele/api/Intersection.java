@@ -19,5 +19,5 @@ public interface Intersection {
     /**
      * Renvoie le potentiel port de l'intersection.
      */
-    Optional<Port> getPort();
+    Optional<Harbour> getHarbour();
 }
