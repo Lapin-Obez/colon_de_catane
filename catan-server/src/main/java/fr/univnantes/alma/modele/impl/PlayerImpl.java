@@ -41,11 +41,6 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void playKnight() {
-
-    }
-
-    @Override
     public void grantSpecialCard(SpecialCard card) {
 
     }
@@ -92,6 +87,11 @@ public class PlayerImpl implements Player {
 
     @Override
     public void deleteResources(Resource resource, int amount) throws NotEnoughResourcesException {
+
+    }
+
+    @Override
+    public void addResource(Resource resource) {
 
     }
 }

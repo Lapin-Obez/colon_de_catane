@@ -162,6 +162,13 @@ Exceptions :
 - `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel.
 - `NotEnoughDevelopmentCardException` si le joueur n'a pas de carte Chevalier.
 
+
+|`void drawDevelopmentCard(Player player)`
+a| Permet à un joueur de piocher une carte Développement.
+
+- `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
+- `NotEnoughResourcesException` si le joueur n'a pas les ressources nécessaires.
+
 |===
 
 

@@ -129,6 +129,11 @@ public interface Game {
     /**
      * DOC TODO
      */
+    void drawDevelopmentCard(Player player) throws GameStatusException, NotEnoughResourcesException;
+
+    /**
+     * DOC TODO
+     */
     void monopoly(Player player, Resource resource) throws GameStatusException, NotEnoughDevelopmentCardException;
 
     /**
@@ -139,5 +144,10 @@ public interface Game {
     /**
      * DOC TODO
      */
-    void roadBuildingCard(Player player);
+    void roadBuildingCard(Player player) throws GameStatusException, NotEnoughDevelopmentCardException;
+
+    /**
+     * DOC TODO
+     */
+    void knightCard(Player player) throws GameStatusException, NotEnoughDevelopmentCardException;
 }
