@@ -1,8 +1,23 @@
 package fr.univnantes.alma.modele.impl;
 
-public class Colony extends ConstructionImpl {
-    @Override
+import fr.univnantes.alma.modele.api.Construction;
+import fr.univnantes.alma.modele.api.enums.Color;
+
+public class Colony implements Construction {
+
+    private Color color;
+    private int power;
+
+    public Colony(Color color) {
+        this.power = 1;
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return this.color;
+    }
+
     public int getPower() {
-        return 1;
+        return this.power;
     }
 }
