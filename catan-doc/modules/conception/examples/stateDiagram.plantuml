@@ -1,4 +1,5 @@
 @startuml
+
 [*] --> SetUp
 
 SetUp --> ResourceProduction : /choisir le premier joueur
