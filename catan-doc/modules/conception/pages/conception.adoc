@@ -36,11 +36,11 @@ NOTE: TODO!
 
 === Portabilité
 
-Notre système utilise du Java pour le côté serveur et du javascript pour le côté client. Le Java n'est pas un problème à installer sur un serveur web et le javascript peut être lu par n'importe quel navigateur web.
+Notre système utilise du Java pour le côté serveur et du typescript pour le côté client. Le Java n'est pas un problème à installer sur un serveur web et le typescript peut être lu par n'importe quel navigateur web.
 
 === Sécurité
 
-Les interractions du client sont limités et transittent par le serveur afin d'empêcher le client de tricher en cours de partie.
+Les interractions du client sont limités et transitent par le serveur afin d'empêcher le client de tricher en cours de partie.
 
 === Exigence de sécurité
 

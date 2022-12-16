@@ -1,28 +1,28 @@
-= Interface Partie
+= Interface Game
 
 [options="header"]
 |===
 |Méthode |Documentation
 
-|`void construireColonie(Joueur joueur, int idIntersection)`
+|`void buildColony(Player joueur, int idIntersection)`
 a|
-Construit une colonie de la `Couleur` du `joueur` donné, à l' `intersection` donnée.
+Construit une colonie de la `Color` du `joueur` donné, à l' `intersection` donnée.
 
-Appelle `Plateau.construireColonie()`. Cette méthode retourne un potentiel port.
-Si ce port existe, appelle `joueur.ajoutePort(port)`.
+Appelle `Plateau.buildColony()`. Cette méthode retourne un potentiel port.
+Si ce port existe, appelle `joueur.addHarbor(port)`.
 
 Exceptions :
 
 - `GameStatusException` si le joueur ne peut pas jouer.
 - `IllegalArgumentException` si l'intersection est invalide.
 - `ImpossibleBuildException` si l'intersection est déjà occupée ou si elle n'est pas à deux routes minimum d'une autre colonie.
-- `NotEnoughRessourcesException` si le joueur n'a pas les ressources nécessaires.
+- `NotEnoughResourcesException` si le joueur n'a pas les ressources nécessaires.
 
 
-|`void construireVille(Joueur joueur, int idIntersection)`
+|`void buildCity(Player joueur, int idIntersection)`
 a|
 Améliore une colonie au niveau de ville. Cette ville se trouve à l' `intersection`.
-Appelle `Plateau.construireVille()`.
+Appelle `Plateau.buildCity()`.
 
 
 Exceptions :
@@ -30,10 +30,10 @@ Exceptions :
 - `GameStatusException` si le joueur ne peut pas jouer.
 - `IllegalArgumentException` si l'intersection est invalide.
 - `ImpossibleBuildException` s'il n'y a pas de colonie sur l'intersection ou si la colonie n'appartient pas au joueur.
-- `NotEnoughRessourcesException` si le joueur n'a pas les ressources nécessaires.
+- `NotEnoughResourcesException` si le joueur n'a pas les ressources nécessaires.
 
 
-|`void construireRoute(Joueur joueur, int intersectionA, int intersectionB)`
+|`void buildRoad(Player joueur, int intersectionA, int intersectionB)`
 a| Construit une route de la couleur du joueur entre deux intersections données.
 
 Exceptions :
@@ -41,10 +41,10 @@ Exceptions :
 - `GameStatusException` si le joueur ne peut pas jouer.
 - `IllegalParameterException` si une des intersections est invalide.
 - `ImpossibleBuildException` si la route n'a pas pu être construite.
-- `NotEnoughRessourcesException` si le joueur n'a pas les ressources nécessaires.
+- `NotEnoughResourcesException` si le joueur n'a pas les ressources nécessaires.
 
 
-|`Joueur endGameTurn(Joueur joueurAct)`
+|`Player endGameTurn(Player joueurAct)`
 a| Termine le tour du joueur actuel et renvoie le joueur à qui c'est maintenant le tour.
 
 Exceptions :
@@ -52,16 +52,16 @@ Exceptions :
 - `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
 
 
-|`private void evalueFinPartie()`
-| Calcul le score des joueurs et met fin à la partie si le joueur actuel a plus de 10 points.
+|`private void evaluateEndGame()`
+| Calcule le score des joueurs et met fin à la partie si le joueur actuel a plus de 10 points.
 Met ce joueur en tant que gagnant si c'est le cas.
 
 
-|`boolean partieEstTerminee()`
+|`boolean isGameEnded()`
 | Renvoie vrai si la partie est terminée.
 
 
-|`Joueur getGagnant()`
+|`Player getWinner()`
 a| Renvoie le gagnant de la partie.
 
 Exceptions :
@@ -69,12 +69,12 @@ Exceptions :
 - `GameStatusException` si la partie n'est pas finie et qu'il n'y a donc pas encore de gagnant.
 
 
-|`int lancerDes(Joueur joueurAct)`
+|`int throwDices(Player joueurAct)`
 a| Lance les dés (`DiceThrow.throw()`) et renvoie le résultat.
 
-Si le résultat est 7, appelle pour chaque joueur `joueur.deleteHalfRessources()`.
+Si le résultat est 7, appelle pour chaque joueur `joueur.deleteHalfResources()`.
 
-Si le résultat n'est pas 7, appelle `Plateau.distribuerRessources()` en fonction du résultat des dés.
+Si le résultat n'est pas 7, appelle `Plateau.distribuerResources()` en fonction du résultat des dés.
 À l'aide du résultat de cette dernière méthode, distribuer les ressources aux joueurs.
 
 Exceptions :
@@ -82,7 +82,7 @@ Exceptions :
 - `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
 
 
-|`List<Joueur> jouerVoleur(Joueur joueurAct, int idTuile)`
+|`List<Player> playStealer(Player joueurAct, int idTuile)`
 a| Change le voleur de tuile et renvoie quels joueurs on peut voler, c'est-à-dire ceux qui ont une construction à une
 intersection de la tuile où le voleur se déplace et qui ont des ressources.
 
@@ -92,16 +92,16 @@ Exceptions :
 - `IllegalArgumentException` si la tuile n'est pas valide.
 
 
-|`void volerRessource(Joueur voleur, Joueur victime)`
+|`void stealResource(Player voleur, Player victime)`
 a| Permet de voler une ressource aléatoire au joueur volé et de la donner au voleur.
 
 Exceptions :
 
 - `GameStatusException` si le voleur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
-- `NotEnoughRessourcesException` si le joueur volé n'a pas de ressources.
+- `NotEnoughResourcesException` si le joueur volé n'a pas de ressources.
 
 
-|`void commerceMaritime(Joueur joueur, Ressource rDefausse, Ressource rRecup)`
+|`void maritimeTrade(Player joueur, Resource rDefausse, Resource rRecup)`
 a| Permet à un joueur d'échanger une ressource `rRecup` en défaussant de 2 à 4 ressources `rDeffausse`.
 
 De base, on doit défausser 4 ressources identiques pour en obtenir 1 de son choix.
@@ -109,19 +109,19 @@ Si le joueur possède un port de taux d'échange 3-1, on doit en défausser 3.
 Si le joueur possède un port de taux d'échange 2-1 pour une ressource spécifique, il peut défausser
 deux cartes de cette ressource.
 
-Appelle `joueur.commerceMaritime()`.
+Appelle `joueur.maritimeTrade()`.
 
 Exceptions :
 
 - `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
-- `NotEnoughRessourcesException` si le joueur n'a pas assez de ressource `rDeffausse`.
+- `NotEnoughResourcesException` si le joueur n'a pas assez de ressource `rDeffausse`.
 
 
 |`void monopoly(Player player, Resource resource)`
 a| Permet à un joueur de jouer la carte Monopole.
 
 Appelle `player.playDevelopmentCard(MONOPOLY)` pour le joueur actuel.
-Appelle `player.deleteRessource()` pour tous les joueurs sauf le joueur actuel et donne au joueur actuel la somme des ressources retirées.
+Appelle `player.deleteResource()` pour tous les joueurs sauf le joueur actuel et donne au joueur actuel la somme des ressources retirées.
 
 Exceptions :
 
@@ -173,14 +173,14 @@ a| Permet à un joueur de piocher une carte Développement.
 
 
 
-= Interface Plateau
+= Interface Board
 
 [options="header"]
 |===
 |Méthode |Documentation
 
 
-|`Optional<Port> construireColonie(Couleur couleur, int idIntersection)`
+|`Optional<Port> buildColony(Color couleur, int idIntersection)`
 a| Construit une colonie de la `couleur` donnée à l'intersection donnée.
 
 Retourne le potentiel port de l'intersection.
@@ -191,7 +191,7 @@ Exceptions :
 - `ImpossibleBuildException` si l'intersection est déjà occupée ou si elle n'est pas à deux de distance minimum d'une autre colonie.
 
 
-|`void construireVille(Couleur couleur, int idIntersection)`
+|`void buildCity(Color couleur, int idIntersection)`
 a| Améliore une colonie au niveau de ville. Cette colonie se trouve à l'intersection d'id `idIntersection`.
 
 Exceptions :
@@ -200,7 +200,7 @@ Exceptions :
 - `ImpossibleBuildException` s'il n'y a pas de colonie sur l'intersection ou si la colonie n'appartient pas au joueur.
 
 
-|`void construireRoute(Couleur couleur, int intersectionA, int intersectionB)`
+|`void buildRoad(Color couleur, int intersectionA, int intersectionB)`
 a| Construit une route de la couleur donnée entre deux intersections données.
 
 Exceptions :
@@ -209,21 +209,21 @@ Exceptions :
 - `ImpossibleBuildException` si la route n'a pas pu être constuite. C'est-à-dire, si il y a déjà une route, ou si elle n'est pas ratachée à une colonie.
 
 
-|`Map<Couleur,Map<Ressource,Integer>> distribuerRessources(int valeurJeton)`
-a| Renvoie un dictionnaire attribuant à une `couleur` un couple `(Ressource,Integer)` indiquant le nombre de ressource
+|`Map<Color,Map<Resource,Integer>> distributeResources(int valeurJeton)`
+a| Renvoie un dictionnaire attribuant à une `couleur` un couple `(Resource,Integer)` indiquant le nombre de ressource
 à distribuer au joueur de cette `couleur`.
 
-Récupère les tuiles de numéro `valeurJeton` et appelle `tuile.distribuerRessources()`.
+Récupère les tuiles de numéro `valeurJeton` et appelle `tuile.distributeResources()`.
 Additionne les deux résultats obtenue et renvoie le résultat.
 
-Si une des tuiles est la tuile où se situe le voleur, `tuile.distribuerRessources()` n'est pas appelé pour cette tuile.
+Si une des tuiles est la tuile où se situe le voleur, `tuile.distributeResources()` n'est pas appelé pour cette tuile.
 
 Exception :
 
 - `IllegalArgumentExeption` si la `valeurJeton` ne correspond à aucune tuile.
 
 
-|`List<Couleur> jouerVoleur(int idTuile)`
+|`List<Color> playStealer(int idTuile)`
 a| Change le voleur de tuile et renvoie quelles couleurs sont sur cette tuile.
 
 Exception :
@@ -245,16 +245,16 @@ Exception :
 |`void setConstruction(Construction colonie)`
 |Permet de set la construction.
 
-|`Map<Intersection, Couleur> getVoisines()`
+|`Map<Intersection, Color> getNeighbors()`
 |Renvoie les intersections voisines.
 
-|`Optional<Port> getPort()`
+|`Optional<Port> getHarbor()`
 |Renvoie le potentiel port de l'intersection.
 
 |===
 
 
-= Interface Tuile
+= Interface Tile
 
 [options="header"]
 |===
@@ -264,12 +264,12 @@ Exception :
 | Renvoie la liste des intersections autour de la tuile.
 
 
-|`Ressource getRessource()`
+|`Resource getResource()`
 | Renvoie la ressource de la tuile.
 
 
-|`Map<Couleur,Map<Ressource,Integer>> distribuerRessources()`
-a| Renvoie un dictionnaire attribuant à une `couleur` un couple `(Ressource,Integer)` indiquant le nombre de ressources
+|`Map<Color,Map<Resource,Integer>> distributeResources()`
+a| Renvoie un dictionnaire attribuant à une `couleur` un couple `(Resource,Integer)` indiquant le nombre de ressources
 à distribuer au joueur de cette `couleur`.
 
 Récupère les constructions des intersections autour de la tuile.
@@ -278,37 +278,37 @@ Pour chacune de ces constructions, récupérer sa couleur et sa `puissance`, et 
 `result[couleur][ressource] += puissance`, `ressource` étant la ressource de la tuile.
 
 
-|`int getValeurJeton()`
+|`int getTokenValue()`
 | Renvoie la valeur du jeton de la tuile.
 
 |===
 
 
-= Interface Joueur
+= Interface Player
 
 [options="header"]
 |===
 |Méthode |Documentation
 
-|`Couleur getCouleur()`
+|`Color getColor()`
 | Renvoie la couleur du joueur.
 
-|`int getNbRessources(Ressource ressource)`
+|`int getNumberOfResources(Resource resource)`
 | Renvoie le nombre de ressources de type `ressource` du joueur.
 
-|`int getNbAllRessources()`
+|`int getNbAllResources()`
 | Renvoie le nombre de toutes les ressources du joueur.
 
 |`void addResource(Resource resource)`
 | Ajoute la `resource` à la main du joueur.
 
 
-|`void supprimeRessources(Ressource ressource, int amount)`
+|`void deleteResources(Resource ressource, int amount)`
 a| Supprime `amount` ressources de type `ressource` au joueur.
 
 Exception :
 
-- `NotEnoughRessourcesException` si le joueur n'a pas `amount` ressources de type `ressource`.
+- `NotEnoughResourcesException` si le joueur n'a pas `amount` ressources de type `ressource`.
 
 
 |`int getPointsVictoire()`
@@ -316,15 +316,15 @@ a| Calcul le nombre de points du joueur en prenant en compte ses constructions, 
 (plus grande armée et route la plus longue), et ses cartes Victoire.
 
 
-|`Ressource getRessourceAleatoire()`
+|`Resource getRandomResources()`
 a| Retourne une ressource aléatoire que le joueur possède.
 
 Exceptions :
 
-- `NotEnoughRessourcesException` si le joueur n'a pas de ressources.
+- `NotEnoughResourcesException` si le joueur n'a pas de ressources.
 
 
-|`void deleteHalfRessources()`
+|`void deleteHalfResources()`
 a| Supprime la moitié des ressources du joueur.
 
 Si le joueur a un nombre impair de ressources, on arrondit le nombre de ressources restantes à la borne inférieur.
@@ -339,7 +339,7 @@ un par un. Si le nombre de ressources pour un type est impair, on arrondit le no
 | Retire l'entièreté du nombre de ressources de type `resource` et renvoie le nombre de ressources retirées.
 
 
-|`void commerceMaritime(Ressource rDefausse, Ressource rRecup)`
+|`void maritimeTrade(Resource rDefausse, Resource rRecup)`
 a| Permet d'échanger une ressource `rRecup` en défaussant de 2 à 4 ressources `rDeffausse`.
 
 De base, on doit défausser 4 ressources identiques pour en obtenir 1 de son choix.
@@ -348,21 +348,21 @@ Si le joueur possède un port de taux d'échange 2-1 pour une ressource spécifi
 deux cartes de cette ressource.
 
 Regarde parmis les ports du joueur le taux d'échange correspondant à la ressource `rDefausse`.
-Appelle `port.echange(ressource)` pour connaître le nombre de cartes que le joueur devra défausser.
+Appelle `port.exchange(ressource)` pour connaître le nombre de cartes que le joueur devra défausser.
 
 Exceptions :
 
-- `NotEnoughRessourcesException` si le joueur n'a pas assez de ressource `rDeffausse`.
+- `NotEnoughResourcesException` si le joueur n'a pas assez de ressource `rDeffausse`.
 
 
-|`void ajoutePort(Port port)`
+|`void addHarbour(Harbor harbor)`
 a| Ajoute un port de la façon suivante.
 Si le port est de taux 2:1 pour une ressource spécifique, ajoute le port pour cette ressource.
 Si le port est de taux 3:1, vérifie pour chaque ressource si le taux est avantageux
 et l'ajoute pour cette ressource si tel est le cas.
 Si le port est de taux 4:1, ne fait rien car c'est le taux d'échange de base.
 
-Appelle `port1.aMeilleurTaux(port2)` pour savoir si un port a un taux plus avantageux qu'un autre.
+Appelle `port1.haveBetterRate(port2)` pour savoir si un port a un taux plus avantageux qu'un autre.
 
 
 |`void playDevelopmentCard(Development type)`
@@ -383,28 +383,28 @@ Exceptions :
 |===
 |Méthode |Documentation
 
-|`Couleur getCouleur()`
+|`Color getColor()`
 | Renvoie la couleur de la construction
 
-|`int getPuissance()`
+|`int getPower()`
 | Renvoie la puissance de la construction. 1 pour une colonie, 2 pour une ville.
 
 |===
 
 
-= Interface Port
+= Interface Harbor
 
 [options="header"]
 |===
 |Méthode |Documentation
 
-|`Optional<Ressource> getRessource()`
+|`Optional<Resource> getResource()`
 | Retourne la potentielle ressource spécifique du port.
 
-|`int echange(Ressource ressource)`
+|`int exchange(Resource ressource)`
 | Retourne le nombre de cartes ressource que le joueur devra défausser s'il veut échanger la `ressource` donnée avec ce port.
 
-|`boolean aMeilleurTaux(Port other)`
+|`boolean haveBetterRate(Port other)`
 | Compare le taux du port et d'un autre port et renvoie vrai si le premier a un meilleur taux.
 
 |===
