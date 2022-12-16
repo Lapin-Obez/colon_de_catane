@@ -22,6 +22,9 @@ public class GameImpl implements Game {
     private Player winner;
     private Board board;
 
+    public GameImpl() {
+        this.board = new BoardImpl();
+    }
 
     @Override
     public void calculateStrongestArmy() {

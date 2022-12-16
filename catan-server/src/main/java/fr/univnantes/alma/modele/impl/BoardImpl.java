@@ -247,4 +247,20 @@ public class BoardImpl implements Board {
     public List<Player> playStealer(int tileID) throws IllegalArgumentException {
         return null;
     }
+
+    public Integer getIdTuileVoleur() {
+        return idTuileVoleur;
+    }
+
+    public Map<Integer, Map<Integer, Color>> getRoutes() {
+        return routes;
+    }
+
+    public Map<Integer, Intersection> getIntersections() {
+        return intersections;
+    }
+
+    public Map<Integer, Tile> getTiles() {
+        return tiles;
+    }
 }
