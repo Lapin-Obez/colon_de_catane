@@ -12,12 +12,12 @@ public class TileImpl implements Tile {
 
     private final List<Intersection> listIntersections;
     private final Resource resource;
-    private final int valeurJeton;
+    private final int tokenValue;
 
-    public TileImpl(List<Intersection> listIntersections, Resource resource, int valeurJeton) {
+    public TileImpl(List<Intersection> listIntersections, Resource resource, int tokenValue) {
         this.listIntersections = listIntersections;
         this.resource = resource;
-        this.valeurJeton = valeurJeton;
+        this.tokenValue = tokenValue;
     }
 
     @Override
@@ -37,6 +37,6 @@ public class TileImpl implements Tile {
 
     @Override
     public int getTokenValue() {
-        return valeurJeton;
+        return tokenValue;
     }
 }

@@ -1,5 +1,6 @@
 package fr.univnantes.alma.modele.impl;
 
+import fr.univnantes.alma.modele.api.Board;
 import fr.univnantes.alma.modele.api.Game;
 import fr.univnantes.alma.modele.api.Player;
 import fr.univnantes.alma.modele.api.Tile;
@@ -16,7 +17,10 @@ public class GameImpl implements Game {
 
     private Map<Integer, Development> deckDevelopment;
     private Map<Integer, Resource> deckResource;
+    private List<Player> playerList;
     private Player winner;
+    private Board board;
+
 
     @Override
     public void calculateStrongestArmy() {
@@ -47,7 +51,7 @@ public class GameImpl implements Game {
      * Calcul le score des joueurs et met fin à la partie si le joueur actuel a plus de 10 points.
      * Met ce joueur en tant que gagnant si c'est le cas.
      */
-    private void evalueFinPartie() {
+    private void evaluateEndGame() {
 
     }
 
