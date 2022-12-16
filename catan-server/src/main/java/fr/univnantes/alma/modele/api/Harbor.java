@@ -4,7 +4,7 @@ import fr.univnantes.alma.modele.api.enums.Resource;
 
 import java.util.Optional;
 
-public interface Harbour {
+public interface Harbor {
 
     /**
      * DOC TODO
@@ -19,7 +19,7 @@ public interface Harbour {
     /**
      * DOC TODO
      */
-    boolean haveBetterRate(Harbour other);
+    boolean haveBetterRate(Harbor other);
 
 
 }

@@ -30,51 +30,51 @@ public class BoardImpl implements Board {
     }
 
     private void addHarbour(){
-        Harbour harbour = new HarbourImpl(ExchangeRate.trois,null);
+        Harbor harbor = new HarborImpl(ExchangeRate.trois,null);
         Intersection inter = this.intersections.get(1);
-        inter.setHarbour(harbour);
+        inter.setHarbour(harbor);
         inter = this.intersections.get(2);
-        inter.setHarbour(harbour);
-        harbour = new HarbourImpl(ExchangeRate.deux,Resource.Laine);
+        inter.setHarbour(harbor);
+        harbor = new HarborImpl(ExchangeRate.deux,Resource.Laine);
         inter = this.intersections.get(4);
-        inter.setHarbour(harbour);
+        inter.setHarbour(harbor);
         inter = this.intersections.get(5);
-        inter.setHarbour(harbour);
-        harbour = new HarbourImpl(ExchangeRate.trois,null);
+        inter.setHarbour(harbor);
+        harbor = new HarborImpl(ExchangeRate.trois,null);
         inter = this.intersections.get(15);
-        inter.setHarbour(harbour);
+        inter.setHarbour(harbor);
         inter = this.intersections.get(16);
-        inter.setHarbour(harbour);
-        harbour = new HarbourImpl(ExchangeRate.trois,null);
+        inter.setHarbour(harbor);
+        harbor = new HarborImpl(ExchangeRate.trois,null);
         inter = this.intersections.get(27);
-        inter.setHarbour(harbour);
+        inter.setHarbour(harbor);
         inter = this.intersections.get(38);
-        inter.setHarbour(harbour);
-        harbour = new HarbourImpl(ExchangeRate.deux,Resource.Argile);
+        inter.setHarbour(harbor);
+        harbor = new HarborImpl(ExchangeRate.deux,Resource.Argile);
         inter = this.intersections.get(46);
-        inter.setHarbour(harbour);
+        inter.setHarbour(harbor);
         inter = this.intersections.get(47);
-        inter.setHarbour(harbour);
-        harbour = new HarbourImpl(ExchangeRate.deux,Resource.Bois);
+        inter.setHarbour(harbor);
+        harbor = new HarborImpl(ExchangeRate.deux,Resource.Bois);
         inter = this.intersections.get(51);
-        inter.setHarbour(harbour);
+        inter.setHarbour(harbor);
         inter = this.intersections.get(52);
-        inter.setHarbour(harbour);
-        harbour = new HarbourImpl(ExchangeRate.trois,null);
+        inter.setHarbour(harbor);
+        harbor = new HarborImpl(ExchangeRate.trois,null);
         inter = this.intersections.get(48);
-        inter.setHarbour(harbour);
+        inter.setHarbour(harbor);
         inter = this.intersections.get(49);
-        inter.setHarbour(harbour);
-        harbour = new HarbourImpl(ExchangeRate.deux,Resource.Blé);
+        inter.setHarbour(harbor);
+        harbor = new HarborImpl(ExchangeRate.deux,Resource.Blé);
         inter = this.intersections.get(39);
-        inter.setHarbour(harbour);
+        inter.setHarbour(harbor);
         inter = this.intersections.get(29);
-        inter.setHarbour(harbour);
-        harbour = new HarbourImpl(ExchangeRate.deux,Resource.Minerai);
+        inter.setHarbour(harbor);
+        harbor = new HarborImpl(ExchangeRate.deux,Resource.Minerai);
         inter = this.intersections.get(8);
-        inter.setHarbour(harbour);
+        inter.setHarbour(harbor);
         inter = this.intersections.get(18);
-        inter.setHarbour(harbour);
+        inter.setHarbour(harbor);
     }
     //fill tiles map
     private void TilesConstructor(){
@@ -223,7 +223,7 @@ public class BoardImpl implements Board {
     }
 
     @Override
-    public Optional<Harbour> buildColony(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException {
+    public Optional<Harbor> buildColony(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException {
         return Optional.empty();
     }
 

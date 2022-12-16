@@ -1,6 +1,6 @@
 package fr.univnantes.alma.modele.impl;
 
-import fr.univnantes.alma.modele.api.Harbour;
+import fr.univnantes.alma.modele.api.Harbor;
 import fr.univnantes.alma.modele.api.Player;
 import fr.univnantes.alma.modele.api.enums.Color;
 import fr.univnantes.alma.modele.api.enums.Development;
@@ -26,7 +26,7 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void addHarbour(Harbour harbour) {
+    public void addHarbour(Harbor harbor) {
 
     }
 

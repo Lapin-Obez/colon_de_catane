@@ -19,7 +19,7 @@ public interface Intersection {
     /**
      * Renvoie le potentiel port de l'intersection.
      */
-    Optional<Harbour> getHarbour();
+    Optional<Harbor> getHarbour();
 
-    void setHarbour(Harbour h);
+    void setHarbour(Harbor h);
 }

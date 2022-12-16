@@ -1,16 +1,16 @@
 package fr.univnantes.alma.modele.impl;
 
-import fr.univnantes.alma.modele.api.Harbour;
+import fr.univnantes.alma.modele.api.Harbor;
 import fr.univnantes.alma.modele.api.enums.Resource;
 import fr.univnantes.alma.modele.api.enums.ExchangeRate;
 
 import java.util.Optional;
 
-public class HarbourImpl implements Harbour {
+public class HarborImpl implements Harbor {
     private final ExchangeRate taux;
     private final Resource resource;
 
-    public HarbourImpl(ExchangeRate taux, Resource resource) {
+    public HarborImpl(ExchangeRate taux, Resource resource) {
         this.taux = taux;
         this.resource = resource;
     }
@@ -26,7 +26,7 @@ public class HarbourImpl implements Harbour {
     }
 
     @Override
-    public boolean haveBetterRate(Harbour other) {
+    public boolean haveBetterRate(Harbor other) {
         return false;
     }
 }

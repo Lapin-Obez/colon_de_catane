@@ -21,7 +21,7 @@ public interface Board {
      * @throws ImpossibleBuildException si l'intersection est déjà occupée ou
      *                                  si elle n'est pas à deux de distance minimum d'une autre colonie.
      */
-    Optional<Harbour> buildColony(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException;
+    Optional<Harbor> buildColony(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException;
 
     /**
      * Améliore une colonie au niveau de ville. Cette colonie se trouve à l'intersection d'id `idIntersection`.

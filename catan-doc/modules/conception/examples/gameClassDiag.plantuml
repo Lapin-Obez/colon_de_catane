@@ -72,7 +72,7 @@ class Board {
     + int getRoadLength(Color color)
     + void moveStealer(int tileID)
     + List<Player> playStealer(int tileID) throws IllegalArgumentException
-    +Optional<Harbour> buildColony(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException
+    +Optional<Harbor> buildColony(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException
     + void buildCity(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException
     + void buildRoad(Color color, int intersectionA, int intersectionB) throws IllegalArgumentException, ImpossibleBuildException
     Map<Color, Map<Resource,Integer>> distributeResources(int tokenValue) throws IllegalArgumentException
@@ -99,12 +99,12 @@ class Tile{
 
 class Intersection{
     - Construction construction {@Nullable}
-    - Harbour harbour {@Nullable}
+    - Harbor harbor {@Nullable}
 
     + void setConstruction(Construction construction)
-    + void setPort(Harbour harbour)
+    + void setPort(Harbor harbor)
     + Construction getConstruction()
-    + Optional<Harbour> getHarbour()
+    + Optional<Harbor> getHarbor()
 }
 
 class Player{
@@ -115,7 +115,7 @@ class Player{
     - List<SpecialCard> specialCards
 
     + void maritimeTrade(Resource rDefausse, Resource rRecup)
-    + void addHarbour(Harbour harbour)
+    + void addHarbor(Harbor harbor)
     + int getVictoryPoints()
     + int getNumberOfKnight()
     + void playKnight()

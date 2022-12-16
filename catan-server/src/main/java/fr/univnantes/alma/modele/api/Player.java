@@ -73,7 +73,7 @@ public interface Player {
     /**
      * DOC TODO
      */
-    void addHarbour(Harbour harbour);
+    void addHarbour(Harbor harbor);
 
     /**
      * DOC TODO

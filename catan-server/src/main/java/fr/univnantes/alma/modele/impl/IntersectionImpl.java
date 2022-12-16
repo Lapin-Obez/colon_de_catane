@@ -1,7 +1,7 @@
 package fr.univnantes.alma.modele.impl;
 
 import fr.univnantes.alma.modele.api.Construction;
-import fr.univnantes.alma.modele.api.Harbour;
+import fr.univnantes.alma.modele.api.Harbor;
 import fr.univnantes.alma.modele.api.Intersection;
 
 import java.util.Optional;
@@ -9,15 +9,15 @@ import java.util.Optional;
 public class IntersectionImpl implements Intersection {
 
     private Construction construction;
-    private Harbour harbour;
+    private Harbor harbor;
 
     @Override
     public void setConstruction(Construction construction) {
         this.construction = construction;
     }
 
-    public void setPort(Harbour harbour) {
-        this.harbour = harbour;
+    public void setPort(Harbor harbor) {
+        this.harbor = harbor;
     }
 
     @Override
@@ -25,11 +25,11 @@ public class IntersectionImpl implements Intersection {
         return null;
     }
     @Override
-    public void setHarbour(Harbour h){
-        this.harbour = h;
+    public void setHarbour(Harbor h){
+        this.harbor = h;
     }
     @Override
-    public Optional<Harbour> getHarbour() {
-        return Optional.ofNullable(this.harbour);
+    public Optional<Harbor> getHarbour() {
+        return Optional.ofNullable(this.harbor);
     }
 }
