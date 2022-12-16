@@ -135,4 +135,9 @@ public interface Game {
      * DOC TODO
      */
     void yearOfPlenty(Player player, Resource resource1, Resource resource2) throws GameStatusException, NotEnoughDevelopmentCardException;
+
+    /**
+     * DOC TODO
+     */
+    void roadBuildingCard(Player player);
 }

@@ -138,6 +138,15 @@ Appelle `player.addResource(resource)` pour les deux ressources demandées par l
 - `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel.
 - `NotEnoughDevelopmentCardException` si le joueur n'a pas de carte Invention.
 
+
+|`void roadBuildingCard(Player player)`
+a| Permet à un joueur de jouer la carte "Construction de routes".
+
+Appelle `player.removeDevelopmentCard(ROAD_BUILDING)`.
+
+- `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel.
+- `NotEnoughDevelopmentCardException` si le joueur n'a pas de carte "Construction de routes".
+
 |===
 
 
