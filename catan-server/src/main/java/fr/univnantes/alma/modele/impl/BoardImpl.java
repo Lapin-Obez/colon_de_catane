@@ -5,15 +5,11 @@ import fr.univnantes.alma.modele.api.enums.Color;
 import fr.univnantes.alma.modele.api.enums.Resource;
 import fr.univnantes.alma.modele.api.exceptions.ImpossibleBuildException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class BoardImpl implements Board {
     private final Integer NBINTERSECTIONS = 54;
-    private int idTuileVoleur;
+    private Integer idTuileVoleur;
     private Map<Integer, Map<Integer, Color>> routes;
     private Map<Integer, Intersection> intersections;
     private Map<Integer, Tile> tiles;
@@ -26,20 +22,70 @@ public class BoardImpl implements Board {
         }
         this.tiles = new HashMap<>();
         TilesConstructor();
+        this.routes= new HashMap<>();
+        roadConstructor();
     }
     //fill tiles map
     private void TilesConstructor(){
+        List<Resource> resources = boardRessources();
+        List<Integer> tokenValue = createTokenValue();
+        Integer tokenVal;
+        Integer intersectionNumber = 0;
         for(int i =0;i<20;i++){
-            this.tiles.put(i,TileGenerator(i,null,null,0));
+            if (i<8 && i>3){
+                intersectionNumber = 1;
+            }else if(i<13){
+                intersectionNumber = 2;
+            }else if(i<17){
+                intersectionNumber = 4;
+            }else{
+                intersectionNumber = 7;
+            }
+            if(resources.get(0)==null){
+                tokenVal = 0;
+                this.idTuileVoleur = i;
+            }else{
+                tokenVal = tokenValue.remove(0);
+            }
+            this.tiles.put(i,TileGenerator(i,intersectionNumber+i*2,resources.remove(0),tokenVal));
         }
+    }
+    /*
+     * Méthode de création de la liste des valeurs des tuiles
+     */
+    private List<Integer> createTokenValue(){
+        List<Integer> li = new ArrayList<>();
+        int[] tab = {5,2,6,10,9,4,3,8,11,5,8,4,3,6,10,11,12,9};
+        for (int i=0;i<tab.length;i++){
+            li.add(tab[i]);
+        }
+        return li;
+    }
+    /*
+    * Méthode de création de la liste des ressources présentes sur le plateau.
+    */
+    private List<Resource> boardRessources(){
+        List<Resource> li = new ArrayList<>();
+        for(int i =0;i<4;i++){
+            li.add(Resource.Bois);
+            li.add(Resource.Blé);
+            li.add(Resource.Laine);
+        }
+        for(int i =0;i<3;i++){
+            li.add(Resource.Argile);
+            li.add(Resource.Minerai);
+        }
+        li.add(null);
+        Collections.shuffle(li);
+        return li;
     }
     //Création d'une tuile avec toutes les intersections autour de la tuile
     private Tile TileGenerator(Integer id, Integer intersection, Resource resource, int valJeton){
-        List<Intersection> contourTuile;
-        contourTuile = new ArrayList<>();
-        contourTuile.add(this.intersections.get(intersection));
-        contourTuile.add(this.intersections.get(intersection+1));
-        contourTuile.add(this.intersections.get(intersection+2));
+        List<Intersection> tileOutline;
+        tileOutline = new ArrayList<>();
+        tileOutline.add(this.intersections.get(intersection-1));
+        tileOutline.add(this.intersections.get(intersection));
+        tileOutline.add(this.intersections.get(intersection+1));
         //En fonction de ligne de la tuile, l'écart entre les id des intersections en haut et en bas de la tuile peut augmenter
         //Cette conditionnelle est là pour attribuer le bon écart en fonction de la ligne de la tuile.
         if(id<4||id>16){
@@ -49,13 +95,74 @@ public class BoardImpl implements Board {
         }else{
             intersection = intersection + 11;
         }
-        contourTuile.add(this.intersections.get(intersection));
-        contourTuile.add(this.intersections.get(intersection+1));
-        contourTuile.add(this.intersections.get(intersection+2));
-        return new TileImpl(contourTuile, resource,valJeton);
+        tileOutline.add(this.intersections.get(intersection-1));
+        tileOutline.add(this.intersections.get(intersection));
+        tileOutline.add(this.intersections.get(intersection+1));
+        return new TileImpl(tileOutline, resource,valJeton);
+    }
+    private void roadConstructor(){
+        for(int i =0;i<6;i++){
+            switch(i){
+                case 1:
+                    buildIntersectionLine(1,7,1,8,null);
+                    break;
+                case 2:
+                    buildIntersectionLine(8,16,0,10,8);
+                    break;
+                case 3:
+                    buildIntersectionLine(17,27,1,11,10);
+                    break;
+                case 4:
+                    buildIntersectionLine(28,38,0,10,11);
+                    break;
+                case 5:
+                    buildIntersectionLine(39,47,1,8,10);
+                    break;
+                default:
+                    buildIntersectionLine(48,NBINTERSECTIONS,1,null,8);
+                    break;
+            }
+        }
+    }
+
+    private void buildIntersectionLine(Integer begin, Integer end,Integer isodd,Integer increase,Integer decrease){
+        for(Integer i = begin;i<=end;i++){
+            Map<Integer,Color> map = new HashMap<>();
+
+            //Si on est pas le premier élément de la ligne, on se lie a son i-1
+            if(i!=begin){
+                map.put(i-1,null);
+            }
+            //Si on est pas le dernier élément de la ligne, on se lie à son i+1
+            if (i!=end) {
+                map.put(i+1,null);
+            }
+            if(isodd==1){
+                if(i%2==0){
+                    if(increase!=null){
+                        map.put(i+increase,null);
+                    }
+                }else{
+                    if(decrease!=null){
+                        map.put(i-decrease,null);
+                    }
+                }
+            }else{
+                if(i%2==0){
+                    if(decrease!=null){
+                        map.put(i-decrease,null);
+                    }
+                }else{
+                    if(increase!=null){
+                        map.put(i+increase,null);
+                    }
+                }
+            }
+            this.routes.put(i,map);
+        }
     }
     @Override
-    public int getLongueurRoute(Color color) {
+    public int getRoadLength(Color color) {
         return 0;
     }
 

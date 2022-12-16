@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface Board {
-    int getLongueurRoute(Color color);
+    int getRoadLength(Color color);
     void moveStealer(int tileID);
 
     /**
