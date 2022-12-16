@@ -1,0 +1,33 @@
+@startuml
+[*] --> SetUp
+
+SetUp --> ResourceProduction : /choisir le premier joueur
+
+state ResourceProduction {
+  [*] --> ResourceProductionProgress
+}
+
+state Robber {
+}
+
+state TradeAndBuild {
+  [*] --> TradeAndBuildProgress
+  TradeAndBuildProgress --> EndTurn : /terminer le tour
+  EndTurn --> NextTurn : [le joueur a moins de 10 points]
+}
+
+state GameStop {
+}
+
+ResourceProduction --> Robber : [les dés ont fait 7]
+ResourceProduction --> TradeAndBuild : [les dés n'ont pas fait 7]
+
+TradeAndBuildProgress --> Robber : [une carte Chevalier est jouée]
+Robber --> TradeAndBuild : /bouger le voleur
+
+NextTurn --> ResourceProduction : /passer au prochain joueur
+EndTurn --> GameStop : [le joueur a 10 points ou plus]
+
+GameStop --> [*]
+
+@enduml

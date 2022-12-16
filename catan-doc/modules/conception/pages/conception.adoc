@@ -67,6 +67,13 @@ include::../examples/gameClassDiag.plantuml[]
 
 include::partial$methods.adoc[leveloffset=3]
 
+=== Digramme d'état de l'interface Game
+
+.Diagramme d'état de l'interface Game
+---
+include::../examples/stateDiagram.puml[]
+---
+
 === Interface utilisateur
 
 L'interface utilisateur sera une interface graphique réalisée à l'aide de typescript et angular sur un fichier html que le client pourra ouvrir à l'aide d'un simple navigateur internet.
@@ -105,10 +112,10 @@ Explicitez les différents choix techniques et les réponses technologiques aux 
 
 Pour cela nous allons donc vous présenter l'environnement général de développement puis énoncer les 4 contraintes que nous avons déterminées de notre logiciel.
 
-Nous avons fais le choix d'utiliser comme environnement de travail l'IDE eclipse.
+Nous avons fais le choix d'utiliser comme environnement de travail l'IDE Eclipse.
 Pour la raison que nous connaissons tous très bien cette environnement, ce qui nous permet d'avoir tous le même environnement de développement.
 
-Également, cette IDE permet la gestion d'un projet maven ce qui nous sera parfaitement adapté.
+Également, cet IDE permet la gestion d'un projet maven ce qui nous sera parfaitement adapté.
 
 Voici les 4 contraintes que nous avons déterminées :
 
