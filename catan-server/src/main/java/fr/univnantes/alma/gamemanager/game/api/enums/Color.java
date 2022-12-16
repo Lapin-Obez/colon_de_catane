@@ -1,4 +1,4 @@
-package fr.univnantes.alma.modele.api.enums;
+package fr.univnantes.alma.gamemanager.game.api.enums;
 
 public enum Color {
     Bleu,

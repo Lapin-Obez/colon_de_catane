@@ -1,7 +1,10 @@
-package fr.univnantes.alma.modele.api;
+package fr.univnantes.alma.gamemanager.game.api;
 
-import fr.univnantes.alma.modele.api.enums.Resource;
-import fr.univnantes.alma.modele.api.exceptions.*;
+import fr.univnantes.alma.gamemanager.game.api.enums.Resource;
+import fr.univnantes.alma.gamemanager.game.api.exceptions.GameStatusException;
+import fr.univnantes.alma.gamemanager.game.api.exceptions.ImpossibleBuildException;
+import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughDevelopmentCardException;
+import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughResourcesException;
 
 import java.util.List;
 

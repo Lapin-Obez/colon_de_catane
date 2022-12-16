@@ -1,15 +1,14 @@
-package fr.univnantes.alma.modele.impl;
+package fr.univnantes.alma.gamemanager.game.impl;
 
-import fr.univnantes.alma.modele.api.Board;
-import fr.univnantes.alma.modele.api.Game;
-import fr.univnantes.alma.modele.api.Player;
-import fr.univnantes.alma.modele.api.Tile;
-import fr.univnantes.alma.modele.api.enums.Development;
-import fr.univnantes.alma.modele.api.enums.Resource;
-import fr.univnantes.alma.modele.api.exceptions.GameStatusException;
-import fr.univnantes.alma.modele.api.exceptions.ImpossibleBuildException;
-import fr.univnantes.alma.modele.api.exceptions.NotEnoughDevelopmentCardException;
-import fr.univnantes.alma.modele.api.exceptions.NotEnoughResourcesException;
+import fr.univnantes.alma.gamemanager.game.api.Board;
+import fr.univnantes.alma.gamemanager.game.api.Game;
+import fr.univnantes.alma.gamemanager.game.api.Player;
+import fr.univnantes.alma.gamemanager.game.api.enums.Development;
+import fr.univnantes.alma.gamemanager.game.api.enums.Resource;
+import fr.univnantes.alma.gamemanager.game.api.exceptions.GameStatusException;
+import fr.univnantes.alma.gamemanager.game.api.exceptions.ImpossibleBuildException;
+import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughDevelopmentCardException;
+import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughResourcesException;
 
 import java.util.List;
 import java.util.Map;
@@ -37,7 +36,7 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public void monopoly(Player player, Resource resource) throws GameStatusException, NotEnoughDevelopmentCardException  {
+    public void monopoly(Player player, Resource resource) throws GameStatusException, NotEnoughDevelopmentCardException {
 
     }
 

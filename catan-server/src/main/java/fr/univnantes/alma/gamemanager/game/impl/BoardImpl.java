@@ -1,10 +1,10 @@
-package fr.univnantes.alma.modele.impl;
+package fr.univnantes.alma.gamemanager.game.impl;
 
-import fr.univnantes.alma.modele.api.*;
-import fr.univnantes.alma.modele.api.enums.Color;
-import fr.univnantes.alma.modele.api.enums.ExchangeRate;
-import fr.univnantes.alma.modele.api.enums.Resource;
-import fr.univnantes.alma.modele.api.exceptions.ImpossibleBuildException;
+import fr.univnantes.alma.gamemanager.game.api.*;
+import fr.univnantes.alma.gamemanager.game.api.enums.Color;
+import fr.univnantes.alma.gamemanager.game.api.enums.ExchangeRate;
+import fr.univnantes.alma.gamemanager.game.api.enums.Resource;
+import fr.univnantes.alma.gamemanager.game.api.exceptions.ImpossibleBuildException;
 
 import java.util.*;
 

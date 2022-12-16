@@ -1,9 +1,9 @@
-package fr.univnantes.alma.modele.impl;
+package fr.univnantes.alma.gamemanager.game.impl;
 
-import fr.univnantes.alma.modele.api.Intersection;
-import fr.univnantes.alma.modele.api.Tile;
-import fr.univnantes.alma.modele.api.enums.Color;
-import fr.univnantes.alma.modele.api.enums.Resource;
+import fr.univnantes.alma.gamemanager.game.api.Intersection;
+import fr.univnantes.alma.gamemanager.game.api.Tile;
+import fr.univnantes.alma.gamemanager.game.api.enums.Color;
+import fr.univnantes.alma.gamemanager.game.api.enums.Resource;
 
 import java.util.List;
 import java.util.Map;

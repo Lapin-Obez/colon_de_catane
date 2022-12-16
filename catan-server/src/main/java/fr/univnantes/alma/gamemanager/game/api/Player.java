@@ -1,7 +1,11 @@
-package fr.univnantes.alma.modele.api;
+package fr.univnantes.alma.gamemanager.game.api;
 
-import fr.univnantes.alma.modele.api.enums.*;
-import fr.univnantes.alma.modele.api.exceptions.*;
+import fr.univnantes.alma.gamemanager.game.api.enums.Color;
+import fr.univnantes.alma.gamemanager.game.api.enums.Development;
+import fr.univnantes.alma.gamemanager.game.api.enums.Resource;
+import fr.univnantes.alma.gamemanager.game.api.enums.SpecialCard;
+import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughDevelopmentCardException;
+import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughResourcesException;
 
 public interface Player {
     int getNumberOfKnight();

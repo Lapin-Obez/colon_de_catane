@@ -1,6 +1,6 @@
-package fr.univnantes.alma.modele.api;
+package fr.univnantes.alma.gamemanager.game.api;
 
-import fr.univnantes.alma.modele.api.enums.Resource;
+import fr.univnantes.alma.gamemanager.game.api.enums.Resource;
 
 import java.util.Optional;
 

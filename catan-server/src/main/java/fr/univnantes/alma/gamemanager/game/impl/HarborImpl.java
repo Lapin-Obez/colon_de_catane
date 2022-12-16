@@ -1,8 +1,8 @@
-package fr.univnantes.alma.modele.impl;
+package fr.univnantes.alma.gamemanager.game.impl;
 
-import fr.univnantes.alma.modele.api.Harbor;
-import fr.univnantes.alma.modele.api.enums.Resource;
-import fr.univnantes.alma.modele.api.enums.ExchangeRate;
+import fr.univnantes.alma.gamemanager.game.api.Harbor;
+import fr.univnantes.alma.gamemanager.game.api.enums.ExchangeRate;
+import fr.univnantes.alma.gamemanager.game.api.enums.Resource;
 
 import java.util.Optional;
 

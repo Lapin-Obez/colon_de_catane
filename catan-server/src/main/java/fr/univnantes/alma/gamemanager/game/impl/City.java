@@ -1,7 +1,7 @@
-package fr.univnantes.alma.modele.impl;
+package fr.univnantes.alma.gamemanager.game.impl;
 
-import fr.univnantes.alma.modele.api.Construction;
-import fr.univnantes.alma.modele.api.enums.Color;
+import fr.univnantes.alma.gamemanager.game.api.Construction;
+import fr.univnantes.alma.gamemanager.game.api.enums.Color;
 
 public class City implements Construction {
 

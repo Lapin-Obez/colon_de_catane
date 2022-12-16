@@ -1,4 +1,4 @@
-package fr.univnantes.alma.modele.api;
+package fr.univnantes.alma.gamemanager.game.api;
 
 import java.util.Optional;
 

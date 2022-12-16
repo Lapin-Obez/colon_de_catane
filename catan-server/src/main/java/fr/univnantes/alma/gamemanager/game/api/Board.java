@@ -1,8 +1,8 @@
-package fr.univnantes.alma.modele.api;
+package fr.univnantes.alma.gamemanager.game.api;
 
-import fr.univnantes.alma.modele.api.enums.Color;
-import fr.univnantes.alma.modele.api.enums.Resource;
-import fr.univnantes.alma.modele.api.exceptions.ImpossibleBuildException;
+import fr.univnantes.alma.gamemanager.game.api.enums.Color;
+import fr.univnantes.alma.gamemanager.game.api.enums.Resource;
+import fr.univnantes.alma.gamemanager.game.api.exceptions.ImpossibleBuildException;
 
 import java.util.List;
 import java.util.Map;

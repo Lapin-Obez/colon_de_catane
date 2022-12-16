@@ -1,4 +1,4 @@
-package fr.univnantes.alma.modele.api.exceptions;
+package fr.univnantes.alma.gamemanager.game.api.exceptions;
 
 public class NotEnoughResourcesException extends Exception {
     public NotEnoughResourcesException(String message) {

@@ -1,6 +1,6 @@
-package fr.univnantes.alma.modele.api;
+package fr.univnantes.alma.gamemanager.game.api;
 
-import fr.univnantes.alma.modele.api.enums.Color;
+import fr.univnantes.alma.gamemanager.game.api.enums.Color;
 
 public interface Construction {
 

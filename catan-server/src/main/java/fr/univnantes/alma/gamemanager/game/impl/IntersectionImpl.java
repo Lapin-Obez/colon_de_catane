@@ -1,8 +1,8 @@
-package fr.univnantes.alma.modele.impl;
+package fr.univnantes.alma.gamemanager.game.impl;
 
-import fr.univnantes.alma.modele.api.Construction;
-import fr.univnantes.alma.modele.api.Harbor;
-import fr.univnantes.alma.modele.api.Intersection;
+import fr.univnantes.alma.gamemanager.game.api.Construction;
+import fr.univnantes.alma.gamemanager.game.api.Harbor;
+import fr.univnantes.alma.gamemanager.game.api.Intersection;
 
 import java.util.Optional;
 
