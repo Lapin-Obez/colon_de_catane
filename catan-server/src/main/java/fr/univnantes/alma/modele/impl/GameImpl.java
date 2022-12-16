@@ -35,6 +35,21 @@ public class GameImpl implements Game {
     }
 
     @Override
+    public void yearOfPlenty(Player player, Resource resource1, Resource resource2) throws GameStatusException, NotEnoughDevelopmentCardException {
+
+    }
+
+    @Override
+    public void roadBuildingCard(Player player) throws GameStatusException, NotEnoughDevelopmentCardException {
+
+    }
+
+    @Override
+    public void knightCard(Player player) throws GameStatusException, NotEnoughDevelopmentCardException {
+
+    }
+
+    @Override
     public void invention(Player player) {
 
     }
@@ -94,6 +109,11 @@ public class GameImpl implements Game {
 
     @Override
     public void maritimeTrade(Player player, Resource rDefausse, Resource rRecup) throws GameStatusException, NotEnoughResourcesException {
+
+    }
+
+    @Override
+    public void drawDevelopmentCard(Player player) throws GameStatusException, NotEnoughResourcesException {
 
     }
 }
