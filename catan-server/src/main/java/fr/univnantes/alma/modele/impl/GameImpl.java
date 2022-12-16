@@ -14,9 +14,9 @@ import java.util.Map;
 
 public class GameImpl implements Game {
 
-    private Map<Integer, Developpement> piocheDeveloppement;
-    private Map<Integer, Resource> piocheRessource;
-    private Player gagnant;
+    private Map<Integer, Developpement> deckDeveloppement;
+    private Map<Integer, Resource> deckResource;
+    private Player winner;
 
     @Override
     public void calculateStrongestArmy() {
