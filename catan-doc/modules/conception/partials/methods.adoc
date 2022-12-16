@@ -7,7 +7,9 @@
 |`void construireColonie(Joueur joueur, int idIntersection)`
 a|
 Construit une colonie de la `Couleur` du `joueur` donné, à l' `intersection` donnée.
-Appelle `Plateau.construireColonie()`.
+
+Appelle `Plateau.construireColonie()`. Cette méthode retourne un potentiel port.
+Si ce port existe, appelle `joueur.ajoutePort(port)`.
 
 Exceptions :
 
@@ -125,8 +127,10 @@ Exceptions :
 |Méthode |Documentation
 
 
-|`void construireColonie(Couleur couleur, int idIntersection)`
+|`Optional<Port> construireColonie(Couleur couleur, int idIntersection)`
 a| Construit une colonie de la `couleur` donnée à l'intersection donnée.
+
+Retourne le potentiel port de l'intersection.
 
 Exceptions :
 
@@ -189,6 +193,9 @@ Exception :
 |`Map<Intersection, Couleur> getVoisines()`
 |Renvoie les intersections voisines.
 
+|`Optional<Port> getPort()`
+|Renvoie le potentiel port de l'intersection.
+
 |===
 
 
@@ -229,6 +236,7 @@ Si le joueur possède un port de taux d'échange 2-1 pour une ressource spécifi
 deux cartes de cette ressource.
 
 Regarde parmis les ports du joueur le taux d'échange correspondant à la ressource `rDefausse`.
+Appelle `port.echange(ressource)` pour connaître le nombre de cartes que le joueur devra défausser.
 
 Exceptions :
 
@@ -282,6 +290,16 @@ Tant qu'on n'a pas supprimé la moitié des ressources, on supprime la moitié d
 un par un. Si le nombre de ressources pour un type est impair, on arrondit le nombre de ressources restantes
 à la borne supérieure (e.g. pour 3 ressources de base, on se retrouve avec 2).
 
+
+|`void ajoutePort(Port port)`
+a| Ajoute un port de la façon suivante.
+Si le port est de taux 2:1 pour une ressource spécifique, ajoute le port pour cette ressource.
+Si le port est de taux 3:1, vérifie pour chaque ressource si le taux est avantageux
+et l'ajoute pour cette ressource si tel est le cas.
+Si le port est de taux 4:1, ne fait rien car c'est le taux d'échange de base.
+
+Appelle `port1.aMeilleurTaux(port2)` pour savoir si un port a un taux plus avantageux qu'un autre.
+
 |===
 
 
@@ -296,5 +314,23 @@ un par un. Si le nombre de ressources pour un type est impair, on arrondit le no
 
 |`int getPuissance()`
 | Renvoie la puissance de la construction. 1 pour une colonie, 2 pour une ville.
+
+|===
+
+
+= Interface Port
+
+[options="header"]
+|===
+|Méthode |Documentation
+
+|`Optional<Ressource> getRessource()`
+| Retourne la potentielle ressource spécifique du port.
+
+|`int echange(Ressource ressource)`
+| Retourne le nombre de cartes ressource que le joueur devra défausser s'il veut échanger la `ressource` donnée avec ce port.
+
+|`boolean aMeilleurTaux(Port other)`
+| Compare le taux du port et d'un autre port et renvoie vrai si le premier a un meilleur taux.
 
 |===
