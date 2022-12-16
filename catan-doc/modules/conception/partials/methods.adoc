@@ -226,22 +226,6 @@ Pour chacune de ces constructions, récupérer sa couleur et sa `puissance`, et 
 |`int getValeurJeton()`
 | Renvoie la valeur du jeton de la tuile.
 
-
-|`void commerceMaritime(Ressource rDefausse, Ressource rRecup)`
-a| Permet d'échanger une ressource `rRecup` en défaussant de 2 à 4 ressources `rDeffausse`.
-
-De base, on doit défausser 4 ressources identiques pour en obtenir 1 de son choix.
-Si le joueur possède un port de taux d'échange 3-1, on doit en défausser 3.
-Si le joueur possède un port de taux d'échange 2-1 pour une ressource spécifique, il peut défausser
-deux cartes de cette ressource.
-
-Regarde parmis les ports du joueur le taux d'échange correspondant à la ressource `rDefausse`.
-Appelle `port.echange(ressource)` pour connaître le nombre de cartes que le joueur devra défausser.
-
-Exceptions :
-
-- `NotEnoughRessourcesException` si le joueur n'a pas assez de ressource `rDeffausse`.
-
 |===
 
 
@@ -289,6 +273,22 @@ Si le joueur a un nombre impair de ressources, on arrondit le nombre de ressourc
 Tant qu'on n'a pas supprimé la moitié des ressources, on supprime la moitié de chaque type de ressource,
 un par un. Si le nombre de ressources pour un type est impair, on arrondit le nombre de ressources restantes
 à la borne supérieure (e.g. pour 3 ressources de base, on se retrouve avec 2).
+
+
+|`void commerceMaritime(Ressource rDefausse, Ressource rRecup)`
+a| Permet d'échanger une ressource `rRecup` en défaussant de 2 à 4 ressources `rDeffausse`.
+
+De base, on doit défausser 4 ressources identiques pour en obtenir 1 de son choix.
+Si le joueur possède un port de taux d'échange 3-1, on doit en défausser 3.
+Si le joueur possède un port de taux d'échange 2-1 pour une ressource spécifique, il peut défausser
+deux cartes de cette ressource.
+
+Regarde parmis les ports du joueur le taux d'échange correspondant à la ressource `rDefausse`.
+Appelle `port.echange(ressource)` pour connaître le nombre de cartes que le joueur devra défausser.
+
+Exceptions :
+
+- `NotEnoughRessourcesException` si le joueur n'a pas assez de ressource `rDeffausse`.
 
 
 |`void ajoutePort(Port port)`
