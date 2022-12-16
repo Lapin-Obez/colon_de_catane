@@ -34,12 +34,21 @@ enum SpecialCard {
     ArmeePlusPuissante
 }
 
+enum GameStatus {
+    SetUp
+    ResourceProduction
+    Robber
+    TradeAndBuild
+    GameStop
+}
+
 class Game {
     - Map<Integer, Development> deckDevelopment
     - Map<Integer, Resource> deckResource
     - List<Player> listOfPlayers
     - Player winner
     - Board board
+    - GameStatus status
 
     + void calculateStrongestArmy()
     + void calculateLongestRoad()
