@@ -7,6 +7,7 @@ import fr.univnantes.alma.modele.api.enums.Development;
 import fr.univnantes.alma.modele.api.enums.Resource;
 import fr.univnantes.alma.modele.api.exceptions.GameStatusException;
 import fr.univnantes.alma.modele.api.exceptions.ImpossibleBuildException;
+import fr.univnantes.alma.modele.api.exceptions.NotEnoughDevelopmentCardException;
 import fr.univnantes.alma.modele.api.exceptions.NotEnoughResourcesException;
 
 import java.util.List;
@@ -29,12 +30,7 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public List<Player> playStealer(Tile tile) {
-        return null;
-    }
-
-    @Override
-    public void monopoly(Player player, Resource resource) {
+    public void monopoly(Player player, Resource resource) throws GameStatusException, NotEnoughDevelopmentCardException  {
 
     }
 
@@ -97,7 +93,7 @@ public class GameImpl implements Game {
     }
 
     @Override
-    public void maritimeTrade(Player player, Resource rDefausse, Resource rRecup) {
+    public void maritimeTrade(Player player, Resource rDefausse, Resource rRecup) throws GameStatusException, NotEnoughResourcesException {
 
     }
 }

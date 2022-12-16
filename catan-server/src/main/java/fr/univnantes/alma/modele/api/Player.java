@@ -1,10 +1,7 @@
 package fr.univnantes.alma.modele.api;
 
-import fr.univnantes.alma.modele.api.enums.Color;
-import fr.univnantes.alma.modele.api.enums.Development;
-import fr.univnantes.alma.modele.api.enums.Resource;
-import fr.univnantes.alma.modele.api.enums.SpecialCard;
-import fr.univnantes.alma.modele.api.exceptions.NotEnoughResourcesException;
+import fr.univnantes.alma.modele.api.enums.*;
+import fr.univnantes.alma.modele.api.exceptions.*;
 
 public interface Player {
     int getNumberOfKnight();
@@ -16,8 +13,6 @@ public interface Player {
     void removeSpecialCard(SpecialCard fiche);
 
     void addDevelopmentCard(Development carte);
-
-    int deleteResource(Resource resource);
 
     /**
      * Retourne la couleur du joueur.
@@ -70,10 +65,21 @@ public interface Player {
     /**
      * DOC TODO
      */
-    void maritimeTrade(Resource rDefausse, Resource rRecup);
+    void maritimeTrade(Resource rDefausse, Resource rRecup) throws NotEnoughResourcesException;
 
     /**
      * DOC TODO
      */
     void addHarbour(Harbour harbour);
+
+    /**
+     * DOC TODO
+     */
+    int deleteResource(Resource resource);
+
+    /**
+     * DOC TODO
+     */
+    void removeDevelopmentCard(Development type) throws NotEnoughDevelopmentCardException;
+
 }

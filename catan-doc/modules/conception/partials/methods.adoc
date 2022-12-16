@@ -113,8 +113,19 @@ Appelle `joueur.commerceMaritime()`.
 
 Exceptions :
 
-- `GameStatusException` si le voleur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
+- `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
 - `NotEnoughRessourcesException` si le joueur n'a pas assez de ressource `rDeffausse`.
+
+
+|`void monopoly(Player player, Resource resource)`
+a| Permet à un joueur de jouer la carte Monopole.
+
+Appelle `player.deleteRessource()` pour tous les joueurs sauf le joueur actuel et donne au joueur actuel la somme des ressources retirées.
+
+Exceptions :
+
+- `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel
+- `NotEnoughDevelopmentCardException` si le joueur n'a pas de carte Monopole.
 
 |===
 
@@ -264,6 +275,7 @@ Exceptions :
 
 - `NotEnoughRessourcesException` si le joueur n'a pas de ressources.
 
+
 |`void deleteHalfRessources()`
 a| Supprime la moitié des ressources du joueur.
 
@@ -273,6 +285,10 @@ Si le joueur a un nombre impair de ressources, on arrondit le nombre de ressourc
 Tant qu'on n'a pas supprimé la moitié des ressources, on supprime la moitié de chaque type de ressource,
 un par un. Si le nombre de ressources pour un type est impair, on arrondit le nombre de ressources restantes
 à la borne supérieure (e.g. pour 3 ressources de base, on se retrouve avec 2).
+
+
+|`void deleteResource(Resource resource)`
+| Retire l'entièreté du nombre de ressources de type `resource` et renvoie le nombre de ressources retirées.
 
 
 |`void commerceMaritime(Ressource rDefausse, Ressource rRecup)`
@@ -299,6 +315,13 @@ et l'ajoute pour cette ressource si tel est le cas.
 Si le port est de taux 4:1, ne fait rien car c'est le taux d'échange de base.
 
 Appelle `port1.aMeilleurTaux(port2)` pour savoir si un port a un taux plus avantageux qu'un autre.
+
+
+|`void removeDevelopmentCard(Development type)`
+a| Supprime de la main d'un joueur une carte Development de type `type`.
+
+Exceptions :
+- `NotEnoughDevelopmentCardException` si le joueur n'a pas de carte Development de type `type`.
 
 |===
 
