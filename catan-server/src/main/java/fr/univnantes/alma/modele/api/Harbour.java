@@ -21,4 +21,5 @@ public interface Harbour {
      */
     boolean haveBetterRate(Harbour other);
 
+
 }

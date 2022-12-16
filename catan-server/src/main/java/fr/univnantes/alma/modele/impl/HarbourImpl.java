@@ -7,8 +7,13 @@ import fr.univnantes.alma.modele.api.enums.ExchangeRate;
 import java.util.Optional;
 
 public class HarbourImpl implements Harbour {
-    private ExchangeRate taux;
-    private Resource resource;
+    private final ExchangeRate taux;
+    private final Resource resource;
+
+    public HarbourImpl(ExchangeRate taux, Resource resource) {
+        this.taux = taux;
+        this.resource = resource;
+    }
 
     @Override
     public Optional<Resource> getResource() {

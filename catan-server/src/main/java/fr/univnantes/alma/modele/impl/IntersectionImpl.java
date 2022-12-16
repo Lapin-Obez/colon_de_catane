@@ -24,7 +24,10 @@ public class IntersectionImpl implements Intersection {
     public Construction getConstruction() {
         return null;
     }
-
+    @Override
+    public void setHarbour(Harbour h){
+        this.harbour = h;
+    }
     @Override
     public Optional<Harbour> getHarbour() {
         return Optional.ofNullable(this.harbour);

@@ -2,6 +2,7 @@ package fr.univnantes.alma.modele.impl;
 
 import fr.univnantes.alma.modele.api.*;
 import fr.univnantes.alma.modele.api.enums.Color;
+import fr.univnantes.alma.modele.api.enums.ExchangeRate;
 import fr.univnantes.alma.modele.api.enums.Resource;
 import fr.univnantes.alma.modele.api.exceptions.ImpossibleBuildException;
 
@@ -18,12 +19,62 @@ public class BoardImpl implements Board {
         this.intersections = new HashMap<>();
         //Création de la liste des intersections
         for (int i=1; i<=NBINTERSECTIONS;i++){
-            this.intersections.put(i,new IntersectionImpl());
+            Intersection inter = new IntersectionImpl();
+            this.intersections.put(i,inter);
         }
+        addHarbour();
         this.tiles = new HashMap<>();
         TilesConstructor();
         this.routes= new HashMap<>();
         roadConstructor();
+    }
+
+    private void addHarbour(){
+        Harbour harbour = new HarbourImpl(ExchangeRate.trois,null);
+        Intersection inter = this.intersections.get(1);
+        inter.setHarbour(harbour);
+        inter = this.intersections.get(2);
+        inter.setHarbour(harbour);
+        harbour = new HarbourImpl(ExchangeRate.deux,Resource.Laine);
+        inter = this.intersections.get(4);
+        inter.setHarbour(harbour);
+        inter = this.intersections.get(5);
+        inter.setHarbour(harbour);
+        harbour = new HarbourImpl(ExchangeRate.trois,null);
+        inter = this.intersections.get(15);
+        inter.setHarbour(harbour);
+        inter = this.intersections.get(16);
+        inter.setHarbour(harbour);
+        harbour = new HarbourImpl(ExchangeRate.trois,null);
+        inter = this.intersections.get(27);
+        inter.setHarbour(harbour);
+        inter = this.intersections.get(38);
+        inter.setHarbour(harbour);
+        harbour = new HarbourImpl(ExchangeRate.deux,Resource.Argile);
+        inter = this.intersections.get(46);
+        inter.setHarbour(harbour);
+        inter = this.intersections.get(47);
+        inter.setHarbour(harbour);
+        harbour = new HarbourImpl(ExchangeRate.deux,Resource.Bois);
+        inter = this.intersections.get(51);
+        inter.setHarbour(harbour);
+        inter = this.intersections.get(52);
+        inter.setHarbour(harbour);
+        harbour = new HarbourImpl(ExchangeRate.trois,null);
+        inter = this.intersections.get(48);
+        inter.setHarbour(harbour);
+        inter = this.intersections.get(49);
+        inter.setHarbour(harbour);
+        harbour = new HarbourImpl(ExchangeRate.deux,Resource.Blé);
+        inter = this.intersections.get(39);
+        inter.setHarbour(harbour);
+        inter = this.intersections.get(29);
+        inter.setHarbour(harbour);
+        harbour = new HarbourImpl(ExchangeRate.deux,Resource.Minerai);
+        inter = this.intersections.get(8);
+        inter.setHarbour(harbour);
+        inter = this.intersections.get(18);
+        inter.setHarbour(harbour);
     }
     //fill tiles map
     private void TilesConstructor(){
