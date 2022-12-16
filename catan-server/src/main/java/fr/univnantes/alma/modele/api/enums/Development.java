@@ -1,6 +1,6 @@
 package fr.univnantes.alma.modele.api.enums;
 
-public enum Developpement {
+public enum Development {
     PointsDeVictoire,
     Chevalier,
     Monopole,

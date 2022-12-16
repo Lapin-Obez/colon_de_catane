@@ -1,9 +1,9 @@
 package fr.univnantes.alma.modele.impl;
 
-import fr.univnantes.alma.modele.api.Player;
 import fr.univnantes.alma.modele.api.Harbour;
+import fr.univnantes.alma.modele.api.Player;
 import fr.univnantes.alma.modele.api.enums.Color;
-import fr.univnantes.alma.modele.api.enums.Developpement;
+import fr.univnantes.alma.modele.api.enums.Development;
 import fr.univnantes.alma.modele.api.enums.Resource;
 import fr.univnantes.alma.modele.api.enums.SpecialCard;
 import fr.univnantes.alma.modele.api.exceptions.NotEnoughResourcesException;
@@ -14,10 +14,10 @@ import java.util.Map;
 public class PlayerImpl implements Player {
 
     private Color color;
-    private Map<Integer, Resource> mainRessource;
-    private Map<Integer, Developpement> mainDeveloppement;
-    private int nbChevaliers;
-    private List<SpecialCard> fichesSpeciales;
+    private Map<Integer, Resource> mainResource;
+    private Map<Integer, Development> mainDevelopment;
+    private int numberOfKnight;
+    private List<SpecialCard> specialCards;
 
     @Override
     public void maritimeTrade(Resource rDefausse, Resource rRecup) {
@@ -45,17 +45,17 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void grantSpecialCard(SpecialCard fiche) {
+    public void grantSpecialCard(SpecialCard card) {
 
     }
 
     @Override
-    public void removeSpecialCard(SpecialCard fiche) {
+    public void removeSpecialCard(SpecialCard card) {
 
     }
 
     @Override
-    public void addDevelopmentCard(Developpement carte) {
+    public void addDevelopmentCard(Development card) {
 
     }
 

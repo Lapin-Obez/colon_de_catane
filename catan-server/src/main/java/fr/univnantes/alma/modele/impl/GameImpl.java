@@ -1,9 +1,9 @@
 package fr.univnantes.alma.modele.impl;
 
-import fr.univnantes.alma.modele.api.Player;
 import fr.univnantes.alma.modele.api.Game;
+import fr.univnantes.alma.modele.api.Player;
 import fr.univnantes.alma.modele.api.Tile;
-import fr.univnantes.alma.modele.api.enums.Developpement;
+import fr.univnantes.alma.modele.api.enums.Development;
 import fr.univnantes.alma.modele.api.enums.Resource;
 import fr.univnantes.alma.modele.api.exceptions.GameStatusException;
 import fr.univnantes.alma.modele.api.exceptions.ImpossibleBuildException;
@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class GameImpl implements Game {
 
-    private Map<Integer, Developpement> deckDeveloppement;
+    private Map<Integer, Development> deckDevelopment;
     private Map<Integer, Resource> deckResource;
     private Player winner;
 

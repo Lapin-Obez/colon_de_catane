@@ -1,21 +1,27 @@
 package fr.univnantes.alma.modele.api;
 
 import fr.univnantes.alma.modele.api.enums.Color;
-import fr.univnantes.alma.modele.api.enums.Developpement;
+import fr.univnantes.alma.modele.api.enums.Development;
 import fr.univnantes.alma.modele.api.enums.Resource;
 import fr.univnantes.alma.modele.api.enums.SpecialCard;
 import fr.univnantes.alma.modele.api.exceptions.NotEnoughResourcesException;
 
 public interface Player {
     int getNumberOfKnight();
+
     void playKnight();
+
     void grantSpecialCard(SpecialCard fiche);
+
     void removeSpecialCard(SpecialCard fiche);
-    void addDevelopmentCard(Developpement carte);
+
+    void addDevelopmentCard(Development carte);
+
     int deleteResource(Resource resource);
 
     /**
      * Retourne la couleur du joueur.
+     *
      * @return la Color
      */
     Color getColor();
