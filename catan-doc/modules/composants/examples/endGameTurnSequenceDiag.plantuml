@@ -96,36 +96,68 @@ else #LightGreen idGame and idClient are correct
     
     activate GameManager
 
-    GameManager --> WSServer : Object: EndTurnEvent
-    deactivate GameManager
-    
-    
-    group #LightYellow Notify/Update [Only for current player]
-      WSServer --> WSClient : <<GameEvent: EndTurnEvent>>
-      WSClient --> GameEventHandler : GameEvent: EndTurnEvent
-      activate GameEventHandler
-  
-      GameEventHandler --> GUI : ShowEndTurn()
-      GameEventHandler --> GUI : ShowNextPlayer()
-      deactivate GameEventHandler
-    end
-    
-    group #LightYellow Notify/Update [Only for next player]
-      WSServer --> WSClient : <<GameEvent: EndTurnEvent>>
-      WSClient --> GameEventHandler : GameEvent: EndTurnEvent
-      activate GameEventHandler
-  
-      GameEventHandler --> GUI : ShowMyGameTurn()
-      deactivate GameEventHandler
-    end
-    
-    group #LightYellow Notify/Update [For other players]
-      WSServer --> WSClient : <<GameEvent: EndTurnEvent>>
-      WSClient --> GameEventHandler : GameEvent: EndTurnEvent
-      activate GameEventHandler
-  
-      GameEventHandler --> GUI : ShowNextPlayer()
-      deactivate GameEventHandler
+    GameManager --> GameManager : checkForWin()
+
+    alt #LightGreen Player did win
+          GameManager --> WSServer : Object: EndGameEvent
+
+          deactivate GameManager
+
+          group #LightYellow Notify/Update [Only for loosing player]
+            WSServer --> WSClient : <<GameEvent: EndGameEvent>>
+            WSClient --> GameEventHandler : GameEvent: EndGameEvent
+            deactivate WSServer
+            deactivate WSClient
+            activate GameEventHandler
+
+            GameEventHandler --> GUI : ShowEndOfGame()
+            GameEventHandler --> GUI : ShowLoosingGame()
+            deactivate GameEventHandler
+          end
+
+          group #LightYellow Notify/Update [Only for winning player]
+            WSServer --> WSClient : <<GameEvent: EndGameEvent>>
+            WSClient --> GameEventHandler : GameEvent: EndGameEvent
+            deactivate WSServer
+            deactivate WSClient
+            activate GameEventHandler
+
+            GameEventHandler --> GUI : ShowEndOfGame()
+            GameEventHandler --> GUI : ShowWinningGame()
+            deactivate GameEventHandler
+          end
+
+    else #LightGreen Player did not win
+      activate GameManager
+      GameManager --> WSServer : Object: EndTurnEvent
+      deactivate GameManager
+      group #LightYellow Notify/Update [Only for current player]
+        WSServer --> WSClient : <<GameEvent: EndTurnEvent>>
+        WSClient --> GameEventHandler : GameEvent: EndTurnEvent
+        activate GameEventHandler
+
+        GameEventHandler --> GUI : ShowEndTurn()
+        GameEventHandler --> GUI : ShowNextPlayer()
+        deactivate GameEventHandler
+      end
+
+      group #LightYellow Notify/Update [Only for next player]
+        WSServer --> WSClient : <<GameEvent: EndTurnEvent>>
+        WSClient --> GameEventHandler : GameEvent: EndTurnEvent
+        activate GameEventHandler
+
+        GameEventHandler --> GUI : ShowMyGameTurn()
+        deactivate GameEventHandler
+      end
+
+      group #LightYellow Notify/Update [For other players]
+        WSServer --> WSClient : <<GameEvent: EndTurnEvent>>
+        WSClient --> GameEventHandler : GameEvent: EndTurnEvent
+        activate GameEventHandler
+
+        GameEventHandler --> GUI : ShowNextPlayer()
+        deactivate GameEventHandler
+      end
     end
   end
 end

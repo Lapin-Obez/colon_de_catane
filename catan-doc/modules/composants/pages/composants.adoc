@@ -121,15 +121,10 @@ include::../examples/bankExchangeSequenceDiag.plantuml[]
 include::../examples/throwDiceSequenceDiag.plantuml[]
 ----
 
-.Fin du tour (Cf Fin du tour jeu d'un joueur, problème de génération avec PlantUML)
+.Fin du tour (problème de génération avec PlantUML, la partie basse du diagramme n'appartait pas correctement)
 [plantuml]
 ----
 include::../examples/endGameTurnSequenceDiag.plantuml[]
 ----
 
-.Fin du jeu (Cf Fin du jeu)
-[plantuml]
-----
-include::../examples/endGameSequenceDiag.plantuml[]
-----
 
