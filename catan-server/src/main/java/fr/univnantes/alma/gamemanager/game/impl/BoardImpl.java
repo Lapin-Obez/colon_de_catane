@@ -9,23 +9,23 @@ import fr.univnantes.alma.gamemanager.game.api.exceptions.ImpossibleBuildExcepti
 import java.util.*;
 
 public class BoardImpl implements Board {
-    private final Integer NBINTERSECTIONS = 54;
-    private Integer idTuileVoleur;
-    private Map<Integer, Map<Integer, Color>> routes;
+    private final Integer INTERSECTIONSNUMBER = 54;
+    private Integer stealerTileID;
+    private Map<Integer, Map<Integer, Color>> roads;
     private Map<Integer, Intersection> intersections;
     private Map<Integer, Tile> tiles;
 
     public BoardImpl() {
         this.intersections = new HashMap<>();
         //Création de la liste des intersections
-        for (int i=1; i<=NBINTERSECTIONS;i++){
+        for (int i = 1; i<= INTERSECTIONSNUMBER; i++){
             Intersection inter = new IntersectionImpl();
             this.intersections.put(i,inter);
         }
         addHarbour();
         this.tiles = new HashMap<>();
         TilesConstructor();
-        this.routes= new HashMap<>();
+        this.roads = new HashMap<>();
         roadConstructor();
     }
 
@@ -94,7 +94,7 @@ public class BoardImpl implements Board {
             }
             if(resources.get(0)==null){
                 tokenVal = 0;
-                this.idTuileVoleur = i;
+                this.stealerTileID = i;
             }else{
                 tokenVal = tokenValue.remove(0);
             }
@@ -170,7 +170,7 @@ public class BoardImpl implements Board {
                     buildIntersectionLine(39,47,1,8,10);
                     break;
                 default:
-                    buildIntersectionLine(48,NBINTERSECTIONS,1,null,8);
+                    buildIntersectionLine(48, INTERSECTIONSNUMBER,1,null,8);
                     break;
             }
         }
@@ -209,7 +209,7 @@ public class BoardImpl implements Board {
                     }
                 }
             }
-            this.routes.put(i,map);
+            this.roads.put(i,map);
         }
     }
     @Override
@@ -217,43 +217,88 @@ public class BoardImpl implements Board {
         return 0;
     }
 
-    @Override
-    public void moveStealer(int tileID) {
-
-    }
 
     @Override
     public Optional<Harbor> buildColony(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException {
-        return Optional.empty();
+        if (idIntersection<1 || idIntersection> INTERSECTIONSNUMBER){
+            throw new IllegalArgumentException("Incorrect intersection ID");
+        }
+        Map<Integer,Color> roadAround = roads.get(idIntersection);
+        Set neihbor = roadAround.keySet();
+        for (Object i: neihbor) {
+            Intersection tmp = intersections.get(i);
+            if(tmp.getConstruction()!=null){
+                throw new ImpossibleBuildException("It's too close from an other construction");
+            }
+        }
+        Intersection inter = intersections.get(idIntersection);
+        inter.setConstruction(new Colony(color));
+        return Optional.ofNullable(inter.getHarbour().get());
     }
 
     @Override
     public void buildCity(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException {
-
+        if (idIntersection<1 || idIntersection> INTERSECTIONSNUMBER){
+            throw new IllegalArgumentException("Incorrect intersection ID");
+        }
+        Intersection inter = intersections.get(idIntersection);
+        if(inter.getConstruction().getClass()!=Colony.class){
+            throw new ImpossibleBuildException("You cannot upgrade this");
+        }
+        inter.setConstruction(new City(color));
     }
 
     @Override
     public void buildRoad(Color color, int intersectionA, int intersectionB) throws IllegalArgumentException, ImpossibleBuildException {
-
+        if (intersectionA<1 || intersectionA> INTERSECTIONSNUMBER){
+            throw new IllegalArgumentException("Incorrect intersection ID");
+        }
+        if (intersectionB<1 || intersectionB> INTERSECTIONSNUMBER){
+            throw new IllegalArgumentException("Incorrect intersection ID");
+        }
+        if(roads.get(intersectionA).get(intersectionB)!=null){
+            throw new ImpossibleBuildException("You cannot build a road, there is already one");
+        }
+        roads.get(intersectionA).replace(intersectionB,color);
     }
 
     @Override
     public Map<Color, Map<Resource, Integer>> distributeResources(int tokenValue) {
-
-        return null;
+        Map<Color, Map<Resource, Integer>> map = new HashMap<>();
+        for(int i = 1;i<=19;i++){
+            Tile t = tiles.get(i);
+            if(t.getTokenValue() == tokenValue){
+                map.putAll(t.distributeResources());
+            }
+        }
+        return map;
     }
 
     @Override
-    public List<Player> playStealer(int tileID) throws IllegalArgumentException {
-        return null;
+    public List<Color> playStealer(int tileID) throws IllegalArgumentException {
+        if(tileID<1||tileID>19){
+            throw new IllegalArgumentException("This tile does not exist");
+        }
+        this.stealerTileID = tileID;
+        Tile tile = tiles.get(tileID);
+        List<Intersection> li = tile.getIntersections();
+        List<Color> players = new LinkedList<>();
+        for (Intersection i: li) {
+            if(i.getConstruction()!=null){
+                if(!players.contains(i.getConstruction().getColor())){
+                    players.add(i.getConstruction().getColor());
+                }
+            }
+        }
+        return players;
     }
 
-    public Integer getIdTuileVoleur() {
-        return idTuileVoleur;
+    public Integer getStealerTileID() {
+        return stealerTileID;
     }
 
-    public Map<Integer, Map<Integer, Color>> getRoutes() {
-        return routes;
+    public Map<Integer, Map<Integer, Color>> getRoads() {
+        return roads;
     }
 
     public Map<Integer, Intersection> getIntersections() {

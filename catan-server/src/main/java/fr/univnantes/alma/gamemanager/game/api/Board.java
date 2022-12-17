@@ -10,7 +10,6 @@ import java.util.Optional;
 
 public interface Board {
     int getRoadLength(Color color);
-    void moveStealer(int tileID);
 
     /**
      * Construit une colonie de la `color` donnée à l'intersection donnée.
@@ -55,5 +54,5 @@ public interface Board {
      * @return la liste des Color présentes sur la tuile volée.
      * @throws IllegalArgumentException si la tuile n'est pas valide.
      */
-    List<Player> playStealer(int tileID) throws IllegalArgumentException;
+    List<Color> playStealer(int tileID) throws IllegalArgumentException;
 }
