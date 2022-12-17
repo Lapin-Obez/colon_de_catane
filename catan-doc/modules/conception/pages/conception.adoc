@@ -96,9 +96,16 @@ NOTE: TODO!
 NOTE: Décrivez dans cette partie les patrons logiciels utilisés pour mettre en œuvre l'application.
 
 
-=== Patron de conception "A"
+=== Patron de conception "Fabricateur"
 
-NOTE: TODO!
+Ici, le patron de conception de la fabrique est utilisé dans pour notre **GameFactory**, en effet ce dernier va nous permettre d'obtenir un objet GameLobby initialisé et prêt à être utilisé pour que des joueurs puissent rejoindre et jouer la Game créée.
+
+
+=== Patron de conception "Façade"
+
+Dans notre projet, le patron de conception Façade serait utilisé dans la réalisation du composant gérant l'API web REST de notre application.
+
+
 
 === Patron architectural "B"
 

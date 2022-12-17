@@ -257,60 +257,6 @@ NOTE: Décrivez les exigences associées à toute fonction de communication requ
 
 Les communications entre le client et le serveur de jeu doivent utiliser des Websockets.
 
-[#features]
-== Exigences fonctionnelles
-
-[NOTE]
-====
-Décrire les exigences fonctionnelles du système qui peuvent être exprimées et langage naturel. Pour plusieurs applications, c’est la partie principale de la SEL et son organisation doit, par conséquent, être bien réfléchie. Elle est habituellement hiérarchisée par caractéristiques, mais elle peut l’être, par utilisateur ou par sous-système. Les exigences fonctionnelles peuvent inclure les caractéristiques, les capacités et la sécurité.
-
-Lorsque des outils de développement, tels des référentiels d’exigences ou des outils de modélisation sont utilisés, on peut référer à ces données en indiquant l’endroit et le nom de cet outil]
-====
-
-[TIP]
-====
-Ici, il ne s'agit plus de décrire le domaine métier, mais de spécifier ce que le système *doit* faire.
-
-N'oubliez pas qu'il s'agit d'une spécification de que le système *doit* faire et non pas de *comment* il le fait.
-====
-
-=== Fonctionnalité A
-
-[NOTE]
-====
-Ajoutez la description de la fonctionnalité "A".
-====
-
-TIP: Ne dites pas vraiment "Fonctionnalité A". Indiquez le nom de la fonctionnalité en quelques mots seulement.
-
-==== Description et priorité
-
-[NOTE]
-====
-Fournissez une brève description de la fonctionnalité et indiquez si elle a une priorité élevée, moyenne ou faible. 
-Vous pouvez également inclure des évaluations spécifiques des éléments de priorité, comme les avantages, les pénalités, les coûts et les risques (chacun étant évalué sur une échelle relative allant de 1 à 9).
-====
-
-==== Séquences de Stimulus/Réponse
-
-NOTE: Liste des séquences d'actions de l'utilisateur et des réponses du système qui stimulent le comportement défini pour cette fonctionnalité. Celles-ci correspondront aux éléments de dialogue associés aux cas d'utilisation.
-
-==== Exigences fonctionnelles
-
-[NOTE]
-====
-Détaillez les exigences fonctionnelles détaillées associées à cette fonctionnalité. Il s'agit des capacités logicielles qui doivent être présentes pour permettre à l'utilisateur d'effectuer les services fournis par la fonction ou d'exécuter le cas d'utilisation. 
-
-Indiquez comment le produit doit réagir aux conditions d'erreur prévues ou aux entrées non valides. Les exigences doivent être concises, complètes, non ambiguës, vérifiables et nécessaires. 
-
-Utilisez la mention "A faire" pour indiquer que les informations nécessaires ne sont pas encore disponibles.
-
-Chaque exigence doit être identifiée de manière unique par un numéro de séquence ou une étiquette significative.
-
-* REQ-1:	
-* REQ-2:
-====
-
 === Fonctionnalité "Mettre en place une partie pour les débutants"
 
 Cette fonctionnalité doit permettre de mettre en place une partie pour des débutants avec les spécifications requises par le jeu de Catane pour une partie débutante.
@@ -318,6 +264,13 @@ Cette fonctionnalité doit permettre de mettre en place une partie pour des déb
 ==== Description sous la forme d'un cas d'utilisation
 
 include::partial$beginner_setup.adoc[]
+
+==== Séquences de Stimulus/Réponse
+* Stimulus: Trois à quatre joueurs sont actuellement connectés et le premier joueur connecté lance la partie en mode débutant
+* Réponse: Le serveur lance la partie et initialise l'affichage
+
+==== Exigences fonctionnelles
+* REQ-1: Si une erreur est levée lors de ce processus, les clients connectés sont prevenus par un message d'erreur, ils sont déconnectés et la partie crée est détruite
 
 
 === Fonctionnalité "Mettre en place une partie avec la manière classique"
@@ -328,6 +281,14 @@ Cette fonctionnalité doit permettre de mettre en place une partie classique pou
 
 include::partial$classic_setup.adoc[]
 
+==== Séquences de Stimulus/Réponse
+* Stimulus: Trois à quatre joueurs sont actuellement connectés et le premier joueur connecté lance la partie en mode classic
+* Réponse: Le serveur lance la partie et initialise l'affichage
+
+==== Exigences fonctionnelles
+* REQ-1: Si une erreur est levée lors de ce processus, les clients connectés sont prevenus par un message d'erreur, ils sont déconnectés et la partie crée est détruite
+
+
 
 === Fonctionnalité "Effectuer un tour de jeu"
 
@@ -336,6 +297,13 @@ Cette fonctionnalité doit permettre de mettre aux joueurs d'effectuer un tour d
 ==== Description sous la forme d'un cas d'utilisation
 
 include::partial$game_turn.adoc[]
+
+==== Séquences de Stimulus/Réponse
+* Stimulus: Tous les joueurs sont connectés et le joueur actif effectue ses actions
+* Réponse: Le serveur évalue les actions effectuées et rafaîchit l'affichage des clients
+
+==== Exigences fonctionnelles
+* REQ-1: Si une erreur est levée lors de ce processus, les clients connectés sont prevenus par un message d'erreur et un rollback est effectué sur de l'action du joueur
 
 
 === Fonctionnalité "Se connecter à une partie"
@@ -346,6 +314,17 @@ Cette fonctionnalité doit permettre de mettre aux joueurs de pouvoir de joindre
 
 include::partial$connection.adoc[]
 
+==== Séquences de Stimulus/Réponse
+* Stimulus: Un joueur a rentré l'identifiant d'une partie et demande la connexion à cette dernière
+* Réponse: Le serveur vérifie la présence de la partie ainsi que son état et procède aux changements nécéssaire en fonction du contexte (Cf exigences fonctionnelles)
+
+==== Exigences fonctionnelles
+* REQ-1: Si une erreur est levée lors de ce processus, le client est prévenu par un message d'erreur
+* REQ-2: Si la partie n'existe pas, le client est prévenu par un message d'erreur
+* REQ-3: Si la partie est déjà commencée, le client est prévenu par un message d'erreur
+* REQ-4: Si la partie est pleine, le client est prévenu par un message d'erreur
+* REQ-5: Si la partie peut être rejointe, le client est est joint la partie et son affichage sera rafraîchit pour afficher le lobby de la Game rejointe
+
 
 === Fonctionnalité "Créer une partie"
 
@@ -355,6 +334,14 @@ Cette fonctionnalité doit permettre de mettre aux joueurs de créer une partie 
 
 include::partial$game_creation.adoc[]
 
+==== Séquences de Stimulus/Réponse
+* Stimulus: Un joueur demande la création d'une partie
+* Réponse: Le serveur crée un lobby et rafraîchit l'affichage
+
+==== Exigences fonctionnelles
+* REQ-1: Si une erreur est levée lors de ce processus, le client est prévenu par un message d'erreur
+* REQ-2: Si la partie ne peut pas être créée, le client est prévenu par un message d'erreur
+
 === Fonctionnalité "Fin d'un tour de jeu"
 
 Cette fonctionnalité doit permettre au joueur de terminer son tour.
@@ -363,14 +350,19 @@ Cette fonctionnalité doit permettre au joueur de terminer son tour.
 
 include::partial$end_game_turn.adoc[]
 
+==== Séquences de Stimulus/Réponse
+* Stimulus: Tous les joueurs sont connectés et le joueur actif effectue sa fin de tour
+* Réponse: Le serveur ferme le tour du joueur actif, passe au joueur suivant et initialise l'affichage
+
+==== Exigences fonctionnelles
+* REQ-1: Si une erreur est levée lors de ce processus, les clients connectés sont prevenus par un message d'erreur et un rollback est effectué sur les actions du tour de jeu du joueur
+
+
 
 [#nonfunctional]
 == Autres exigences non-fonctionnelles
 
 === Exigences de performance 
-
-NOTE: S'il existe des exigences de performance pour le produit dans diverses circonstances, indiquez-les ici et expliquez leur raison d'être, afin d'aider les développeurs à comprendre l'intention et à faire des choix de conception appropriés. Spécifiez les relations temporelles pour les systèmes en temps réel. Faites en sorte que ces exigences soient aussi spécifiques que possible. Vous devrez peut-être énoncer des exigences de performance pour des exigences fonctionnelles ou des caractéristiques individuelles.
-
 
 . Le jeu doit être _jouable_, ce qui signifie que les utilisateurs doivent avoir un retour rapide de leurs actions et que les retards dus aux problèmes de communication/connexion doivent être correctement tenus.
 . Le client Web doit pouvoir s'exécuter sur un ordinateur personnel doté de 4 Go de RAM.
@@ -378,22 +370,19 @@ NOTE: S'il existe des exigences de performance pour le produit dans diverses cir
 
 === Exigences de sécurité
 
-NOTE: Précisez toute exigence concernant les questions de sécurité ou de confidentialité entourant l'utilisation du produit ou la protection des données utilisées ou créées par le produit. Définissez toute exigence en matière d'authentification de l'identité de l'utilisateur. Faites référence à toute politique ou réglementation externe contenant des questions de sécurité qui affectent le produit. Définissez toutes les certifications de sécurité ou de confidentialité qui doivent être satisfaites.
+Aucune exigence de sécurité poour le moment
 
 === Attributs de qualité logicielle
 
-[NOTE]
-====
-Précisez toute autre caractéristique de qualité du produit qui sera importante pour les clients ou les développeurs. En voici quelques-unes : adaptabilité, disponibilité, exactitude, flexibilité, interopérabilité, maintenabilité, portabilité, fiabilité, réutilisabilité, robustesse, testabilité et convivialité. 
+Les attributs de qualité logicielle, va dépendre de l'utilisateur.
 
-Rédigez-les de manière à ce qu'elles soient spécifiques, quantitatives et vérifiables, si possible. 
+Pour un développeur, le logiciel doit être "facilement" testable, documenté pour avoir une bonne maintenabilité et respecter les autres conventions en terme de développement logiciel.
 
-Au minimum, clarifiez les préférences relatives pour divers attributs, comme la facilité d'utilisation par rapport à la facilité d'apprentissage. 
-====
+Pour un utilisateur ou un client, le logiciel doit pouvoir être lancé facilement sans trop d'étapes complexes et ce dernier doit être facile à utiliser et fluide.
 
 ==== Extensibilité
 
-NOTE: TODO
+Dans notre contexte, l'extensibilité est définie par le fait qu'il soit possible d'ajouter facilement des extensions au jeu des Colons de Catane.
 
 ==== Maintenabilité
 
@@ -402,26 +391,12 @@ NOTE: TODO
 
 === Règles métier
 
-NOTE: Énumérez tous les principes de fonctionnement du produit, tels que les personnes ou les rôles qui peuvent remplir telle ou telle fonction dans des circonstances spécifiques. Il ne s'agit pas d'exigences fonctionnelles en soi, mais elles peuvent impliquer certaines exigences fonctionnelles pour faire respecter les règles.
-
+Aucune règle métier trouvée dans le contexte de notre projet
 
 == Autres exigences
 
-NOTE: Définissez toute autre exigence non couverte ailleurs dans le SRS. Il peut s'agir d'exigences relatives à la base de données, à l'internationalisation, à la législation, aux objectifs de réutilisation du projet, etc. Ajoutez toute nouvelle section pertinente pour le projet.
+Aucune autre exigence trouvée pour le moment
 
-=== Annexe A : Glossaire
+=== Annexe A : Modèles d'analyse
 
-TIP: https://docs.asciidoctor.org/asciidoc/latest/sections/glossary/
-
-
-NOTE: Définissez tous les termes nécessaires pour interpréter correctement le SRS, y compris les acronymes et les abréviations. Vous pouvez créer un glossaire distinct couvrant plusieurs projets ou l'ensemble de l'organisation, et vous contenter d'inclure les termes spécifiques à un seul projet dans chaque SRS.
-
-=== Annexe B : Modèles d'analyse
-
-Voir le chapitre <<domain>> (analyse du domaine) pour plus de détails.
-
-NOTE: En option, inclure tout modèle d'analyse pertinent, tel que des diagrammes de flux de données, des diagrammes de classe, des diagrammes d'état-transition ou des diagrammes entité-relation.
-
-=== Annexe C : Liste à déterminer
-
-NOTE: Recueillir une liste numérotée des références TBD (To Be Done) qui restent dans le SRS afin de pouvoir les suivre jusqu'à leur fermeture.
+Voir le chapitre analyse du domaine pour plus de détails.
