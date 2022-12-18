@@ -3,6 +3,8 @@ package fr.univnantes.alma.gamemanager.lobby.api;
 import fr.univnantes.alma.gamemanager.lobby.api.enums.LobbyStatus;
 import fr.univnantes.alma.gamemanager.lobby.api.exceptions.*;
 
+import java.util.List;
+
 /**
  *
  */
@@ -36,6 +38,11 @@ public interface Lobby {
      * @throws PlayerNotFoundException Cannot remove a player that does not exist...
      */
     void removePlayer(Integer playerID) throws LobbyGameOverException, PlayerNotFoundException;
+
+    /**
+     * @return An unmodifiable list composed of all players IDs
+     */
+    List<Integer> getPlayersID();
 
     /**
      * @return The id of the game

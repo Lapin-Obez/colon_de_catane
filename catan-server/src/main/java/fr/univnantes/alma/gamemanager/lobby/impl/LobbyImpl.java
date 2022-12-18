@@ -7,6 +7,7 @@ import fr.univnantes.alma.gamemanager.lobby.api.enums.LobbyStatus;
 import fr.univnantes.alma.gamemanager.lobby.api.exceptions.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -102,6 +103,11 @@ public class LobbyImpl implements Lobby {
 
             if (countActivePlayers() < 3) this.status = LobbyStatus.WAIT_FOR_PLAYERS;
         }
+    }
+
+    @Override
+    public List<Integer> getPlayersID() {
+        return Collections.unmodifiableList(this.playerIDList);
     }
 
     @Override
