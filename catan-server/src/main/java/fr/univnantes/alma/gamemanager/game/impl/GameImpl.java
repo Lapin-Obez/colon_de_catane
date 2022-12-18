@@ -3,10 +3,8 @@ package fr.univnantes.alma.gamemanager.game.impl;
 import fr.univnantes.alma.gamemanager.game.api.Board;
 import fr.univnantes.alma.gamemanager.game.api.Game;
 import fr.univnantes.alma.gamemanager.game.api.Player;
+import fr.univnantes.alma.gamemanager.game.api.enums.*;
 import fr.univnantes.alma.gamemanager.game.api.enums.Color;
-import fr.univnantes.alma.gamemanager.game.api.enums.Development;
-import fr.univnantes.alma.gamemanager.game.api.enums.Resource;
-import fr.univnantes.alma.gamemanager.game.api.enums.SpecialCard;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.GameStatusException;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.ImpossibleBuildException;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughDevelopmentCardException;
@@ -15,6 +13,7 @@ import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughResourcesExce
 import java.awt.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class GameImpl implements Game {
 
@@ -22,6 +21,8 @@ public class GameImpl implements Game {
     private List<Player> playerList;
     private Player actualPlayer;
     private Board board;
+
+    private GameStatus gameStatus;
 
     public GameImpl(Integer playerNumber) {
         if(playerNumber<3||playerNumber>4){
@@ -31,6 +32,7 @@ public class GameImpl implements Game {
             playerList.add(new PlayerImpl(Color.values()[i]));
         }
         this.board = new BoardImpl();
+        this.gameStatus = GameStatus.SetUp;
     }
 
     @Override
@@ -112,12 +114,24 @@ public class GameImpl implements Game {
 
     @Override
     public Player getWinner() throws GameStatusException {
-        return null;
+        if(this.gameStatus!=GameStatus.GameStop){
+            throw new GameStatusException("The game isn't finished");
+        }
+        return actualPlayer;
     }
 
     @Override
     public int throwDice(Player playerAct) throws GameStatusException {
-        return 0;
+        if(this.gameStatus!= GameStatus.SetUp){
+            throw new GameStatusException("You don't have the right to throw dice");
+        }
+        int d1;
+        int d2;
+        Random r = new Random();
+        d1 = r.nextInt(6)+1;
+        d2 = r.nextInt(6)+1;
+        int score = d1+d2;
+        return score;
     }
 
     @Override
