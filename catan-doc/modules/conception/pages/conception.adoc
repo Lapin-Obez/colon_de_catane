@@ -75,6 +75,11 @@ include::partial$methods.adoc[leveloffset=3]
 include::../examples/stateDiagram.plantuml[]
 ----
 
+=== Aide à la conception et au développement du plateau
+
+.Diagramme réalisé permettant de nous aider dans le développement du plateau
+image::../partials/graph_board.png[]
+
 === Interface utilisateur
 
 L'interface utilisateur sera une interface graphique réalisée à l'aide de typescript et angular sur un fichier html que le client pourra ouvrir à l'aide d'un simple navigateur internet.
