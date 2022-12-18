@@ -9,10 +9,7 @@ import fr.univnantes.alma.gamemanager.game.api.enums.SpecialCard;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughDevelopmentCardException;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughResourcesException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class PlayerImpl implements Player {
 
@@ -78,7 +75,20 @@ public class PlayerImpl implements Player {
 
     @Override
     public Resource getRandomResources() throws NotEnoughResourcesException {
-        return null;
+        boolean exception = true;
+        List<Resource> li = new ArrayList<>();
+        for (Resource r:this.mainResource.keySet()) {
+            if(this.mainResource.get(r)>0){
+                li.add(r);
+                exception = false;
+            }
+        }
+        if(exception){
+            throw new NotEnoughResourcesException("Player "+this.color+" doesn't have any resource.");
+        }
+        Random r = new Random();
+        int i = r.nextInt(li.size());
+        return li.get(i);
     }
 
     @Override
