@@ -78,7 +78,7 @@ include::../examples/stateDiagram.plantuml[]
 === Aide à la conception et au développement du plateau
 
 .Diagramme réalisé permettant de nous aider dans le développement du plateau
-image::partial$graph_board.png[]
+image::graph_board.png[]
 
 === Interface utilisateur
 
