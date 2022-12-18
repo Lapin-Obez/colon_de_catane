@@ -14,7 +14,13 @@ public interface Game {
      * récupère la valeur d'armée de tous les joueurs et donne la carte de l'armée la plus puissante au joueur ayant le plus de chevalier
      **/
     void calculateStrongestArmy();
+    /**
+     * récupère la valeur d'armée de tous les joueurs et donne la carte de la plus longue route au joueur ayant la route la plus longue
+     **/
     void calculateLongestRoad();
+    /**
+     * DOC : TODO
+     **/
     void invention(Player player);
 
 

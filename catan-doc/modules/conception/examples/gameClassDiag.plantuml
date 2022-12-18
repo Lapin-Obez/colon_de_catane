@@ -121,6 +121,7 @@ class Player{
     - Map<Development,Integer> mainDevelopment
     - int numberOfKnight
     - List<SpecialCard> specialCards
+    - List<Harbor> harbor
 
     + void maritimeTrade(Resource rDefausse, Resource rRecup)
     + void addHarbor(Harbor harbor)
@@ -132,7 +133,6 @@ class Player{
     + void addDevelopmentCard(Development card)
     + Resource getRandomResources() throws NotEnoughResourcesException
     + void deleteHalfResources()
-    + int deleteResource(Resource resource)
     + Color getColor()
     + int getNumberOfResources(Resource resource)
     + void deleteResources(Resource resource, int amount) throws NotEnoughResourcesException

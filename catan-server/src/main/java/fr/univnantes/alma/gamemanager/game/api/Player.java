@@ -83,10 +83,6 @@ public interface Player {
      */
     void addHarbour(Harbor harbor);
 
-    /**
-     * DOC TODO
-     */
-    int deleteResource(Resource resource);
 
     /**
      * DOC TODO

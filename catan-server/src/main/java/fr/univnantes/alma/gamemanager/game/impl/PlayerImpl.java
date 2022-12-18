@@ -12,6 +12,7 @@ import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughResourcesExce
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class PlayerImpl implements Player {
 
@@ -20,6 +21,7 @@ public class PlayerImpl implements Player {
     private Map<Development,Integer> mainDevelopment;
     private int numberOfKnight;
     private List<SpecialCard> specialCards;
+    private List<Harbor> harbor;
     public PlayerImpl(Color color){
         this();
         this.color = color;
@@ -30,6 +32,7 @@ public class PlayerImpl implements Player {
             this.mainDevelopment.put(d,0);
         }
         this.specialCards = new ArrayList<>();
+        this.harbor = new ArrayList<>();
     }
     public PlayerImpl(){
         this.numberOfKnight=0;
@@ -41,7 +44,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public void addHarbour(Harbor harbor) {
-
+        this.harbor.add(harbor);
     }
 
     @Override
@@ -70,7 +73,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public void addDevelopmentCard(Development card) {
-
+        this.mainDevelopment.replace(card,this.mainDevelopment.get(card)+1);
     }
 
     @Override
@@ -80,37 +83,40 @@ public class PlayerImpl implements Player {
 
     @Override
     public void deleteHalfResources() {
-
+        for(Resource key : this.mainResource.keySet()){
+            this.mainResource.replace(key,this.mainResource.get(key)/2);
+        }
     }
 
-    @Override
-    public int deleteResource(Resource resource) {
-        return 0;
-    }
 
     @Override
     public void playDevelopmentCard(Development type) throws NotEnoughDevelopmentCardException {
-
+        if(this.mainDevelopment.get(type)<1){
+            throw new NotEnoughDevelopmentCardException("Your don't have enough "+type+" card");
+        }
     }
 
     @Override
     public Color getColor() {
-        return null;
+        return this.color;
     }
 
     @Override
     public int getNumberOfResources(Resource resource) {
-        return 0;
+        return this.mainResource.get(resource);
     }
 
     @Override
     public void deleteResources(Resource resource, int amount) throws NotEnoughResourcesException {
-
+        if(this.mainResource.get(resource)<amount){
+            throw new NotEnoughResourcesException("You don't have enough "+resource);
+        }
+        this.mainResource.replace(resource,this.mainResource.get(resource)-amount);
     }
 
     @Override
     public void addResource(Resource resource,Integer amount) {
-
+        this.mainResource.replace(resource,this.mainResource.get(resource)+amount);
     }
     @Override
     public List<SpecialCard> getSpecialCards(){
