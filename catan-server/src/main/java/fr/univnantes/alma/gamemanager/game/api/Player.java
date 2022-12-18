@@ -7,6 +7,8 @@ import fr.univnantes.alma.gamemanager.game.api.enums.SpecialCard;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughDevelopmentCardException;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughResourcesException;
 
+import java.util.List;
+
 public interface Player {
     int getNumberOfKnight();
 
@@ -39,9 +41,11 @@ public interface Player {
     void deleteResources(Resource resource, int amount) throws NotEnoughResourcesException;
 
     /**
-     * DOC TODO
+     * Ajoute un nombre de ressouce dans la main du joueur
+     * @param resource la Ressource.
+     * @param amount le nombre de ressources à ajouter.
      */
-    void addResource(Resource resource);
+    void addResource(Resource resource,Integer amount);
 
     /**
      * Calcul le nombre de points du joueur en prenant en compte ses constructions, ses fiches spéciales
@@ -88,5 +92,9 @@ public interface Player {
      * DOC TODO
      */
     void playDevelopmentCard(Development type) throws NotEnoughDevelopmentCardException;
+    /**
+     * Renvoie la liste des specialCards possédé par le joueur
+    */
+    public List<SpecialCard> getSpecialCards();
 
 }

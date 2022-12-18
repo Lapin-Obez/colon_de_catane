@@ -9,6 +9,10 @@ import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughResourcesExce
 import java.util.List;
 
 public interface Game {
+
+    /**
+     * récupère la valeur d'armée de tous les joueurs et donne la carte de l'armée la plus puissante au joueur ayant le plus de chevalier
+     **/
     void calculateStrongestArmy();
     void calculateLongestRoad();
     void invention(Player player);

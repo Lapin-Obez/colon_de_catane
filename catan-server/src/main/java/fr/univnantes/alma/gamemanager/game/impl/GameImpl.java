@@ -3,31 +3,48 @@ package fr.univnantes.alma.gamemanager.game.impl;
 import fr.univnantes.alma.gamemanager.game.api.Board;
 import fr.univnantes.alma.gamemanager.game.api.Game;
 import fr.univnantes.alma.gamemanager.game.api.Player;
+import fr.univnantes.alma.gamemanager.game.api.enums.Color;
 import fr.univnantes.alma.gamemanager.game.api.enums.Development;
 import fr.univnantes.alma.gamemanager.game.api.enums.Resource;
+import fr.univnantes.alma.gamemanager.game.api.enums.SpecialCard;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.GameStatusException;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.ImpossibleBuildException;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughDevelopmentCardException;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughResourcesException;
 
+import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
 public class GameImpl implements Game {
 
     private Map<Integer, Development> deckDevelopment;
-    private Map<Integer, Resource> deckResource;
     private List<Player> playerList;
-    private Player winner;
+    private Player actualPlayer;
     private Board board;
 
-    public GameImpl() {
+    public GameImpl(Integer playerNumber) {
+        if(playerNumber<3||playerNumber>4){
+            throw new IllegalArgumentException("The number of player is incorrect !");
+        }
+        for(int i=0;i<playerNumber;i++){
+            playerList.add(new PlayerImpl(Color.values()[i]));
+        }
         this.board = new BoardImpl();
     }
 
     @Override
     public void calculateStrongestArmy() {
-
+        Player strongest = new PlayerImpl();
+        for(Player p:playerList){
+            if(p.getSpecialCards().contains(SpecialCard.ArmeePlusPuissante)){
+                p.removeSpecialCard(SpecialCard.ArmeePlusPuissante);
+            }
+            if (p.getNumberOfKnight()>strongest.getNumberOfKnight()){
+                strongest=p;
+            }
+        }
+        strongest.grantSpecialCard(SpecialCard.ArmeePlusPuissante);
     }
 
     @Override
@@ -70,12 +87,12 @@ public class GameImpl implements Game {
 
     @Override
     public void buildColony(Player player, int intersectionID) throws GameStatusException, IllegalArgumentException, ImpossibleBuildException, NotEnoughResourcesException {
-
+        this.board.buildColony(player.getColor(),intersectionID);
     }
 
     @Override
     public void buildCity(Player player, int intersectionID) throws GameStatusException, IllegalArgumentException, ImpossibleBuildException, NotEnoughResourcesException {
-
+        this.board.buildCity(player.getColor(),intersectionID);
     }
 
     @Override

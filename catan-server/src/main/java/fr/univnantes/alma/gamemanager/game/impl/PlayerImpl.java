@@ -9,17 +9,31 @@ import fr.univnantes.alma.gamemanager.game.api.enums.SpecialCard;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughDevelopmentCardException;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughResourcesException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class PlayerImpl implements Player {
 
     private Color color;
-    private Map<Integer, Resource> mainResource;
-    private Map<Integer, Development> mainDevelopment;
+    private Map<Resource,Integer> mainResource;
+    private Map<Development,Integer> mainDevelopment;
     private int numberOfKnight;
     private List<SpecialCard> specialCards;
-
+    public PlayerImpl(Color color){
+        this();
+        this.color = color;
+        for(Resource r: Resource.values()){
+            this.mainResource.put(r,0);
+        }
+        for(Development d: Development.values()){
+            this.mainDevelopment.put(d,0);
+        }
+        this.specialCards = new ArrayList<>();
+    }
+    public PlayerImpl(){
+        this.numberOfKnight=0;
+    }
     @Override
     public void maritimeTrade(Resource rDefausse, Resource rRecup) {
 
@@ -37,17 +51,21 @@ public class PlayerImpl implements Player {
 
     @Override
     public int getNumberOfKnight() {
-        return 0;
+        return this.numberOfKnight;
     }
 
     @Override
     public void grantSpecialCard(SpecialCard card) {
-
+        if(!this.specialCards.contains(card)){
+            this.specialCards.add(card);
+        }
     }
 
     @Override
     public void removeSpecialCard(SpecialCard card) {
-
+        if(this.specialCards.contains(card)){
+            this.specialCards.remove(card);
+        }
     }
 
     @Override
@@ -91,7 +109,11 @@ public class PlayerImpl implements Player {
     }
 
     @Override
-    public void addResource(Resource resource) {
+    public void addResource(Resource resource,Integer amount) {
 
+    }
+    @Override
+    public List<SpecialCard> getSpecialCards(){
+        return this.specialCards;
     }
 }

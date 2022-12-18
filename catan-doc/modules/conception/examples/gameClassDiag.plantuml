@@ -44,7 +44,6 @@ enum GameStatus {
 
 class Game {
     - Map<Integer, Development> deckDevelopment
-    - Map<Integer, Resource> deckResource
     - List<Player> listOfPlayers
     - Player winner
     - Board board
@@ -118,8 +117,8 @@ class Intersection{
 
 class Player{
     - Color color
-    - Map<int, Resource> mainResource
-    - Map<int, Development> mainDevelopment
+    - Map<Resource,Integer> mainResource
+    - Map<Development,Integer> mainDevelopment
     - int numberOfKnight
     - List<SpecialCard> specialCards
 
@@ -137,6 +136,7 @@ class Player{
     + Color getColor()
     + int getNumberOfResources(Resource resource)
     + void deleteResources(Resource resource, int amount) throws NotEnoughResourcesException
+    + List<SpecialCard> getSpecialCards()
 }
 
 interface Construction {
