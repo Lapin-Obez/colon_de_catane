@@ -11,6 +11,8 @@ Construit une colonie de la `Color` du `joueur` donné, à l' `intersection` don
 Appelle `Plateau.buildColony()`. Cette méthode retourne un potentiel port.
 Si ce port existe, appelle `joueur.addHarbor(port)`.
 
+Appelle `joueur.incrConstructionPoints()`.
+
 Exceptions :
 
 - `GameStatusException` si le joueur ne peut pas jouer.
@@ -20,10 +22,10 @@ Exceptions :
 
 
 |`void buildCity(Player joueur, int idIntersection)`
-a|
-Améliore une colonie au niveau de ville. Cette ville se trouve à l' `intersection`.
-Appelle `Plateau.buildCity()`.
+a| Améliore une colonie au niveau de ville. Cette ville se trouve à l' `intersection`.
 
+Appelle `Plateau.buildCity()`.
+Appelle `joueur.incrConstructionPoints()`.
 
 Exceptions :
 
@@ -382,6 +384,10 @@ Si le `type` de la carte est Chevalier, ajoute 1 au nombre de chevaliers du joue
 Exceptions :
 
 - `NotEnoughDevelopmentCardException` si le joueur n'a pas de carte Development de type `type`.
+
+|`void incrConstructionPoints()`
+| Incrémente le nombre de points du joueur gagnés en construisant une Colonie ou en l'améliorant en Ville.
+
 
 |===
 

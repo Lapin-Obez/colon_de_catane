@@ -123,14 +123,7 @@ class Intersection{
     + Optional<Harbor> getHarbor()
 }
 
-class Player{
-    - Color color
-    - Map<Resource,Integer> mainResource
-    - Map<Development,Integer> mainDevelopment
-    - int numberOfKnight
-    - List<SpecialCard> specialCards
-    - List<Harbor> harbor
-
+interface Player {
     + maritimeTrade(Resource rDefausse, Resource rRecup)
     + addHarbor(Harbor harbor)
     + int getVictoryPoints()
@@ -145,6 +138,19 @@ class Player{
     + int getNumberOfResources(Resource resource)
     + deleteResources(Resource resource, int amount) throws NotEnoughResourcesException
     + List<SpecialCard> getSpecialCards()
+    + incrConstructionPoints()
+}
+
+class PlayerImpl {
+    - Color color
+    - Map<Resource,Integer> mainResource
+    - Map<Development,Integer> mainDevelopment
+    - int numberOfKnight
+    - int constructionPoints
+    - List<SpecialCard> specialCards
+
+    + PlayerImpl(Color color)
+    + PlayerImpl()
 }
 
 interface Construction {
@@ -172,6 +178,7 @@ class Colony {
 
 class BoardImpl implements Board
 class GameImpl implements Game
+class PlayerImpl implements Player
 
 Construction <-d- City
 Construction <-d- Colony
@@ -188,5 +195,5 @@ Intersection *--> "0.1" Harbor
 GameImpl --> "3:4" Player : - List<Player> playerList
 GameImpl --> "1" Player : - actualPlayer
 
-Player "1" -- "0:n" Construction
+PlayerImpl --> "5" Harbor : - Map<Resource, Harbor> harbors
 @enduml
