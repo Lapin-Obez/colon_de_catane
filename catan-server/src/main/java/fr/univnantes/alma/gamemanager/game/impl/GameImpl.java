@@ -4,20 +4,14 @@ import fr.univnantes.alma.gamemanager.game.api.Board;
 import fr.univnantes.alma.gamemanager.game.api.Game;
 import fr.univnantes.alma.gamemanager.game.api.Player;
 import fr.univnantes.alma.gamemanager.game.api.enums.*;
-import fr.univnantes.alma.gamemanager.game.api.enums.Color;
-import fr.univnantes.alma.gamemanager.game.api.exceptions.GameStatusException;
-import fr.univnantes.alma.gamemanager.game.api.exceptions.ImpossibleBuildException;
-import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughDevelopmentCardException;
-import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughResourcesException;
+import fr.univnantes.alma.gamemanager.game.api.exceptions.*;
 
 import java.awt.*;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class GameImpl implements Game {
 
-    private Map<Integer, Development> deckDevelopment;
+    private Map<Development, Integer> deckDevelopment;
     private List<Player> playerList;
     private Player actualPlayer;
     private Board board;
@@ -35,8 +29,10 @@ public class GameImpl implements Game {
         this.gameStatus = GameStatus.SetUp;
     }
 
-    @Override
-    public void calculateStrongestArmy() {
+    /**
+     * Récupère la valeur d'armée de tous les joueurs et donne la carte de l'armée la plus puissante au joueur ayant le plus de chevalier
+     **/
+    private void calculateStrongestArmy() {
         Player strongest = new PlayerImpl();
         for(Player p:playerList){
             if(p.getSpecialCards().contains(SpecialCard.ArmeePlusPuissante)){
@@ -49,8 +45,10 @@ public class GameImpl implements Game {
         strongest.grantSpecialCard(SpecialCard.ArmeePlusPuissante);
     }
 
-    @Override
-    public void calculateLongestRoad() {
+    /**
+     * Récupère la valeur d'armée de tous les joueurs et donne la carte de la plus longue route au joueur ayant la route la plus longue
+     **/
+    private void calculateLongestRoad() {
 
     }
 
@@ -71,11 +69,6 @@ public class GameImpl implements Game {
 
     @Override
     public void knightCard(Player player) throws GameStatusException, NotEnoughDevelopmentCardException {
-
-    }
-
-    @Override
-    public void invention(Player player) {
 
     }
 
@@ -109,7 +102,7 @@ public class GameImpl implements Game {
 
     @Override
     public boolean isGameOver() {
-        return false;
+        return this.gameStatus == GameStatus.GameStop;
     }
 
     @Override
@@ -122,14 +115,12 @@ public class GameImpl implements Game {
 
     @Override
     public int throwDice(Player playerAct) throws GameStatusException {
-        if(this.gameStatus!= GameStatus.SetUp){
+        if(this.gameStatus!= GameStatus.SetUp && playerAct != this.playerAct){
             throw new GameStatusException("You don't have the right to throw dice");
         }
-        int d1;
-        int d2;
         Random r = new Random();
-        d1 = r.nextInt(6)+1;
-        d2 = r.nextInt(6)+1;
+        int d1 = r.nextInt(6)+1;
+        int d2 = r.nextInt(6)+1;
         int score = d1+d2;
         return score;
     }

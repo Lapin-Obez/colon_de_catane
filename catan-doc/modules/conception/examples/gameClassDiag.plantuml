@@ -41,39 +41,43 @@ enum GameStatus {
     GameStop
 }
 
-class Game {
-    - Map<Integer, Development> deckDevelopment
-    - List<Player> listOfPlayers
-    - Player winner
-    - Board board
-    - GameStatus status
-
-    + void calculateStrongestArmy()
-    + void calculateLongestRoad()
+interface Game {
     + List<Player> playStealer(Tile tile)
-    + void monopoly(Player player, Resource resource)
-    + void invention(Player player)
-    + void buildColony(Player player, int intersectionID) throws GameStatusException, IllegalArgumentException, ImpossibleBuildException, NotEnoughResourcesException
-    + void buildCity(Player player, int intersectionID) throws GameStatusException, IllegalArgumentException, ImpossibleBuildException, NotEnoughResourcesException
-    + void buildRoad(Player player, int intersectionA, int intersectionB) throws GameStatusException, IllegalArgumentException, ImpossibleBuildException, NotEnoughResourcesException
-    - void evaluateEndGame()
+    + buildColony(Player player, int intersectionID) throws GameStatusException, IllegalArgumentException, ImpossibleBuildException, NotEnoughResourcesException
+    + buildCity(Player player, int intersectionID) throws GameStatusException, IllegalArgumentException, ImpossibleBuildException, NotEnoughResourcesException
+    + buildRoad(Player player, int intersectionA, int intersectionB) throws GameStatusException, IllegalArgumentException, ImpossibleBuildException, NotEnoughResourcesException
     + Player endGameTurn(Player playerAct) throws GameStatusException
     + boolean isGameOver()
     + Player getWinner() throws GameStatusException
     + int throwDice(Player playerAct) throws GameStatusException
     + List<Player> playStealer(Player playerAct, int tileID) throws GameStatusException, IllegalArgumentException
-    + void stealResources(Player stealer, Player victim) throws GameStatusException, NotEnoughResourcesException
-    + void maritimeTrade(Player player, Resource rDefausse, Resource rRecup) throws NotEnoughResourcesException
+    + stealResources(Player stealer, Player victim) throws GameStatusException, NotEnoughResourcesException
+    + maritimeTrade(Player player, Resource rDefausse, Resource rRecup) throws GameStatusException, NotEnoughResourcesException
+    + drawDevelopmentCard(Player player) throws GameStatusException, NotEnoughResourcesException
+    + monopoly(Player player, Resource resource) throws GameStatusException, NotEnoughDevelopmentCardException
+    + yearOfPlenty(Player player, Resource resource1, Resource resource2) throws GameStatusException, NotEnoughDevelopmentCardException
+    + roadBuildingCard(Player player) throws GameStatusException, NotEnoughDevelopmentCardException
+    + knightCard(Player player) throws GameStatusException, NotEnoughDevelopmentCardException
+}
+
+class GameImpl {
+    - Map<Development, Integer> deckDevelopment
+    - GameStatus status
+
+    + GameImpl(Integer playerNumber)
+    - calculateLongestRoad()
+    - calculateStrongestArmy()
+    - evaluateEndGame()
 }
 
 interface Board {
     + int getRoadLength(Color color)
     + List<Player> playStealer(int tileID) throws IllegalArgumentException
     + Optional<Harbor> buildColony(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException
-    + void buildCity(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException
-    + void buildRoad(Color color, int intersectionA, int intersectionB) throws IllegalArgumentException, ImpossibleBuildException
+    + buildCity(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException
+    + buildRoad(Color color, int intersectionA, int intersectionB) throws IllegalArgumentException, ImpossibleBuildException
     Map<Color, Map<Resource,Integer>> distributeResources(int tokenValue) throws IllegalArgumentException
-    + void distributeResources(int tokenValue)
+    + distributeResources(int tokenValue)
 }
 
 class BoardImpl {
@@ -113,8 +117,8 @@ class Intersection{
     - Construction construction {@Nullable}
     - Harbor harbor {@Nullable}
 
-    + void setConstruction(Construction construction)
-    + void setPort(Harbor harbor)
+    + setConstruction(Construction construction)
+    + setPort(Harbor harbor)
     + Construction getConstruction()
     + Optional<Harbor> getHarbor()
 }
@@ -127,19 +131,19 @@ class Player{
     - List<SpecialCard> specialCards
     - List<Harbor> harbor
 
-    + void maritimeTrade(Resource rDefausse, Resource rRecup)
-    + void addHarbor(Harbor harbor)
+    + maritimeTrade(Resource rDefausse, Resource rRecup)
+    + addHarbor(Harbor harbor)
     + int getVictoryPoints()
     + int getNumberOfKnight()
-    + void playKnight()
-    + void grantSpecialCard(SpecialCard card)
-    + void removeSpecialCard(SpecialCard card)
-    + void addDevelopmentCard(Development card)
+    + playKnight()
+    + grantSpecialCard(SpecialCard card)
+    + removeSpecialCard(SpecialCard card)
+    + addDevelopmentCard(Development card)
     + Resource getRandomResources() throws NotEnoughResourcesException
-    + void deleteHalfResources()
+    + deleteHalfResources()
     + Color getColor()
     + int getNumberOfResources(Resource resource)
-    + void deleteResources(Resource resource, int amount) throws NotEnoughResourcesException
+    + deleteResources(Resource resource, int amount) throws NotEnoughResourcesException
     + List<SpecialCard> getSpecialCards()
 }
 
@@ -167,11 +171,12 @@ class Colony {
 }
 
 class BoardImpl implements Board
+class GameImpl implements Game
 
 Construction <-d- City
 Construction <-d- Colony
 
-Game *--> "1" Board
+GameImpl *--> "1" Board : - board
 BoardImpl *--> "19" Tile : - Map<Integer, Tile> tiles
 BoardImpl *--> "54" Intersection : - Map<Integer, Intersection> intersections
 
@@ -180,6 +185,8 @@ Intersection *--> "0:1" Construction
 
 Intersection *--> "0.1" Harbor
 
-Game --> "3:4" Player
+GameImpl --> "3:4" Player : - List<Player> playerList
+GameImpl --> "1" Player : - actualPlayer
+
 Player "1" -- "0:n" Construction
 @enduml

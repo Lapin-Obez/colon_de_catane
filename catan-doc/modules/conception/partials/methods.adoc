@@ -52,11 +52,6 @@ Exceptions :
 - `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
 
 
-|`private void evaluateEndGame()`
-| Calcule le score des joueurs et met fin à la partie si le joueur actuel a plus de 10 points.
-Met ce joueur en tant que gagnant si c'est le cas.
-
-
 |`boolean isGameEnded()`
 | Renvoie vrai si la partie est terminée.
 
@@ -168,6 +163,17 @@ a| Permet à un joueur de piocher une carte Développement.
 
 - `GameStatusException` si le joueur donné en paramètre n'est pas le joueur actuel, ou si cette action n'est pas possible pour le joueur actuel.
 - `NotEnoughResourcesException` si le joueur n'a pas les ressources nécessaires.
+
+
+|`private void evaluateEndGame()`
+a| Calcule le score des joueurs et met fin à la partie si le joueur actuel a plus de 10 points.
+Met ce joueur en tant que gagnant si c'est le cas.
+
+|`private void calculateStrongestArmy()`
+| Récupère la valeur d'armée de tous les joueurs et donne la carte de l'armée la plus puissante au joueur ayant le plus de chevalier
+
+|`private void calculateLongestRoad()`
+| Récupère la valeur d'armée de tous les joueurs et donne la carte de la plus longue route au joueur ayant la route la plus longue
 
 |===
 
