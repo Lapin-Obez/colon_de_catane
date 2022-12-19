@@ -163,8 +163,6 @@ class City {
     - int power
 
     + City(Color color)
-    + Color getColor()
-    + int getPower()
 }
 
 class Colony {
@@ -172,23 +170,21 @@ class Colony {
     - int power
 
     + Colony(Color color)
-    + Color getColor()
-    + int getPower()
 }
 
 class BoardImpl implements Board
 class GameImpl implements Game
 class PlayerImpl implements Player
 
-Construction <-d- City
-Construction <-d- Colony
+class City implements Construction
+class Colony implements Construction
 
 GameImpl *--> "1" Board : - board
 BoardImpl *--> "19" Tile : - Map<Integer, Tile> tiles
 BoardImpl *--> "54" Intersection : - Map<Integer, Intersection> intersections
 
 Tile "2:3" *-->"6" Intersection
-Intersection *--> "0:1" Construction
+Intersection *--> "0:1"
 
 Intersection *--> "0.1" Harbor
 
