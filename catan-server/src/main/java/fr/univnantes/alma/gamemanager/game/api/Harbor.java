@@ -21,5 +21,8 @@ public interface Harbor {
      */
     boolean haveBetterRate(Harbor other);
 
-
+    /**
+     * DOC TODO
+     */
+    ExchangeRate getRate();
 }
