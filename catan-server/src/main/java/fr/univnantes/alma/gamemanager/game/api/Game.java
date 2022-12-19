@@ -15,6 +15,8 @@ public interface Game {
      *
      * Appelle `Plateau.buildColony()`. Cette méthode retourne un potentiel port.
      * Si ce port existe, appelle `joueur.addHarbour(port)`.
+     * 
+     * Appelle `joueur.incrConstructionPoints()`.
      *
      * @param player le Joueur.
      * @param intersectionID un int, l'id de l'intersection.
@@ -32,6 +34,10 @@ public interface Game {
 
     /**
      * Améliore une colonie au niveau de ville. Cette ville se trouve à l'intersection d'id `intersectionID`.
+     * 
+     * Appelle `Plateau.buildCity()`.
+     * Appelle `joueur.incrConstructionPoints()`.
+     *
      * @param player le Joueur.
      * @param intersectionID un int, l'id de l'intersection.
      * @throws GameStatusException si le joueur ne peut pas jouer.

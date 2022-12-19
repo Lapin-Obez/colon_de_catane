@@ -2,10 +2,7 @@ package fr.univnantes.alma.gamemanager.game.impl;
 
 import fr.univnantes.alma.gamemanager.game.api.Harbor;
 import fr.univnantes.alma.gamemanager.game.api.Player;
-import fr.univnantes.alma.gamemanager.game.api.enums.Color;
-import fr.univnantes.alma.gamemanager.game.api.enums.Development;
-import fr.univnantes.alma.gamemanager.game.api.enums.Resource;
-import fr.univnantes.alma.gamemanager.game.api.enums.SpecialCard;
+import fr.univnantes.alma.gamemanager.game.api.enums.*;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughDevelopmentCardException;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughResourcesException;
 
@@ -17,8 +14,10 @@ public class PlayerImpl implements Player {
     private Map<Resource,Integer> mainResource;
     private Map<Development,Integer> mainDevelopment;
     private int numberOfKnight;
+    private int constructionPoints;
     private List<SpecialCard> specialCards;
-    private List<Harbor> harbor;
+    private Map<Resource, Harbor> harbors;
+
     public PlayerImpl(Color color){
         this();
         this.color = color;
@@ -29,11 +28,19 @@ public class PlayerImpl implements Player {
             this.mainDevelopment.put(d,0);
         }
         this.specialCards = new ArrayList<>();
-        this.harbor = new ArrayList<>();
+        this.initHarbors();
     }
+
     public PlayerImpl(){
         this.numberOfKnight=0;
     }
+
+    private initHarbors() {
+        this.harbors = new HashMap<>();
+        for(Resource resource : Resource.values())
+            this.harbors.put(resource, HarborImpl.BASIC_HARBOR)
+    }
+
     @Override
     public void maritimeTrade(Resource rDefausse, Resource rRecup) {
 
@@ -41,7 +48,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public void addHarbour(Harbor harbor) {
-        this.harbor.add(harbor);
+        
     }
 
     @Override
@@ -52,6 +59,11 @@ public class PlayerImpl implements Player {
     @Override
     public int getNumberOfKnight() {
         return this.numberOfKnight;
+    }
+
+    @Override
+    public void incrConstructionPoints() {
+        this.constructionPoints++;
     }
 
     @Override
@@ -128,6 +140,7 @@ public class PlayerImpl implements Player {
     public void addResource(Resource resource,Integer amount) {
         this.mainResource.replace(resource,this.mainResource.get(resource)+amount);
     }
+
     @Override
     public List<SpecialCard> getSpecialCards(){
         return this.specialCards;

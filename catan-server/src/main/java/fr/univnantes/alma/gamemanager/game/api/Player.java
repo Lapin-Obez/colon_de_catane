@@ -10,6 +10,7 @@ import fr.univnantes.alma.gamemanager.game.api.exceptions.NotEnoughResourcesExce
 import java.util.List;
 
 public interface Player {
+
     int getNumberOfKnight();
 
     void grantSpecialCard(SpecialCard fiche);
@@ -88,9 +89,15 @@ public interface Player {
      * DOC TODO
      */
     void playDevelopmentCard(Development type) throws NotEnoughDevelopmentCardException;
+
     /**
      * Renvoie la liste des specialCards possédé par le joueur
-    */
-    public List<SpecialCard> getSpecialCards();
+     */
+    List<SpecialCard> getSpecialCards();
+
+    /**
+     * Incrémente le nombre de points du joueur gagnés en construisant une Colonie ou en l'améliorant en Ville.
+     */
+    void incrConstructionPoints();
 
 }
