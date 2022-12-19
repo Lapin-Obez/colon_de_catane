@@ -16,17 +16,19 @@ public class IntersectionImpl implements Intersection {
         this.construction = construction;
     }
 
+    @Override
     public void setPort(Harbor harbor) {
         this.harbor = harbor;
     }
 
     @Override
     public Construction getConstruction() {
-        return null;
+        return this.construction;
     }
+
     @Override
-    public void setHarbour(Harbor h){
-        this.harbor = h;
+    public void setHarbour(Harbor harbor){
+        this.harbor = harbor;
     }
     @Override
     public Optional<Harbor> getHarbour() {

@@ -251,16 +251,19 @@ Exception :
 |Méthode |Documentation
 
 |`Construction getConstruction()`
-|Renvoie la construction.
+| Renvoie la construction.
 
 |`void setConstruction(Construction colonie)`
-|Permet de set la construction.
+| Permet de set la construction.
 
 |`Map<Intersection, Color> getNeighbors()`
-|Renvoie les intersections voisines.
+| Renvoie les intersections voisines.
 
 |`Optional<Port> getHarbor()`
-|Renvoie le potentiel port de l'intersection.
+| Renvoie le potentiel port de l'intersection.
+
+|`void setHarbor(Harbor harbor)`
+| Permet de set le port de l'intersection.
 
 |===
 

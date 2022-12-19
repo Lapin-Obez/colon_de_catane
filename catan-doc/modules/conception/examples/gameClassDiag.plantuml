@@ -121,14 +121,15 @@ class Tile{
     + int getTokenValue()
 }
 
-class Intersection{
-    - Construction construction {@Nullable}
-    - Harbor harbor {@Nullable}
-
+interface Intersection {
     + setConstruction(Construction construction)
     + setPort(Harbor harbor)
     + Construction getConstruction()
     + Optional<Harbor> getHarbor()
+}
+
+class IntersectionImpl {
+    + IntersectionImpl()
 }
 
 interface Player {
@@ -184,6 +185,7 @@ class BoardImpl implements Board
 class GameImpl implements Game
 class PlayerImpl implements Player
 class HarborImpl implements Harbor
+class IntersectionImpl implements Intersection
 
 class City implements Construction
 class Colony implements Construction
@@ -193,9 +195,9 @@ BoardImpl *--> "19" Tile : - Map<Integer, Tile> tiles
 BoardImpl *--> "54" Intersection : - Map<Integer, Intersection> intersections
 
 Tile "2:3" *-->"6" Intersection
-Intersection *--> "0:1" Construction
+IntersectionImpl *--> "0:1" Construction : - construction {@Nullable}
 
-Intersection *--> "0.1" Harbor
+IntersectionImpl *--> "0.1" Harbor : - harbor {@Nullable}
 
 GameImpl --> "3:4" Player : - List<Player> playerList
 GameImpl --> "1" Player : - actualPlayer

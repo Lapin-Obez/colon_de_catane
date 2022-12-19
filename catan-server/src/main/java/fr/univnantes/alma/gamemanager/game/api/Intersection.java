@@ -21,5 +21,9 @@ public interface Intersection {
      */
     Optional<Harbor> getHarbour();
 
-    void setHarbour(Harbor h);
+    /**
+     * Permet de set le port de l'intersection.
+     * @param harbor le Port.
+     */
+    void setHarbour(Harbor harbor);
 }
