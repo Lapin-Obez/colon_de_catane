@@ -1,5 +1,4 @@
 @startuml
-
 enum Resource {
     Bois
     Argile
@@ -64,27 +63,32 @@ class Game {
     + int throwDice(Player playerAct) throws GameStatusException
     + List<Player> playStealer(Player playerAct, int tileID) throws GameStatusException, IllegalArgumentException
     + void stealResources(Player stealer, Player victim) throws GameStatusException, NotEnoughResourcesException
-    + void maritimeTrade(Player player, Resource rDefausse, Resource rRecup)
+    + void maritimeTrade(Player player, Resource rDefausse, Resource rRecup) throws NotEnoughResourcesException
 }
 
-class Board {
-    - final Integer NBINTERSECTIONS
-    - int idSealerTile
-    - Map<Integer, Map<Integer, Color>> roads
-    - Map<Integer, Intersection> intersections
-    - Map<Integer, Tile> tiles
-
-    + BoardImpl()
-    - TilesConstructor()
-    - Tile TileGenerator(Integer id, Integer intersection, Resource resource, int tokenValue)
+interface Board {
     + int getRoadLength(Color color)
-    + void moveStealer(int tileID)
     + List<Player> playStealer(int tileID) throws IllegalArgumentException
-    +Optional<Harbor> buildColony(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException
+    + Optional<Harbor> buildColony(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException
     + void buildCity(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException
     + void buildRoad(Color color, int intersectionA, int intersectionB) throws IllegalArgumentException, ImpossibleBuildException
     Map<Color, Map<Resource,Integer>> distributeResources(int tokenValue) throws IllegalArgumentException
     + void distributeResources(int tokenValue)
+}
+
+class BoardImpl {
+    - final Integer NBINTERSECTIONS
+    - int idSealerTile
+    - Map<Integer, Map<Integer, Color>> roads
+
+    + BoardImpl()
+    - tilesConstructor()
+    - Tile tileGenerator(Integer id, Integer intersection, Resource resource, int tokenValue)
+    - addHarbour()
+    - createTokenValue()
+    - boardRessources()
+    - roadConstructor()
+    - buildIntersectionLine(Integer begin, Integer end,Integer isodd,Integer increase,Integer decrease)
 }
 
 class Harbor{
@@ -162,15 +166,14 @@ class Colony {
     + int getPower()
 }
 
-
+class BoardImpl implements Board
 
 Construction <-d- City
 Construction <-d- Colony
 
-
 Game *--> "1" Board
-Board *--> "19" Tile
-Board *--> "54" Intersection
+BoardImpl *--> "19" Tile : - Map<Integer, Tile> tiles
+BoardImpl *--> "54" Intersection : - Map<Integer, Intersection> intersections
 
 Tile "2:3" *-->"6" Intersection
 Intersection *--> "0:1" Construction
@@ -179,5 +182,4 @@ Intersection *--> "0.1" Harbor
 
 Game --> "3:4" Player
 Player "1" -- "0:n" Construction
-
 @enduml

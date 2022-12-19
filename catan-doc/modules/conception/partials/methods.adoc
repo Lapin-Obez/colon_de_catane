@@ -230,6 +230,9 @@ Exception :
 
 - `IllegalArgumentException` si la tuile n'est pas valide.
 
+|`int getRoadLength(Color color)`
+| Calcule la route la plus longue pour une couleur.
+
 |===
 
 

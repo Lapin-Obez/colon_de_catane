@@ -9,6 +9,11 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface Board {
+
+    /**
+     * Calcule la route la plus longue pour une couleur.
+     * @return un int, la taille de la route.
+     */
     int getRoadLength(Color color);
 
     /**

@@ -1,9 +1,7 @@
 package fr.univnantes.alma.gamemanager.game.impl;
 
 import fr.univnantes.alma.gamemanager.game.api.*;
-import fr.univnantes.alma.gamemanager.game.api.enums.Color;
-import fr.univnantes.alma.gamemanager.game.api.enums.ExchangeRate;
-import fr.univnantes.alma.gamemanager.game.api.enums.Resource;
+import fr.univnantes.alma.gamemanager.game.api.enums.*;
 import fr.univnantes.alma.gamemanager.game.api.exceptions.ImpossibleBuildException;
 
 import java.util.*;
@@ -24,11 +22,14 @@ public class BoardImpl implements Board {
         }
         addHarbour();
         this.tiles = new HashMap<>();
-        TilesConstructor();
+        tilesConstructor();
         this.roads = new HashMap<>();
         roadConstructor();
     }
 
+    /**
+     * Ajoute les ports aux intersections
+     */
     private void addHarbour(){
         Harbor harbor = new HarborImpl(ExchangeRate.trois,null);
         Intersection inter = this.intersections.get(1);
@@ -76,8 +77,11 @@ public class BoardImpl implements Board {
         inter = this.intersections.get(18);
         inter.setHarbour(harbor);
     }
-    //fill tiles map
-    private void TilesConstructor(){
+
+    /**
+     * Remplie this.tiles
+     */
+    private void tilesConstructor(){
         List<Resource> resources = boardRessources();
         List<Integer> tokenValue = createTokenValue();
         Integer tokenVal;
@@ -98,9 +102,10 @@ public class BoardImpl implements Board {
             }else{
                 tokenVal = tokenValue.remove(0);
             }
-            this.tiles.put(i,TileGenerator(i,intersectionNumber+i*2,resources.remove(0),tokenVal));
+            this.tiles.put(i,tileGenerator(i,intersectionNumber+i*2,resources.remove(0),tokenVal));
         }
     }
+
     /*
      * Méthode de création de la liste des valeurs des tuiles
      */
@@ -112,6 +117,7 @@ public class BoardImpl implements Board {
         }
         return li;
     }
+
     /*
     * Méthode de création de la liste des ressources présentes sur le plateau.
     */
@@ -130,8 +136,11 @@ public class BoardImpl implements Board {
         Collections.shuffle(li);
         return li;
     }
-    //Création d'une tuile avec toutes les intersections autour de la tuile
-    private Tile TileGenerator(Integer id, Integer intersection, Resource resource, int valJeton){
+
+    /**
+     * Création d'une tuile avec toutes les intersections autour de la tuile
+     */
+    private Tile tileGenerator(Integer id, Integer intersection, Resource resource, int valJeton){
         List<Intersection> tileOutline;
         tileOutline = new ArrayList<>();
         tileOutline.add(this.intersections.get(intersection-1));
@@ -151,6 +160,7 @@ public class BoardImpl implements Board {
         tileOutline.add(this.intersections.get(intersection+1));
         return new TileImpl(tileOutline, resource,valJeton);
     }
+
     private void roadConstructor(){
         for(int i =0;i<6;i++){
             switch(i){
@@ -212,11 +222,11 @@ public class BoardImpl implements Board {
             this.roads.put(i,map);
         }
     }
+
     @Override
     public int getRoadLength(Color color) {
         return 0;
     }
-
 
     @Override
     public Optional<Harbor> buildColony(Color color, int idIntersection) throws IllegalArgumentException, ImpossibleBuildException {
@@ -233,7 +243,7 @@ public class BoardImpl implements Board {
         }
         Intersection inter = intersections.get(idIntersection);
         inter.setConstruction(new Colony(color));
-        return Optional.ofNullable(inter.getHarbour().get());
+        return inter.getHarbour();
     }
 
     @Override
