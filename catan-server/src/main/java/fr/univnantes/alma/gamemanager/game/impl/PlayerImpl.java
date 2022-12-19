@@ -21,12 +21,17 @@ public class PlayerImpl implements Player {
     public PlayerImpl(Color color){
         this();
         this.color = color;
+
+        this.mainResource = new HashMap<>();
         for(Resource r: Resource.values()){
             this.mainResource.put(r,0);
         }
+
+        this.mainDevelopment = new HashMap<>();
         for(Development d: Development.values()){
             this.mainDevelopment.put(d,0);
         }
+
         this.specialCards = new ArrayList<>();
         this.initHarbors();
     }
@@ -38,17 +43,25 @@ public class PlayerImpl implements Player {
     private initHarbors() {
         this.harbors = new HashMap<>();
         for(Resource resource : Resource.values())
-            this.harbors.put(resource, HarborImpl.BASIC_HARBOR)
+            this.harbors.put(resource, HarborImpl.BASIC_HARBOR);
     }
 
     @Override
-    public void maritimeTrade(Resource rDefausse, Resource rRecup) {
-
+    public void maritimeTrade(Resource rDefausse, Resource rRecup) throws NotEnoughResourcesException {
+        int nbResources =  this.harbors.get(rDefausse).exchange(rDefausse);
+        
+        if (nbResources > this.mainResource.get(rDefausse))
+            throw new NotEnoughResourcesException("Player does not have enough "+resource);
+        
+        this.mainResource.replace(rDefausse, this.mainResource.get(rDefausse)-nbResources);
+        this.mainResource.replace(rRecup, this.mainResource.get(rRecup)+1);
     }
 
     @Override
     public void addHarbour(Harbor harbor) {
-        
+        for(Resource r : this.harbors.values())
+            if(harbor.haveBetterRate(this.harbors.get(r)))
+                this.harbors.replace(r, harbor);
     }
 
     @Override
@@ -100,11 +113,14 @@ public class PlayerImpl implements Player {
         }
         Random r = new Random();
         int i = r.nextInt(li.size());
-        return li.get(i);
+        Resource res = li.get(i);
+        this.mainResource.replace(res, this.mainResource.get(res)-1);
+        return res;
     }
 
     @Override
     public void deleteHalfResources() {
+        // TODO ne respecte pas entièrement la documentation
         for(Resource key : this.mainResource.keySet()){
             this.mainResource.replace(key,this.mainResource.get(key)/2);
         }
@@ -113,6 +129,7 @@ public class PlayerImpl implements Player {
 
     @Override
     public void playDevelopmentCard(Development type) throws NotEnoughDevelopmentCardException {
+        // TODO ne respecte pas entièrement la documentation
         if(this.mainDevelopment.get(type)<1){
             throw new NotEnoughDevelopmentCardException("Your don't have enough "+type+" card");
         }
@@ -131,7 +148,7 @@ public class PlayerImpl implements Player {
     @Override
     public void deleteResources(Resource resource, int amount) throws NotEnoughResourcesException {
         if(this.mainResource.get(resource)<amount){
-            throw new NotEnoughResourcesException("You don't have enough "+resource);
+            throw new NotEnoughResourcesException("Player does not have enough "+resource);
         }
         this.mainResource.replace(resource,this.mainResource.get(resource)-amount);
     }

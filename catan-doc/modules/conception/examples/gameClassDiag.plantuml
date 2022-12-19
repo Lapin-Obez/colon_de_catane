@@ -144,7 +144,7 @@ class IntersectionImpl {
 }
 
 interface Player {
-    + maritimeTrade(Resource rDefausse, Resource rRecup)
+    + maritimeTrade(Resource rDefausse, Resource rRecup) throws NotEnoughResourcesException
     + addHarbor(Harbor harbor)
     + int getVictoryPoints()
     + int getNumberOfKnight()
