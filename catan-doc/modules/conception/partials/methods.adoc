@@ -256,9 +256,6 @@ Exception :
 |`void setConstruction(Construction colonie)`
 | Permet de set la construction.
 
-|`Map<Intersection, Color> getNeighbors()`
-| Renvoie les intersections voisines.
-
 |`Optional<Port> getHarbor()`
 | Renvoie le potentiel port de l'intersection.
 

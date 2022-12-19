@@ -110,15 +110,18 @@ class HarborImpl {
     HarborImpl(ExchangeRate rate)
 }
 
-class Tile{
-    - final List<Intersection> listIntersections
+interface Tile {
+    + Resource getResource()
+    + Map<Color, Map<Resource, Integer>> distributeResources()
+    + int getTokenValue()
+    + List<Intersection> getIntersections()
+}
+
+class TileImpl {
     - final Resource resource {@Nullable}
     - final int tokenValue
 
     + TileImpl(List<Intersection> listIntersections, Resource resource, int tokenValue)
-    + Resource getResource()
-    + Map<Color, Map<Resource, Integer>> distributeResources()
-    + int getTokenValue()
 }
 
 interface Intersection {
@@ -186,6 +189,7 @@ class GameImpl implements Game
 class PlayerImpl implements Player
 class HarborImpl implements Harbor
 class IntersectionImpl implements Intersection
+class TileImpl implements Tile
 
 class City implements Construction
 class Colony implements Construction
@@ -194,7 +198,7 @@ GameImpl *--> "1" Board : - board
 BoardImpl *--> "19" Tile : - Map<Integer, Tile> tiles
 BoardImpl *--> "54" Intersection : - Map<Integer, Intersection> intersections
 
-Tile "2:3" *-->"6" Intersection
+TileImpl "2:3" *-->"6" Intersection : - final List<Intersection> listIntersections
 IntersectionImpl *--> "0:1" Construction : - construction {@Nullable}
 
 IntersectionImpl *--> "0.1" Harbor : - harbor {@Nullable}
