@@ -422,4 +422,7 @@ Exceptions :
 |`boolean haveBetterRate(Port other)`
 | Compare le taux du port et d'un autre port et renvoie vrai si le premier a un meilleur taux.
 
+|`ExchangeRate getRate()`
+| Retourne le taux du port.
+
 |===
