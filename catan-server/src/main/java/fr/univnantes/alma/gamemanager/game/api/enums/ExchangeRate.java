@@ -5,7 +5,7 @@ public enum ExchangeRate {
     trois(3),
     deux(2);
 
-    public final value;
+    public final int value;
 
     public ExchangeRate(int value) {
         this.value = value;
